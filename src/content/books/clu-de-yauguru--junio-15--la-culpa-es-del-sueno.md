@@ -1,0 +1,14 @@
+---
+title: La culpa es del sueño
+collections:
+- clu-de-yauguru
+year: 2015
+authors:
+- Mariela Laudecina
+genre: poesía
+illustrators:
+- Maca
+featured: false
+---
+
+junio|15 / La culpa es del sueño. Poesía de Mariela Laudecina (Argentina), ilustraciones de Maca.

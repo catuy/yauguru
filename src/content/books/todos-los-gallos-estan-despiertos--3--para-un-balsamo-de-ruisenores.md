@@ -1,0 +1,13 @@
+---
+title: Para un bálsamo de ruiseñores
+collections:
+- todos-los-gallos-estan-despiertos
+series: Quinta serie (poesía)
+year: 2021
+authors:
+- Paula Einöder
+genre: otro
+featured: false
+---
+
+3. / Para un bálsamo de ruiseñores. Paula Einöder. 2021.

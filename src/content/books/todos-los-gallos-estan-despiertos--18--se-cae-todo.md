@@ -1,0 +1,15 @@
+---
+title: Se cae todo
+collections:
+- todos-los-gallos-estan-despiertos
+series: Sexta serie (poesía)
+year: 2024
+authors:
+- Trixy Miranda
+genre: otro
+illustrators:
+- Martina Russomando
+featured: false
+---
+
+18. / Se cae todo. Trixy Miranda (con ilustraciones de Martina Russomando). 2024.
