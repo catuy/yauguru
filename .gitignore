@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # local Claude Code permissions (machine-specific)
 .claude/settings.local.json
+
+# raw source materials, not needed for the site build
+materiales/
