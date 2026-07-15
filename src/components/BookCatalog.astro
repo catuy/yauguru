@@ -266,7 +266,41 @@ const infoRows = activeBook
 		if (box) box.style.viewTransitionName = 'book-cover';
 	});
 
+	// Opening a book (or closing back out of it) is a real navigation to a
+	// different page, so the filter/search/sort selects would otherwise
+	// reset every time — remembered here across that round trip the same
+	// way scroll position is (see the other script below), keyed so it
+	// survives for the whole session rather than just one hop.
+	const FILTERS_KEY = 'yauguru:filters';
+
+	function restoreFilters() {
+		const raw = sessionStorage.getItem(FILTERS_KEY);
+		if (!raw) return;
+		let saved;
+		try {
+			saved = JSON.parse(raw);
+		} catch {
+			return;
+		}
+		if (typeof saved.q === 'string') els.q.value = saved.q;
+		if (typeof saved.collection === 'string') els.collection.value = saved.collection;
+		if (typeof saved.genre === 'string') els.genre.value = saved.genre;
+		if (typeof saved.year === 'string') els.year.value = saved.year;
+		if (typeof saved.sort === 'string') els.sort.value = saved.sort;
+	}
+
 	function render() {
+		sessionStorage.setItem(
+			FILTERS_KEY,
+			JSON.stringify({
+				q: els.q.value,
+				collection: els.collection.value,
+				genre: els.genre.value,
+				year: els.year.value,
+				sort: els.sort.value,
+			})
+		);
+
 		const q = els.q.value.trim().toLowerCase();
 		const collection = els.collection.value;
 		const genre = els.genre.value;
@@ -320,6 +354,7 @@ const infoRows = activeBook
 		if (els.view.value === 'lista') window.location.href = '/catalogo';
 	});
 
+	restoreFilters();
 	render();
 })();
 </script>
