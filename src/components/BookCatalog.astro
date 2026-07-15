@@ -150,7 +150,7 @@ const infoRows = activeBook
 {activeBook && (
 	<div id="book-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-10">
 		<a href="/" aria-label="Cerrar" class="absolute inset-0 bg-white/70"></a>
-		<div class="relative flex w-full max-w-3xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-10">
+		<div id="book-modal-content" class="relative flex w-full max-w-3xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-10">
 			<a
 				href="/"
 				aria-label="Cerrar"
@@ -252,10 +252,16 @@ const infoRows = activeBook
 	// Tags only the clicked cover with the shared view-transition name, right
 	// before the browser navigates, so the destination page's zoomed cover
 	// (which carries the same name) morphs from this exact card instead of
-	// every one of the 500+ cards needing a permanent unique name.
+	// every one of the 500+ cards needing a permanent unique name. Clearing
+	// any leftover tag first is cheap insurance — two elements sharing the
+	// name at once aborts the transition outright instead of just looking
+	// wrong.
 	els.grid.addEventListener('click', (e) => {
 		const link = e.target.closest('.book-cover-link');
 		if (!link) return;
+		document.querySelectorAll('.book-cover-box[style*="view-transition-name"]').forEach((el) => {
+			el.style.viewTransitionName = '';
+		});
 		const box = link.querySelector('.book-cover-box');
 		if (box) box.style.viewTransitionName = 'book-cover';
 	});
@@ -335,6 +341,27 @@ const infoRows = activeBook
 			if (closeLink instanceof HTMLElement) closeLink.click();
 		});
 
+		// The grid is built client-side, so the specific card a closing book
+		// should shrink back into doesn't exist yet at the moment the browser
+		// snapshots the destination page — Astro only re-runs page scripts
+		// (which is what builds it) after that snapshot is already taken, so
+		// landing precisely on the grid card isn't possible without
+		// server-rendering the whole grid. Instead, on close, the whole modal
+		// (cover + info panel together) gets a single standalone fade/blur
+		// exit (see global.css): drop the cover's own morph name first so it
+		// doesn't separately hunt for a same-page match, then name the
+		// modal's content wrapper as one unit right before navigating away.
+		// Delegated on document (not #book-modal, which doesn't exist yet the
+		// first time this guarded, run-once block executes).
+		document.addEventListener('click', (e) => {
+			const link = e.target.closest('#book-modal a[aria-label="Cerrar"]');
+			if (!link) return;
+			const cover = document.querySelector('[style*="view-transition-name: book-cover"]');
+			if (cover instanceof HTMLElement) cover.style.viewTransitionName = '';
+			const content = document.getElementById('book-modal-content');
+			if (content) content.style.viewTransitionName = 'book-modal-exit';
+		});
+
 		// Opening/closing the book detail is a real navigation (for the
 		// shareable URL), which would otherwise reset scroll to the top and
 		// make the blurred grid behind the modal jump. Remember where we
@@ -346,7 +373,6 @@ const infoRows = activeBook
 		});
 		document.addEventListener('astro:page-load', () => {
 			const saved = sessionStorage.getItem(SCROLL_KEY);
-			if (saved === null) return;
 			// The browser's own view-transition machinery (scrolling the
 			// outgoing named element into view to snapshot it) can still
 			// adjust scroll for a frame or two after astro:page-load fires,
@@ -354,7 +380,29 @@ const infoRows = activeBook
 			// Waiting two animation frames lets that settle first.
 			requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
-					window.scrollTo(0, parseInt(saved, 10));
+					if (saved !== null) {
+						window.scrollTo(0, parseInt(saved, 10));
+						return;
+					}
+					// No saved position means this book page was opened
+					// directly (shared link, fresh tab, reload) rather than
+					// clicked from the grid — there's nothing to "return"
+					// to. Scroll to where the book sits in the (blurred)
+					// grid instead of leaving the hero visible behind it.
+					const modal = document.getElementById('book-modal');
+					if (!modal) return;
+					const match = location.pathname.match(/^\/libro\/([^/]+)/);
+					const slug = match ? decodeURIComponent(match[1]) : null;
+					const card = slug
+						? document.querySelector(`.book-cover-link[href="/libro/${CSS.escape(slug)}"]`)
+						: null;
+					if (card) {
+						const rect = card.getBoundingClientRect();
+						const target = rect.top + window.scrollY - window.innerHeight / 2 + rect.height / 2;
+						window.scrollTo(0, Math.max(target, 0));
+					} else {
+						document.getElementById('grid')?.scrollIntoView({ block: 'start' });
+					}
 				});
 			});
 		});

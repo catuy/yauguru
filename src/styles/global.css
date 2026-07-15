@@ -11,3 +11,19 @@
 body:has(#book-modal) {
 	overflow: hidden;
 }
+
+/* Closing the book detail can't land the cover precisely back on its grid
+   card (see BookCatalog.astro's close click handler for why), so instead of
+   the default crossfade the whole modal (cover + info panel, as one unit)
+   gets a deliberate, self-contained fade/blur/settle exit. */
+::view-transition-old(book-modal-exit) {
+	animation: yauguru-modal-fade-out 240ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes yauguru-modal-fade-out {
+	to {
+		transform: scale(0.94);
+		opacity: 0;
+		filter: blur(6px);
+	}
+}
