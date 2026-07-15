@@ -27,3 +27,18 @@ body:has(#book-modal) {
 		filter: blur(6px);
 	}
 }
+
+/* The filter columns get a hand-drawn scroll thumb (sized/positioned by
+   JS, see BookCatalog.astro's setupScrollThumb) instead of the native
+   scrollbar, because OS overlay scrollbars (macOS in particular, and
+   Safari regardless of ::-webkit-scrollbar styling) auto-hide when idle
+   — which defeats the point of a permanent "there's more below" cue. */
+.filter-scroll {
+	scrollbar-width: none;
+}
+
+.filter-scroll::-webkit-scrollbar {
+	display: none;
+	width: 0;
+	height: 0;
+}

@@ -67,79 +67,124 @@ const infoRows = activeBook
 		</div>
 	</section>
 
-	<div class="sticky top-0 z-20 w-full border-y border-primario bg-white">
-		<div class="mx-auto flex max-w-[1280px] items-center justify-between overflow-x-auto">
-			<div class="flex h-[59px] items-center divide-x divide-primario whitespace-nowrap">
-				<div class="flex h-full items-center px-6">
-					<label for="f-view" class="sr-only">Vista</label>
-					<select
-						id="f-view"
-						class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
-					>
-						<option value="grilla">Grilla +</option>
-						<option value="lista">Lista +</option>
-					</select>
-				</div>
-				<div class="flex h-full items-center px-6">
-					<label for="q" class="sr-only">Buscar título/autor</label>
-					<input
-						id="q"
-						type="text"
-						placeholder="Buscar título/autor"
-						class="w-40 bg-transparent text-lg tracking-[0.18px] text-primario placeholder:text-primario focus:outline-none sm:w-56"
-					/>
-				</div>
-				<div class="flex h-full items-center px-6">
-					<label for="f-collection" class="sr-only">Colección</label>
-					<select
-						id="f-collection"
-						class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
-					>
-						<option value="">Colección +</option>
-						{collectionOptions.map((c) => <option value={c.slug}>{c.name}</option>)}
-					</select>
-				</div>
-				<div class="flex h-full items-center px-6">
-					<label for="f-genre" class="sr-only">Género</label>
-					<select
-						id="f-genre"
-						class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
-					>
-						<option value="">Género +</option>
-						{genresPresent.map((g) => <option value={g}>{GENRE_LABELS[g] ?? g}</option>)}
-					</select>
-				</div>
-				<div class="flex h-full items-center px-6">
-					<label for="f-year" class="sr-only">Año</label>
-					<select
-						id="f-year"
-						class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
-					>
-						<option value="">Año +</option>
-						{years.map((y) => <option value={y}>{y}</option>)}
-					</select>
-				</div>
-			</div>
-			<div class="flex h-[59px] shrink-0 items-center px-6">
-				<label for="f-sort" class="sr-only">Ordenar</label>
-				<select
-					id="f-sort"
-					class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
+	<div id="filter-bar-wrap" class="sticky top-0 z-20 w-full border-y border-primario bg-white">
+		<div class="relative flex h-[59px] w-full items-center justify-between overflow-x-auto whitespace-nowrap px-6">
+			<div class="flex shrink-0 items-center gap-4">
+				<button id="btn-filters" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario">
+					Filtros<span id="filter-count"></span>
+				</button>
+				<button
+					id="btn-clear-filters"
+					type="button"
+					class="hidden shrink-0 text-lg tracking-[0.18px] text-primario"
 				>
-					<option value="">Ordenar +</option>
-					<option value="year-desc">Año (recientes primero)</option>
-					<option value="year-asc">Año (antiguos primero)</option>
-					<option value="title-asc">Título (A-Z)</option>
-					<option value="author-asc">Autor (A-Z)</option>
-				</select>
+					(Borrar filtros)
+				</button>
+			</div>
+			<p class="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 text-lg tracking-[0.18px] text-primario sm:block">
+				<span id="result-count">{total}</span> de {total} libros
+			</p>
+			<div class="flex shrink-0 items-center gap-6 pl-6">
+				<button id="btn-view" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario">
+					Vista: Grilla
+				</button>
+				<button id="btn-sort" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario"></button>
+			</div>
+		</div>
+
+		<div id="filters-panel" class="hidden border-t border-primario">
+			<div class="w-full px-6 py-8">
+				<div class="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-5">
+					<div>
+						<input
+							id="q"
+							type="text"
+							placeholder="Buscar por título o autor..."
+							class="-mx-2 w-full rounded-sm bg-transparent px-2 py-1 text-lg text-primario placeholder:text-primario focus:text-primario/50 focus:placeholder:text-primario/50 focus:outline-none"
+						/>
+					</div>
+					<div>
+						<p class="mb-3 text-lg tracking-[0.18px] text-primario">Colección</p>
+						<div class="relative">
+							<div class="filter-scroll flex max-h-56 flex-col gap-2 overflow-y-auto pr-4">
+								<label class="flex cursor-pointer items-center gap-2 text-lg text-primario">
+									<input type="radio" name="f-collection" value="" checked class="peer sr-only" />
+									<span class="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-primario peer-checked:bg-primario"></span>
+									Todas
+								</label>
+								{collectionOptions.map((c) => (
+									<label class="flex cursor-pointer items-center gap-2 text-lg text-primario">
+										<input type="radio" name="f-collection" value={c.slug} class="peer sr-only" />
+										<span class="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-primario peer-checked:bg-primario"></span>
+										{c.name}
+									</label>
+								))}
+							</div>
+							<div class="scroll-track pointer-events-none absolute right-0 top-0 hidden h-full w-1 rounded-full bg-primario/15"></div>
+							<div class="scroll-thumb pointer-events-none absolute right-0 hidden w-1 rounded-full bg-primario"></div>
+						</div>
+					</div>
+					<div>
+						<p class="mb-3 text-lg tracking-[0.18px] text-primario">Género</p>
+						<div class="relative">
+							<div class="filter-scroll flex max-h-56 flex-col gap-2 overflow-y-auto pr-4">
+								<label class="flex cursor-pointer items-center gap-2 text-lg text-primario">
+									<input type="radio" name="f-genre" value="" checked class="peer sr-only" />
+									<span class="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-primario peer-checked:bg-primario"></span>
+									Todos
+								</label>
+								{genresPresent.map((g) => (
+									<label class="flex cursor-pointer items-center gap-2 text-lg text-primario">
+										<input type="radio" name="f-genre" value={g} class="peer sr-only" />
+										<span class="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-primario peer-checked:bg-primario"></span>
+										{GENRE_LABELS[g] ?? g}
+									</label>
+								))}
+							</div>
+							<div class="scroll-track pointer-events-none absolute right-0 top-0 hidden h-full w-1 rounded-full bg-primario/15"></div>
+							<div class="scroll-thumb pointer-events-none absolute right-0 hidden w-1 rounded-full bg-primario"></div>
+						</div>
+					</div>
+					<div>
+						<p class="mb-3 text-lg tracking-[0.18px] text-primario">Año</p>
+						<div class="relative">
+							<div class="filter-scroll flex max-h-56 flex-col gap-2 overflow-y-auto pr-4">
+								<label class="flex cursor-pointer items-center gap-2 text-lg text-primario">
+									<input type="radio" name="f-year" value="" checked class="peer sr-only" />
+									<span class="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-primario peer-checked:bg-primario"></span>
+									Todos
+								</label>
+								{years.map((y) => (
+									<label class="flex cursor-pointer items-center gap-2 text-lg text-primario">
+										<input type="radio" name="f-year" value={y} class="peer sr-only" />
+										<span class="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-primario peer-checked:bg-primario"></span>
+										{y}
+									</label>
+								))}
+							</div>
+							<div class="scroll-track pointer-events-none absolute right-0 top-0 hidden h-full w-1 rounded-full bg-primario/15"></div>
+							<div class="scroll-thumb pointer-events-none absolute right-0 hidden w-1 rounded-full bg-primario"></div>
+						</div>
+					</div>
+					<div class="col-start-2 flex justify-end sm:col-start-5">
+						<button
+							id="btn-filters-close"
+							type="button"
+							aria-label="Cerrar filtros"
+							class="flex h-8 w-8 items-center justify-center text-primario"
+						>
+							<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+								<line x1="2" y1="2" x2="16" y2="16"></line>
+								<line x1="16" y1="2" x2="2" y2="16"></line>
+							</svg>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<section class="w-full bg-white p-2">
-		<p class="px-4 py-3 text-sm text-primario/70">
-			<span id="result-count">{total}</span> de {total} libros
-		</p>
 		<div id="grid" class="mx-auto grid max-w-[1280px] grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4"></div>
 		<p id="empty" class="hidden py-16 text-center text-primario/70">
 			No hay libros que coincidan con los filtros.
@@ -210,16 +255,46 @@ const infoRows = activeBook
 	const { rotations, books } = JSON.parse(document.getElementById('app-data')?.textContent ?? '{}');
 
 	const els = {
-		view: document.getElementById('f-view'),
+		btnView: document.getElementById('btn-view'),
+		btnSort: document.getElementById('btn-sort'),
+		btnFilters: document.getElementById('btn-filters'),
+		btnFiltersClose: document.getElementById('btn-filters-close'),
+		btnClear: document.getElementById('btn-clear-filters'),
+		filtersPanel: document.getElementById('filters-panel'),
+		filterCount: document.getElementById('filter-count'),
 		q: document.getElementById('q'),
-		collection: document.getElementById('f-collection'),
-		genre: document.getElementById('f-genre'),
-		year: document.getElementById('f-year'),
-		sort: document.getElementById('f-sort'),
 		grid: document.getElementById('grid'),
 		count: document.getElementById('result-count'),
 		empty: document.getElementById('empty'),
 	};
+
+	const SORT_OPTIONS = [
+		{ value: 'title-asc', label: 'Título' },
+		{ value: 'author-asc', label: 'Autor' },
+		{ value: 'year-desc', label: 'Reciente' },
+	];
+	let sortIndex = SORT_OPTIONS.findIndex((o) => o.value === 'year-desc');
+
+	function getRadioValue(name) {
+		const checked = document.querySelector(`input[name="${name}"]:checked`);
+		return checked ? checked.value : '';
+	}
+
+	function setRadioValue(name, value) {
+		if (typeof value !== 'string') return;
+		const radios = document.querySelectorAll(`input[name="${name}"]`);
+		let matched = false;
+		radios.forEach((r) => {
+			if (r.value === value) {
+				r.checked = true;
+				matched = true;
+			}
+		});
+		if (!matched) {
+			const empty = Array.from(radios).find((r) => r.value === '');
+			if (empty) empty.checked = true;
+		}
+	}
 
 	function escapeHtml(s) {
 		return String(s ?? '').replace(
@@ -267,10 +342,10 @@ const infoRows = activeBook
 	});
 
 	// Opening a book (or closing back out of it) is a real navigation to a
-	// different page, so the filter/search/sort selects would otherwise
-	// reset every time — remembered here across that round trip the same
-	// way scroll position is (see the other script below), keyed so it
-	// survives for the whole session rather than just one hop.
+	// different page, so the filter/search/sort state would otherwise reset
+	// every time — remembered here across that round trip the same way
+	// scroll position is (see the other script below), keyed so it survives
+	// for the whole session rather than just one hop.
 	const FILTERS_KEY = 'yauguru:filters';
 
 	function restoreFilters() {
@@ -283,29 +358,58 @@ const infoRows = activeBook
 			return;
 		}
 		if (typeof saved.q === 'string') els.q.value = saved.q;
-		if (typeof saved.collection === 'string') els.collection.value = saved.collection;
-		if (typeof saved.genre === 'string') els.genre.value = saved.genre;
-		if (typeof saved.year === 'string') els.year.value = saved.year;
-		if (typeof saved.sort === 'string') els.sort.value = saved.sort;
+		setRadioValue('f-collection', saved.collection);
+		setRadioValue('f-genre', saved.genre);
+		setRadioValue('f-year', saved.year);
+		const idx = SORT_OPTIONS.findIndex((o) => o.value === saved.sort);
+		if (idx !== -1) sortIndex = idx;
+	}
+
+	function activeFilterCount() {
+		let n = 0;
+		if (els.q.value.trim()) n++;
+		if (getRadioValue('f-collection')) n++;
+		if (getRadioValue('f-genre')) n++;
+		if (getRadioValue('f-year')) n++;
+		return n;
+	}
+
+	function updateFilterButton() {
+		const n = activeFilterCount();
+		els.filterCount.textContent = n > 0 ? ` (${n})` : '';
+		els.btnClear.classList.toggle('hidden', n === 0);
+	}
+
+	function setFiltersOpen(open) {
+		els.filtersPanel.classList.toggle('hidden', !open);
+		if (open) {
+			// The panel is display:none right up until this toggle, so any
+			// earlier measurement of the scroll columns (at page load, when
+			// they were still hidden) read zero height. Re-measure now that
+			// it's actually laid out — one frame so the class change above
+			// has taken effect first.
+			requestAnimationFrame(() => scrollThumbUpdaters.forEach((update) => update()));
+		}
+	}
+
+	function updateSortButton() {
+		els.btnSort.textContent = `Orden: ${SORT_OPTIONS[sortIndex].label}`;
 	}
 
 	function render() {
+		const collection = getRadioValue('f-collection');
+		const genre = getRadioValue('f-genre');
+		const year = getRadioValue('f-year');
+		const sort = SORT_OPTIONS[sortIndex].value;
+
 		sessionStorage.setItem(
 			FILTERS_KEY,
-			JSON.stringify({
-				q: els.q.value,
-				collection: els.collection.value,
-				genre: els.genre.value,
-				year: els.year.value,
-				sort: els.sort.value,
-			})
+			JSON.stringify({ q: els.q.value, collection, genre, year, sort })
 		);
+		updateFilterButton();
+		updateSortButton();
 
 		const q = els.q.value.trim().toLowerCase();
-		const collection = els.collection.value;
-		const genre = els.genre.value;
-		const year = els.year.value;
-		const sort = els.sort.value;
 
 		let filtered = books.filter((b) => {
 			if (collection && !b.collectionSlugs.includes(collection)) return false;
@@ -320,20 +424,13 @@ const infoRows = activeBook
 
 		filtered.sort((a, b) => {
 			switch (sort) {
-				case 'year-desc':
-					return (b.year || 0) - (a.year || 0) || a.title.localeCompare(b.title, 'es');
-				case 'year-asc':
-					return (a.year || 0) - (b.year || 0) || a.title.localeCompare(b.title, 'es');
 				case 'title-asc':
 					return a.title.localeCompare(b.title, 'es');
 				case 'author-asc':
 					return (a.authors[0] || '').localeCompare(b.authors[0] || '', 'es');
+				case 'year-desc':
 				default:
-					return (
-						a.collectionOrder - b.collectionOrder ||
-						(a.year || 0) - (b.year || 0) ||
-						a.title.localeCompare(b.title, 'es')
-					);
+					return (b.year || 0) - (a.year || 0) || a.title.localeCompare(b.title, 'es');
 			}
 		});
 
@@ -342,17 +439,70 @@ const infoRows = activeBook
 		els.grid.innerHTML = filtered.map(card).join('');
 	}
 
-	['input', 'change'].forEach((evt) => {
-		els.q.addEventListener(evt, render);
-		els.collection.addEventListener(evt, render);
-		els.genre.addEventListener(evt, render);
-		els.year.addEventListener(evt, render);
-		els.sort.addEventListener(evt, render);
+	els.q.addEventListener('input', render);
+	els.filtersPanel.addEventListener('change', (e) => {
+		if (e.target instanceof HTMLInputElement && e.target.type === 'radio') render();
 	});
 
-	els.view.addEventListener('change', () => {
-		if (els.view.value === 'lista') window.location.href = '/catalogo';
+	els.btnClear.addEventListener('click', () => {
+		els.q.value = '';
+		setRadioValue('f-collection', '');
+		setRadioValue('f-genre', '');
+		setRadioValue('f-year', '');
+		render();
 	});
+
+	els.btnFilters.addEventListener('click', () => {
+		setFiltersOpen(els.filtersPanel.classList.contains('hidden'));
+	});
+	els.btnFiltersClose.addEventListener('click', () => setFiltersOpen(false));
+
+	els.btnSort.addEventListener('click', () => {
+		sortIndex = (sortIndex + 1) % SORT_OPTIONS.length;
+		render();
+	});
+
+	els.btnView.addEventListener('click', () => {
+		window.location.href = '/catalogo';
+	});
+
+	// Hand-drawn scroll thumb for each filter column (native scrollbars
+	// auto-hide on macOS/Safari regardless of ::-webkit-scrollbar styling —
+	// see global.css). Track/thumb are hidden by default and only shown
+	// once we know the list actually overflows. The panel is display:none
+	// at this point in the script (page just loaded), so every list reads
+	// zero height here — these first update() calls just wire the scroll
+	// listener; setFiltersOpen re-measures for real once it's visible.
+	const scrollThumbUpdaters = [];
+
+	function setupScrollThumb(list) {
+		const wrap = list.parentElement;
+		const track = wrap.querySelector('.scroll-track');
+		const thumb = wrap.querySelector('.scroll-thumb');
+		if (!track || !thumb) return;
+
+		function update() {
+			const trackHeight = list.clientHeight;
+			const contentHeight = list.scrollHeight;
+			const overflows = contentHeight > trackHeight + 1;
+			track.classList.toggle('hidden', !overflows);
+			thumb.classList.toggle('hidden', !overflows);
+			if (!overflows) return;
+
+			const thumbHeight = Math.max((trackHeight / contentHeight) * trackHeight, 20);
+			const maxThumbTop = trackHeight - thumbHeight;
+			const scrollableDistance = contentHeight - trackHeight;
+			const scrollRatio = scrollableDistance > 0 ? list.scrollTop / scrollableDistance : 0;
+			thumb.style.height = `${thumbHeight}px`;
+			thumb.style.top = `${scrollRatio * maxThumbTop}px`;
+		}
+
+		list.addEventListener('scroll', update);
+		scrollThumbUpdaters.push(update);
+		update();
+	}
+
+	document.querySelectorAll('.filter-scroll').forEach(setupScrollThumb);
 
 	restoreFilters();
 	render();
