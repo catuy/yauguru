@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BookCatalog from '../../components/BookCatalog.astro';
+import { getBookData } from '../../lib/books';
+
+export async function getStaticPaths() {
+	const { bookData } = await getBookData();
+	return bookData.map((b) => ({ params: { slug: b.slug }, props: { book: b } }));
+}
+
+const { slug } = Astro.params;
+const { book } = Astro.props;
+
+const descriptionParts = [book.authors.join(', '), book.year ? String(book.year) : ''].filter(Boolean);
+const description = descriptionParts.length ? descriptionParts.join(' — ') : undefined;
+---
+
+<Layout title={`${book.title} — Yaugurú`} description={description}>
+	<BookCatalog activeSlug={slug} />
+</Layout>

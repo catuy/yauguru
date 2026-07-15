@@ -1,0 +1,362 @@
+---
+import { getBookData, GENRE_LABELS, buildNotes } from '../lib/books';
+
+interface Props {
+	activeSlug?: string;
+}
+
+const { activeSlug } = Astro.props;
+
+const { bookData, collectionOptions, genresPresent, years } = await getBookData();
+const total = bookData.length;
+
+// Small set of tilt angles cycled across cards, matching the hand-placed look in the design.
+const ROTATIONS = [0.8, -0.5, 0.6, -0.8, 0];
+
+// Bundled as one JSON payload (rather than define:vars) so the grid script
+// below can stay a plain is:inline script — define:vars always regenerates
+// the <script> tag from scratch, silently dropping the data-astro-rerun
+// attribute it needs to survive Astro's view-transition script dedup.
+const appData = JSON.stringify({ rotations: ROTATIONS, books: bookData }).replace(/</g, '\\u003c');
+
+const activeBook = activeSlug ? bookData.find((b) => b.slug === activeSlug) : undefined;
+
+const infoRows = activeBook
+	? ([
+			['Título', activeBook.title],
+			['Colección', activeBook.collectionNames.join(', ') || '—'],
+			['Año', activeBook.year ? String(activeBook.year) : '—'],
+			['Autor(es)', activeBook.authors.length ? activeBook.authors.join(', ') : '—'],
+			['Género', activeBook.genre ? (GENRE_LABELS[activeBook.genre] ?? activeBook.genre) : '—'],
+			...(buildNotes(activeBook) ? [['Notas', buildNotes(activeBook)]] : []),
+		] as [string, string][])
+	: [];
+
+---
+
+<div id="page-bg" class:list={['w-full', { 'blur-sm': activeBook }]} inert={activeBook ? true : undefined}>
+	<section class="w-full bg-primario">
+		<div class="mx-auto flex max-w-[1280px] justify-center px-6 py-12 sm:px-16 lg:px-[103px] lg:py-0">
+			<img src="/logo-yauguru.png" alt="Yaugurú" class="w-full max-w-[1074px]" />
+		</div>
+	</section>
+
+	<section class="w-full bg-white px-6 py-14 sm:px-12">
+		<div class="mx-auto max-w-[1280px]">
+			<div class="max-w-[760px] space-y-6 text-lg leading-[1.6] tracking-[0.18px] text-primario">
+				<p>
+					El sello editorial YAUGURÚ surge en el 2004 como respuesta a la necesidad de atender la
+					creación desde un lugar no estandarizado ni homogéneo. Cada obra, más allá de estilos y
+					géneros es única, por tanto el proceso de edición debe tomar en cuenta esa especialidad.
+				</p>
+				<p>
+					La materialidad de la edición pretende hablar precisamente de esos aspectos
+					diferenciales. Generalmente las colecciones son armadas con criterios de uniformidad,
+					todos son iguales. Sin embargo en la literatura, y en el arte en general, lo que importa
+					son las diferencias.
+				</p>
+				<p>Lo diferente, lo que sale de lo común es lo que nos entusiasma.</p>
+				<p>No somos indiferentes a lo diferente.</p>
+				<p>La poesía en todos sus géneros.</p>
+				<p>La edición en todos sus formatos.</p>
+				<p class="flex items-center gap-1">
+					<span class="underline decoration-from-font [text-underline-position:from-font]">Leer más</span>
+					<span class="underline decoration-from-font [text-underline-position:from-font]">+</span>
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="sticky top-0 z-20 w-full border-y border-primario bg-white">
+		<div class="mx-auto flex max-w-[1280px] items-center justify-between overflow-x-auto">
+			<div class="flex h-[59px] items-center divide-x divide-primario whitespace-nowrap">
+				<div class="flex h-full items-center px-6">
+					<label for="f-view" class="sr-only">Vista</label>
+					<select
+						id="f-view"
+						class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
+					>
+						<option value="grilla">Grilla +</option>
+						<option value="lista">Lista +</option>
+					</select>
+				</div>
+				<div class="flex h-full items-center px-6">
+					<label for="q" class="sr-only">Buscar título/autor</label>
+					<input
+						id="q"
+						type="text"
+						placeholder="Buscar título/autor"
+						class="w-40 bg-transparent text-lg tracking-[0.18px] text-primario placeholder:text-primario focus:outline-none sm:w-56"
+					/>
+				</div>
+				<div class="flex h-full items-center px-6">
+					<label for="f-collection" class="sr-only">Colección</label>
+					<select
+						id="f-collection"
+						class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
+					>
+						<option value="">Colección +</option>
+						{collectionOptions.map((c) => <option value={c.slug}>{c.name}</option>)}
+					</select>
+				</div>
+				<div class="flex h-full items-center px-6">
+					<label for="f-genre" class="sr-only">Género</label>
+					<select
+						id="f-genre"
+						class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
+					>
+						<option value="">Género +</option>
+						{genresPresent.map((g) => <option value={g}>{GENRE_LABELS[g] ?? g}</option>)}
+					</select>
+				</div>
+				<div class="flex h-full items-center px-6">
+					<label for="f-year" class="sr-only">Año</label>
+					<select
+						id="f-year"
+						class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
+					>
+						<option value="">Año +</option>
+						{years.map((y) => <option value={y}>{y}</option>)}
+					</select>
+				</div>
+			</div>
+			<div class="flex h-[59px] shrink-0 items-center px-6">
+				<label for="f-sort" class="sr-only">Ordenar</label>
+				<select
+					id="f-sort"
+					class="cursor-pointer appearance-none bg-transparent text-lg tracking-[0.18px] text-primario focus:outline-none"
+				>
+					<option value="">Ordenar +</option>
+					<option value="year-desc">Año (recientes primero)</option>
+					<option value="year-asc">Año (antiguos primero)</option>
+					<option value="title-asc">Título (A-Z)</option>
+					<option value="author-asc">Autor (A-Z)</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<section class="w-full bg-white p-2">
+		<p class="px-4 py-3 text-sm text-primario/70">
+			<span id="result-count">{total}</span> de {total} libros
+		</p>
+		<div id="grid" class="mx-auto grid max-w-[1280px] grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4"></div>
+		<p id="empty" class="hidden py-16 text-center text-primario/70">
+			No hay libros que coincidan con los filtros.
+		</p>
+	</section>
+</div>
+
+{activeBook && (
+	<div id="book-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-10">
+		<a href="/" aria-label="Cerrar" class="absolute inset-0 bg-white/70"></a>
+		<div class="relative flex w-full max-w-3xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-10">
+			<a
+				href="/"
+				aria-label="Cerrar"
+				class="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full border border-primario bg-white text-primario shadow-[0px_4px_8px_rgba(0,0,0,0.25)] sm:-top-4 sm:-right-14"
+			>
+				<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+					<line x1="2" y1="2" x2="16" y2="16"></line>
+					<line x1="16" y1="2" x2="2" y2="16"></line>
+				</svg>
+			</a>
+
+			<div class="relative h-[300px] w-[220px] shrink-0 sm:h-[380px] sm:w-[270px]" style="view-transition-name: book-cover">
+				<div class="flex h-full w-full flex-col justify-between rounded-sm border border-primario/30 bg-[#faf7f2] p-5 text-primario shadow-[0px_24px_48px_-8px_rgba(0,0,0,0.35)]">
+					<p class="text-lg font-semibold leading-snug">{activeBook.title}</p>
+					<p class="text-xs uppercase tracking-wide opacity-70">
+						{activeBook.authors[0] ?? activeBook.collectionNames[0] ?? ''}
+					</p>
+				</div>
+			</div>
+
+			<div class="w-full max-w-sm border border-primario bg-white px-6 py-2 text-primario shadow-[0px_4px_8px_rgba(0,0,0,0.25)]">
+				<dl class="divide-y divide-primario">
+					{infoRows.map(([label, value]) => (
+						<div class="py-3">
+							<dt class="text-[10px] font-bold uppercase text-primario">{label}</dt>
+							<dd class="mt-1.5 text-[13px] leading-[1.5] text-primario">{value}</dd>
+						</div>
+					))}
+				</dl>
+				{activeBook.purchaseLink && (
+					<a
+						href={activeBook.purchaseLink}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="my-4 inline-block rounded-sm border border-primario px-4 py-2 text-sm font-medium text-primario hover:bg-primario hover:text-white"
+					>
+						Comprar
+					</a>
+				)}
+			</div>
+		</div>
+	</div>
+)}
+
+<script type="application/json" id="app-data" set:html={appData} />
+
+<script is:inline data-astro-rerun>
+// Without data-astro-rerun, Astro's view-transition swap skips scripts
+// whose content is byte-identical to one already run on a previous page
+// (true here: this script is the same on every /libro/[slug] page) —
+// meaning render() would never fire again and #grid would stay empty
+// after navigating back. That in turn means this script's top-level consts
+// get (re)declared more than once — is:inline scripts are classic scripts
+// sharing one global scope, unlike type="module" ones — so everything is
+// wrapped in an IIFE to give each run its own scope.
+(function () {
+	const { rotations, books } = JSON.parse(document.getElementById('app-data')?.textContent ?? '{}');
+
+	const els = {
+		view: document.getElementById('f-view'),
+		q: document.getElementById('q'),
+		collection: document.getElementById('f-collection'),
+		genre: document.getElementById('f-genre'),
+		year: document.getElementById('f-year'),
+		sort: document.getElementById('f-sort'),
+		grid: document.getElementById('grid'),
+		count: document.getElementById('result-count'),
+		empty: document.getElementById('empty'),
+	};
+
+	function escapeHtml(s) {
+		return String(s ?? '').replace(
+			/[&<>"']/g,
+			(c) =>
+				({
+					'&': '&amp;',
+					'<': '&lt;',
+					'>': '&gt;',
+					'"': '&quot;',
+					"'": '&#39;',
+				})[c]
+		);
+	}
+
+	function card(b, i) {
+		const rotation = rotations[i % rotations.length];
+		const cover = `<div class="flex h-[180px] w-[130px] flex-col justify-between rounded-sm border border-primario/30 bg-[#faf7f2] p-3 text-primario shadow-[0px_12px_24px_-4px_rgba(0,0,0,0.15)]">
+			<p class="line-clamp-4 text-[11px] font-semibold leading-tight">${escapeHtml(b.title)}</p>
+			<p class="line-clamp-1 text-[9px] uppercase tracking-wide opacity-70">${escapeHtml(b.authors[0] ?? b.collectionNames[0] ?? '')}</p>
+		</div>`;
+		return `
+		<div class="flex h-[310px] w-full items-center justify-center">
+			<a href="/libro/${encodeURIComponent(b.slug)}" class="book-cover-link relative block h-[180px] w-[130px]" aria-label="Ver ${escapeHtml(b.title)}">
+				<div class="book-cover-box absolute inset-0" style="transform: rotate(${rotation}deg)">${cover}</div>
+			</a>
+		</div>`;
+	}
+
+	// Tags only the clicked cover with the shared view-transition name, right
+	// before the browser navigates, so the destination page's zoomed cover
+	// (which carries the same name) morphs from this exact card instead of
+	// every one of the 500+ cards needing a permanent unique name.
+	els.grid.addEventListener('click', (e) => {
+		const link = e.target.closest('.book-cover-link');
+		if (!link) return;
+		const box = link.querySelector('.book-cover-box');
+		if (box) box.style.viewTransitionName = 'book-cover';
+	});
+
+	function render() {
+		const q = els.q.value.trim().toLowerCase();
+		const collection = els.collection.value;
+		const genre = els.genre.value;
+		const year = els.year.value;
+		const sort = els.sort.value;
+
+		let filtered = books.filter((b) => {
+			if (collection && !b.collectionSlugs.includes(collection)) return false;
+			if (genre && b.genre !== genre) return false;
+			if (year && String(b.year) !== year) return false;
+			if (q) {
+				const hay = [b.title, ...(b.authors || []), b.series].filter(Boolean).join(' ').toLowerCase();
+				if (!hay.includes(q)) return false;
+			}
+			return true;
+		});
+
+		filtered.sort((a, b) => {
+			switch (sort) {
+				case 'year-desc':
+					return (b.year || 0) - (a.year || 0) || a.title.localeCompare(b.title, 'es');
+				case 'year-asc':
+					return (a.year || 0) - (b.year || 0) || a.title.localeCompare(b.title, 'es');
+				case 'title-asc':
+					return a.title.localeCompare(b.title, 'es');
+				case 'author-asc':
+					return (a.authors[0] || '').localeCompare(b.authors[0] || '', 'es');
+				default:
+					return (
+						a.collectionOrder - b.collectionOrder ||
+						(a.year || 0) - (b.year || 0) ||
+						a.title.localeCompare(b.title, 'es')
+					);
+			}
+		});
+
+		els.count.textContent = String(filtered.length);
+		els.empty.classList.toggle('hidden', filtered.length > 0);
+		els.grid.innerHTML = filtered.map(card).join('');
+	}
+
+	['input', 'change'].forEach((evt) => {
+		els.q.addEventListener(evt, render);
+		els.collection.addEventListener(evt, render);
+		els.genre.addEventListener(evt, render);
+		els.year.addEventListener(evt, render);
+		els.sort.addEventListener(evt, render);
+	});
+
+	els.view.addEventListener('change', () => {
+		if (els.view.value === 'lista') window.location.href = '/catalogo';
+	});
+
+	render();
+})();
+</script>
+
+<script is:inline>
+	// Guarded because Astro's view-transition navigations can re-run this
+	// script without a full document reload, and these listeners only need
+	// to be attached once for the whole session (they live on `document`,
+	// which persists across soft navigations).
+	if (!window.__yauguruTransitionsBound) {
+		window.__yauguruTransitionsBound = true;
+
+		// Escape closes the detail modal by re-using the real close link, so
+		// it goes through the same navigation (and view transition) as
+		// clicking it.
+		document.addEventListener('keydown', (e) => {
+			if (e.key !== 'Escape') return;
+			const closeLink = document.querySelector('#book-modal a[aria-label="Cerrar"]');
+			if (closeLink instanceof HTMLElement) closeLink.click();
+		});
+
+		// Opening/closing the book detail is a real navigation (for the
+		// shareable URL), which would otherwise reset scroll to the top and
+		// make the blurred grid behind the modal jump. Remember where we
+		// were right before leaving a page, and restore it once the next
+		// one is ready, so the background stays put in both directions.
+		const SCROLL_KEY = 'yauguru:scrollY';
+		document.addEventListener('astro:before-preparation', () => {
+			sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+		});
+		document.addEventListener('astro:page-load', () => {
+			const saved = sessionStorage.getItem(SCROLL_KEY);
+			if (saved === null) return;
+			// The browser's own view-transition machinery (scrolling the
+			// outgoing named element into view to snapshot it) can still
+			// adjust scroll for a frame or two after astro:page-load fires,
+			// silently winning over a scrollTo() called here directly.
+			// Waiting two animation frames lets that settle first.
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					window.scrollTo(0, parseInt(saved, 10));
+				});
+			});
+		});
+	}
+</script>

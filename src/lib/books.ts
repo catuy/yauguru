@@ -12,6 +12,7 @@ export const GENRE_LABELS: Record<string, string> = {
 };
 
 export interface BookCard {
+	slug: string;
 	title: string;
 	collectionSlugs: string[];
 	collectionNames: string[];
@@ -24,7 +25,17 @@ export interface BookCard {
 	translators: string[];
 	illustrators: string[];
 	awards: string[];
+	purchaseLink: string;
 	featured: boolean;
+}
+
+export function buildNotes(b: Pick<BookCard, 'awards' | 'coEdition' | 'translators' | 'illustrators'>) {
+	const parts: string[] = [];
+	if (b.awards?.length) parts.push(`Premio: ${b.awards.join('; ')}`);
+	if (b.coEdition) parts.push(`Co-ed.: ${b.coEdition}`);
+	if (b.translators?.length) parts.push(`Trad.: ${b.translators.join(', ')}`);
+	if (b.illustrators?.length) parts.push(`Il.: ${b.illustrators.join(', ')}`);
+	return parts.join(' · ');
 }
 
 export async function getBookData() {
@@ -43,6 +54,7 @@ export async function getBookData() {
 		const names = slugs.map((slug, i) => metas[i]?.name ?? slug);
 		const orders = metas.map((m) => m?.order ?? 999);
 		return {
+			slug: b.id,
 			title: b.data.title,
 			collectionSlugs: slugs,
 			collectionNames: names,
@@ -55,6 +67,7 @@ export async function getBookData() {
 			translators: b.data.translators ?? [],
 			illustrators: b.data.illustrators ?? [],
 			awards: b.data.awards ?? [],
+			purchaseLink: b.data.purchaseLink ?? '',
 			featured: b.data.featured,
 		};
 	});

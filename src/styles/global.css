@@ -4,3 +4,10 @@
 	--color-primario: #de2a42;
 	--font-sans: "Stack Sans Text", ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Locks page scroll whenever the book detail modal is present, including
+   across Astro view-transition navigations (declarative, so it doesn't
+   depend on JS timing or on a body class making it through the swap). */
+body:has(#book-modal) {
+	overflow: hidden;
+}
