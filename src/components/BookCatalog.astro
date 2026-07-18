@@ -41,7 +41,13 @@ const infoRows = activeBook
 		</div>
 	</section>
 
-	<section class="w-full bg-white px-6 py-14">
+	<section id="about-section" class="relative w-full bg-white px-6 py-14">
+		<canvas
+			id="about-canvas"
+			class="pointer-events-none absolute inset-0"
+			transition:persist
+			transition:name="about-canvas"
+		></canvas>
 		<div class="grid grid-cols-1 gap-x-16 gap-y-10 text-lg leading-[1.6] tracking-[0.18px] text-primario sm:grid-cols-2">
 			<div class="[&>p]:mb-6">
 				<p>
@@ -93,6 +99,8 @@ const infoRows = activeBook
 			<div class="sticky top-6 self-start [&>p]:mb-6"></div>
 		</div>
 	</section>
+
+	<div id="filter-bar-sentinel" class="h-px" transition:persist transition:name="filter-bar-sentinel"></div>
 
 	<div id="filter-bar-wrap" class="sticky top-0 z-20 w-full bg-white">
 		<div class="mx-6 border-y border-primario">
@@ -213,7 +221,7 @@ const infoRows = activeBook
 	</div>
 	</div>
 
-	<section id="grid-section" class="w-full bg-white p-6">
+	<section id="grid-section" class="w-full bg-white px-6 py-6">
 		<div id="grid"></div>
 		<p id="empty" class="hidden py-16 text-center text-primario/70">
 			No hay libros que coincidan con los filtros.
@@ -273,10 +281,45 @@ const infoRows = activeBook
 
 <div
 	id="cursor-dot"
-	class="pointer-events-none fixed left-0 top-0 z-[9999] flex h-[10px] w-[10px] items-center justify-center rounded-full bg-primario transition-[width,height] duration-150 ease-out will-change-transform"
+	class="pointer-events-none fixed left-0 top-0 z-[9999] flex h-[10px] w-[10px] items-center justify-center rounded-full bg-primario transition-[width,height,background-color] duration-150 ease-out will-change-transform"
 	transition:persist
 >
 	<span class="text-lg leading-none text-white">+</span>
+	<svg
+		class="cursor-pencil-icon h-[22px] w-[22px] -translate-y-0.5 translate-x-0.5 text-primario"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+		<path d="M15 5l4 4"></path>
+	</svg>
+</div>
+
+<div
+	id="site-footer"
+	class="pointer-events-none fixed inset-x-0 bottom-0 z-20 w-full bg-white opacity-0 transition-opacity duration-200"
+	transition:persist
+	transition:name="site-footer-bar"
+>
+	<div class="mx-6 border-y border-primario">
+		<div class="flex h-[59px] w-full items-center justify-between">
+			<button id="btn-back-to-top" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario">
+				Volver arriba
+			</button>
+			<a
+				href="https://catuy.github.io/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="shrink-0 text-lg tracking-[0.18px] text-primario underline decoration-from-font [text-underline-position:from-font]"
+			>
+				&lt;/&gt;
+			</a>
+		</div>
+	</div>
 </div>
 
 <script type="application/json" id="app-data" set:html={appData} />
@@ -318,7 +361,10 @@ const infoRows = activeBook
 	const VIEW_MODES = ['grid', 'list'];
 	let viewMode = 'grid';
 	const GRID_CLASSES = ['grid', 'grid-cols-2', 'gap-2', 'sm:grid-cols-3', 'lg:grid-cols-4'];
-	const LIST_CLASSES = ['flex', 'flex-col', 'divide-y', 'divide-primario'];
+	// No divide-y here: the divider between rows is drawn by .list-row's own
+	// ::after (see global.css) so it can be inset 24px like the filter bar's
+	// border, instead of divide-y's border-top spanning the full row width.
+	const LIST_CLASSES = ['flex', 'flex-col'];
 
 	function getRadioValue(name) {
 		const checked = document.querySelector(`input[name="${name}"]:checked`);
@@ -375,10 +421,10 @@ const infoRows = activeBook
 	// lugar del zoom compartido de la vista de grilla.
 	function row(b) {
 		return `
-		<a href="/libro/${encodeURIComponent(b.slug)}" class="book-cover-link flex h-[59px] w-full items-center gap-6 px-6 text-lg tracking-[0.18px] text-primario" aria-label="Ver ${escapeHtml(b.title)}">
-			<span class="min-w-0 flex-1 truncate">${escapeHtml(b.title)}</span>
-			<span class="w-40 shrink-0 truncate sm:w-56">${escapeHtml(b.authors.join(', ') || '—')}</span>
-			<span class="w-12 shrink-0 text-right">${b.year ?? '—'}</span>
+		<a href="/libro/${encodeURIComponent(b.slug)}" class="list-row book-cover-link relative flex h-[59px] w-full items-center gap-6 overflow-hidden px-6 text-lg tracking-[0.18px] text-primario" aria-label="Ver ${escapeHtml(b.title)}">
+			<span class="relative z-[1] min-w-0 flex-1 truncate">${escapeHtml(b.title)}</span>
+			<span class="relative z-[1] w-40 shrink-0 truncate sm:w-56">${escapeHtml(b.authors.join(', ') || '—')}</span>
+			<span class="relative z-[1] w-12 shrink-0 text-right">${b.year ?? '—'}</span>
 		</a>`;
 	}
 
@@ -610,6 +656,8 @@ const infoRows = activeBook
 			let dotX = mouseX;
 			let dotY = mouseY;
 			let isHoveringBook = false;
+			let isOverAbout = false;
+			let isOverAboutLink = false;
 
 			document.addEventListener('mousemove', (e) => {
 				mouseX = e.clientX;
@@ -627,37 +675,155 @@ const infoRows = activeBook
 				}
 			});
 
-			// While the detail modal is open, the dot stays enlarged and
-			// swaps its "+" for an "×" — it doubles as the close affordance
-			// (see the click listener below), replacing the corner button.
-			// wasActive/wasGlyph guard the two DOM writes below so they only
-			// touch the element on an actual state change rather than every
-			// frame — textContent in particular replaces its text node on
-			// every assignment (unlike classList.toggle, which no-ops when
-			// the class is already in that state), so writing it 60x/sec
-			// regardless of whether it changed was churning the DOM forever
-			// in the background and showed up as janky cadence later on.
-			let wasActive = false;
-			let wasGlyph = '';
+			// The about section doubles as a scribble pad: click-and-drag draws
+			// on #about-canvas in the primario red. Sized once here (rather than
+			// on every resize) — simple tradeoff for what's a small easter egg,
+			// not a full drawing tool. `transition:persist` on the canvas keeps
+			// both the element and whatever's been drawn on it alive across
+			// view-transition navigations (same trick as this cursor dot), so
+			// this setup only needs to run once per session too.
+			const aboutSection = document.getElementById('about-section');
+			const aboutCanvas = document.getElementById('about-canvas');
+			const drawCtx = aboutCanvas ? aboutCanvas.getContext('2d') : null;
+			let isDrawing = false;
+			let lastDrawX = 0;
+			let lastDrawY = 0;
+
+			if (aboutSection && aboutCanvas && drawCtx) {
+				const rect = aboutSection.getBoundingClientRect();
+				const dpr = window.devicePixelRatio || 1;
+				aboutCanvas.width = rect.width * dpr;
+				aboutCanvas.height = rect.height * dpr;
+				aboutCanvas.style.width = `${rect.width}px`;
+				aboutCanvas.style.height = `${rect.height}px`;
+				drawCtx.scale(dpr, dpr);
+				drawCtx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-primario').trim();
+				drawCtx.lineWidth = 2;
+				drawCtx.lineCap = 'round';
+				drawCtx.lineJoin = 'round';
+			}
+
+			function drawPointFromEvent(e) {
+				const rect = aboutCanvas.getBoundingClientRect();
+				return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+			}
+
+			document.addEventListener('mouseover', (e) => {
+				if (e.target instanceof Element && e.target.closest('#about-section')) isOverAbout = true;
+				if (e.target instanceof Element && e.target.closest('#about-section a')) isOverAboutLink = true;
+			});
+			document.addEventListener('mouseout', (e) => {
+				const isLeavingToAnotherAboutEl =
+					e.relatedTarget instanceof Element && e.relatedTarget.closest('#about-section');
+				if (!isLeavingToAnotherAboutEl && e.target instanceof Element && e.target.closest('#about-section')) {
+					isOverAbout = false;
+					isDrawing = false;
+				}
+				const isLeavingToAnotherLink =
+					e.relatedTarget instanceof Element && e.relatedTarget.closest('#about-section a');
+				if (!isLeavingToAnotherLink && e.target instanceof Element && e.target.closest('#about-section a')) {
+					isOverAboutLink = false;
+				}
+			});
+
+			if (drawCtx) {
+				document.addEventListener('mousedown', (e) => {
+					if (!(e.target instanceof Element) || !e.target.closest('#about-section')) return;
+					// Dragging over text would otherwise start a native text
+					// selection (ugly blue highlight fighting the drawn line) —
+					// preventDefault on the mousedown that kicks off the drag
+					// stops that without disabling normal double/triple-click
+					// text selection, which doesn't go through this handler.
+					e.preventDefault();
+					isDrawing = true;
+					const p = drawPointFromEvent(e);
+					lastDrawX = p.x;
+					lastDrawY = p.y;
+				});
+				document.addEventListener('mousemove', (e) => {
+					if (!isDrawing) return;
+					const p = drawPointFromEvent(e);
+					drawCtx.beginPath();
+					drawCtx.moveTo(lastDrawX, lastDrawY);
+					drawCtx.lineTo(p.x, p.y);
+					drawCtx.stroke();
+					lastDrawX = p.x;
+					lastDrawY = p.y;
+				});
+				document.addEventListener('mouseup', () => {
+					isDrawing = false;
+				});
+			}
+
+			// Three mutually-exclusive looks for the dot, checked in priority
+			// order: the detail modal's close affordance wins over the about
+			// section's pencil (can't overlap in practice — #page-bg goes
+			// inert while a book is open, so about-section hover can't fire —
+			// but the priority keeps this correct even if that ever changes),
+			// which wins over a plain book hover, which wins over idle.
+			// wasMode guards every DOM write below so they only happen on an
+			// actual state change rather than every frame — textContent in
+			// particular replaces its text node on every assignment (unlike
+			// classList.toggle, which no-ops when the class is already in
+			// that state), so writing it 60x/sec regardless of whether it
+			// changed was churning the DOM forever in the background and
+			// showed up as janky cadence later on.
+			let wasMode = '';
 			(function tick() {
 				dotX += (mouseX - dotX) * 0.1;
 				dotY += (mouseY - dotY) * 0.1;
 				cursorDot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
 
 				const isBookOpen = !!document.getElementById('book-modal');
-				const shouldBeActive = isBookOpen || isHoveringBook;
-				if (shouldBeActive !== wasActive) {
-					cursorDot.classList.toggle('cursor-dot--active', shouldBeActive);
-					wasActive = shouldBeActive;
-				}
-				const nextGlyph = isBookOpen ? '×' : '+';
-				if (glyph && nextGlyph !== wasGlyph) {
-					glyph.textContent = nextGlyph;
-					wasGlyph = nextGlyph;
+				const mode = isBookOpen
+					? 'close'
+					: isHoveringBook
+						? 'plus'
+						: isOverAbout && !isOverAboutLink
+							? 'pencil'
+							: 'idle';
+				if (mode !== wasMode) {
+					cursorDot.classList.toggle('cursor-dot--active', mode === 'close' || mode === 'plus');
+					cursorDot.classList.toggle('cursor-dot--pencil', mode === 'pencil');
+					if (glyph) glyph.textContent = mode === 'close' ? '×' : '+';
+					wasMode = mode;
 				}
 
 				requestAnimationFrame(tick);
 			})();
+		}
+
+		// Fixed footer bar: mirrors the filter bar's look, but only shown once
+		// the filter bar has actually stuck to the top of the viewport (not
+		// while still scrolling through the hero/about). position: sticky
+		// alone doesn't expose a "currently stuck" state, so a sentinel placed
+		// right before the sticky filter bar stands in for it — the sentinel
+		// reliably scrolls out of view at exactly the moment its sticky
+		// sibling starts pinning. Not gated behind pointer:fine (unlike the
+		// cursor dot above) since back-to-top/footer visibility are just as
+		// relevant on touch devices.
+		const filterBarSentinel = document.getElementById('filter-bar-sentinel');
+		const siteFooter = document.getElementById('site-footer');
+		if (filterBarSentinel && siteFooter) {
+			new IntersectionObserver(([entry]) => {
+				// isIntersecting alone is ambiguous: it's equally false before
+				// the sentinel has scrolled into view (below the viewport,
+				// filter bar not stuck yet) and after it's scrolled past
+				// (above the viewport, filter bar now stuck) — only the sign
+				// of its position tells those two apart.
+				const stuck = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+				siteFooter.classList.toggle('opacity-0', !stuck);
+				siteFooter.classList.toggle('opacity-100', stuck);
+				siteFooter.classList.toggle('pointer-events-none', !stuck);
+				siteFooter.classList.toggle('pointer-events-auto', stuck);
+			}).observe(filterBarSentinel);
+		}
+
+		const backToTopBtn = document.getElementById('btn-back-to-top');
+		if (backToTopBtn) {
+			backToTopBtn.addEventListener('click', () => {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			});
 		}
 
 		// Escape closes the detail modal by re-using the real close link, so

@@ -54,6 +54,47 @@ body:has(#book-modal) {
 	transform: rotate(var(--rotate)) scale(1.05);
 }
 
+/* List row hover: same red-fill idea as the grid tiles, but wiping in from
+   the bottom (rows are wide and short, so a vertical wipe reads better than
+   a horizontal one) and turning the text white instead of scaling anything. */
+.list-row::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 24px;
+	right: 24px;
+	z-index: 0;
+	background: var(--color-primario);
+	transform: scaleY(0);
+	transform-origin: bottom;
+	transition: transform 250ms ease-out;
+}
+
+.list-row:hover::before {
+	transform: scaleY(1);
+}
+
+.list-row:hover {
+	color: #fff;
+}
+
+/* Divider between rows, inset the same 24px as the filter bar's border
+   instead of running edge-to-edge — a plain divide-y on the container would
+   span the full row width, since the row itself is a full-bleed click
+   target. z-index above the hover fill keeps it visible through the red
+   the same way a real border would sit on top of a background-color. */
+.list-row:not(:last-of-type)::after {
+	content: '';
+	position: absolute;
+	left: 24px;
+	right: 24px;
+	bottom: 0;
+	height: 1px;
+	z-index: 1;
+	background: var(--color-primario);
+}
+
 /* Closing the book detail can't land the cover precisely back on its grid
    card (see BookCatalog.astro's close click handler for why), so instead of
    the default crossfade the whole modal (cover + info panel, as one unit)
@@ -97,10 +138,34 @@ body:has(#book-modal) {
 #cursor-dot.cursor-dot--active {
 	width: 40px;
 	height: 40px;
+	/* Both the book-cell and list-row hover fills are this same red, so
+	   without an outline the circle disappears into them on hover. */
+	border: 2px solid #fff;
 }
 
 #cursor-dot.cursor-dot--active span {
 	opacity: 1;
+}
+
+/* Hovering the about section swaps the dot for a bare line-art pencil icon
+   (no red circle) — it's a draw-mode cursor, not a button affordance, so it
+   drops the fill instead of just growing like the book/close states do. */
+#cursor-dot .cursor-pencil-icon {
+	display: none;
+}
+
+#cursor-dot.cursor-dot--pencil {
+	width: 22px;
+	height: 22px;
+	background-color: transparent;
+}
+
+#cursor-dot.cursor-dot--pencil span {
+	display: none;
+}
+
+#cursor-dot.cursor-dot--pencil .cursor-pencil-icon {
+	display: block;
 }
 
 /* Simulates a book's physical volume instead of a flat drop-shadow: a thin
