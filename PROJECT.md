@@ -160,15 +160,64 @@ confirme en un navegador real.
 un hash de cache de npx diferente) y tira un error de rolldown
 irrelevante — si pasa, usar `node_modules/.bin/astro build` directo.
 
+### 9. `coverImage` es un string plano, no `image()` de Astro
+
+El schema de `books` en `content.config.ts` define `coverImage: z.string().optional()`
+(ruta pública tipo `/covers/<slug>.jpg`), **no** `image()` de Astro. Razón: el
+grid/lista se arma client-side desde el JSON embebido (ver punto 1) — necesita
+una URL de string plana para meter en un `<img src="...">` armado por JS, no un
+objeto `ImageMetadata` que requiere el pipeline de Vite/`<Image />`. Las
+imágenes en `public/covers/*.jpg` ya vienen pre-optimizadas a mano (ver sección
+siguiente) — no dependen del pipeline de assets de Astro para nada.
+
+En `BookCatalog.astro`, tanto la tarjeta de grilla (`card()`) como el modal de
+detalle muestran `coverImage` si existe (con `object-contain`, no `object-cover`
+— la tapa respeta su proporción real en vez de recortarse) y si no, caen al
+placeholder de texto de siempre. La sombra (`.book-shadow` / `.book-shadow-lg`
+en `global.css`) simula el canto de páginas de un libro real.
+
+## Cómo agregar tapas nuevas
+
+El editor va subiendo tapas escaneadas a `materiales/<algo con el año>/` (no
+trackeado en git, ver `.gitignore`) de a tandas — hasta ahora se procesaron los
+lotes con tapas de 2023-2026. Cuando aparezcan lotes nuevos (ej. `materiales/2021`,
+`materiales/2022`, `materiales/2023`), el flujo que ya se usó es:
+
+1. **Listar los archivos** de la carpeta nueva (`ls`) — los nombres son
+   inconsistentes y crípticos (fragmentos de título, apellido del autor,
+   sufijos tipo "-Maquetación 1", mayúsculas sueltas).
+2. **Matchear cada imagen a un libro** en `src/content/books/*.md` por
+   título/autor/año. Buscar candidatos con `grep` sobre el frontmatter
+   (título, autores, año) del `.md`; para los ambiguos o crípticos, **leer la
+   imagen con el tool Read** (funciona con imágenes) para ver el texto real de
+   la tapa y confirmar. Si el libro no existe todavía en el catálogo (pasó
+   varias veces: tapas de libros que el editor todavía no había cargado),
+   crear una entrada nueva en la colección que corresponda (mismo criterio de
+   numeración que ya usa esa colección — buscar el próximo número libre con
+   `ls` sobre el prefijo).
+3. **Optimizar cada imagen** con `sips` (viene instalado en macOS, no hace
+   falta ninguna librería): `sips -Z 760 --setProperty formatOptions 78 "<origen>" --out "public/covers/<slug>.jpg"`
+   — reduce de varios MB a ~80-150KB por tapa, suficiente para el tamaño real
+   en pantalla (grilla ~190px, modal ~380px).
+4. **Agregar `coverImage: /covers/<slug>.jpg`** al frontmatter del `.md`
+   correspondiente (después de `featured:`, ver cualquier libro ya migrado
+   como ejemplo).
+5. **Reportarle al usuario** qué imágenes no se pudieron matchear o quedaron
+   dudosas (con el título/autor que dice la tapa, si se pudo leer) — no forzar
+   un match de baja confianza.
+6. Verificar con `astro dev --background` + una pasada de Playwright (grid y
+   modal, con y sin filtros) antes de dar por terminado.
+
 ## Estado actual (revisar con `git status` / `git log`)
 
-Todos los commits en `main` están pusheados a GitHub salvo el trabajo
-de **esta sesión más reciente** (rediseño de la barra de filtros: full
-width → 4 columnas → revert a scroll por columna + sticky → scrollbar
-custom → 5 columnas con el botón de cerrar integrado al grid). Correr
-`git status` / `git diff` al retomar — probablemente hay cambios sin
-commitear en `src/components/BookCatalog.astro` y `src/styles/global.css`
-que el usuario todavía no pidió subir.
+Todos los commits en `main` están pusheados a GitHub. Trabajo hecho hasta
+ahora: grilla/lista unificadas con toggle, tapas reales para ~50 libros +
+7 libros nuevos encontrados entre las tapas, rediseño del modal de detalle
+(dos paneles full-bleed), punto rojo que sigue al mouse (con modos hover/
+cerrar/lápiz), zona de dibujo en la sección "about", footer fijo que aparece
+cuando la barra de filtros queda sticky. Quedan pendientes las tapas de los
+lotes `materiales/2021`, `materiales/2022` y `materiales/2023` (subidas por
+el editor, todavía sin procesar — ver "Cómo agregar tapas nuevas" arriba).
 
 ## Cómo levantar el entorno
 
@@ -185,12 +234,11 @@ Nota: ~13 archivos de `src/content/books/*.md` fallan el schema
 
 ## Próximos pasos posibles (no pedidos aún, solo ideas si preguntan)
 
-- `catalogo.astro` (vista tabla) no se tocó — sigue con selects nativos,
-  podría valer la pena unificar su estilo con el nuevo `BookCatalog`.
-- No hay imágenes de tapa reales (`coverImage` vacío en los 552 libros)
-  — el grid usa placeholders de texto (título + autor). Si en algún
-  momento se cargan tapas reales, `card()` en `BookCatalog.astro` ya
-  tiene el punto donde agregar el `<img>` condicional.
+- Procesar las tapas de `materiales/2021`, `materiales/2022` y
+  `materiales/2023` (ver "Cómo agregar tapas nuevas" arriba) — es lo
+  próximo que pidió el usuario.
+- `catalogo.astro` (la vista tabla vieja) ya no existe — se eliminó al
+  fusionar grilla y listado en un solo toggle dentro de `BookCatalog.astro`.
 - El "zoom out" preciso a la tarjeta (punto 5) quedaría resuelto si se
   decide invertir en server-renderizar la grilla — evaluar si vale la
   pena antes de que alguien lo vuelva a pedir.
