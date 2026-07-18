@@ -10,6 +10,7 @@ genre: otro
 illustrators:
 - Martina Russomando
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--18--se-cae-todo.jpg
 ---
 
 18. / Se cae todo. Trixy Miranda (con ilustraciones de Martina Russomando). 2024.

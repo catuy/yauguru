@@ -8,6 +8,7 @@ authors:
 - Virginia Frade
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--25--des-conecto.jpg
 ---
 
 25. / (Des)conecto. Virginia Frade. 2024.

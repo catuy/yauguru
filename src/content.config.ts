@@ -14,7 +14,7 @@ const GENRES = [
 
 const books = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/books' }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       // slugs de entradas de la collection "collections" -- un libro puede
@@ -31,7 +31,11 @@ const books = defineCollection({
       illustrators: z.array(z.string()).optional(),
       coEdition: z.string().optional(),
       awards: z.array(z.string()).optional(),
-      coverImage: image().optional(),
+      // Ruta pública a un archivo pre-optimizado en public/covers/ (ver
+      // materiales/), no una imagen procesada por el pipeline de Vite/Astro:
+      // el grid se arma client-side desde un JSON embebido (ver books.ts),
+      // así que necesita una URL de string plana, no un objeto ImageMetadata.
+      coverImage: z.string().optional(),
       purchaseLink: z.string().url().optional(),
       featured: z.boolean().default(false),
     }),

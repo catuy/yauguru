@@ -8,6 +8,7 @@ authors:
 - Diego Ponce
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--39--regnum.jpg
 ---
 
 39. / Regnum. Diego Ponce. 2025.

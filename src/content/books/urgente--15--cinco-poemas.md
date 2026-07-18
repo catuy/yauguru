@@ -10,6 +10,7 @@ genre: otro
 translators:
 - Marisa Martínez Pérsico
 featured: false
+coverImage: /covers/urgente--15--cinco-poemas.jpg
 ---
 
 15. / Cinco poemas de Federico Tavan (Italia). Traducción de Marisa Martínez Pérsico. (Librillo) 2024.

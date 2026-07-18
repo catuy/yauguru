@@ -35,80 +35,93 @@ const infoRows = activeBook
 ---
 
 <div id="page-bg" class:list={['w-full', { 'blur-sm': activeBook }]} inert={activeBook ? true : undefined}>
-	<section class="w-full bg-primario">
-		<div class="mx-auto flex max-w-[1280px] justify-center px-6 py-12 sm:px-16 lg:px-[103px] lg:py-0">
+	<section class="flex h-screen w-full items-center bg-primario">
+		<div class="mx-auto flex w-full max-w-[1280px] justify-center px-6 sm:px-16 lg:px-[103px]">
 			<img src="/logo-yauguru.png" alt="Yaugurú" class="w-full max-w-[1074px]" />
 		</div>
 	</section>
 
 	<section class="w-full bg-white px-6 py-14">
-		<div class="columns-1 gap-x-16 text-lg leading-[1.6] tracking-[0.18px] text-primario sm:columns-2 [&>p]:mb-6 [&>p]:break-inside-avoid-column">
-			<p>
-				El sello editorial YAUGURÚ surge en el 2004 como respuesta a la necesidad de atender la
-				creación desde un lugar no estandarizado ni homogéneo. Cada obra, más allá de estilos y
-				géneros es única, por tanto el proceso de edición debe tomar en cuenta esa especialidad.
-			</p>
-			<p>
-				La materialidad de la edición pretende hablar precisamente de esos aspectos
-				diferenciales. Generalmente las colecciones son armadas con criterios de uniformidad,
-				todos son iguales. Sin embargo en la literatura, y en el arte en general, lo que importa
-				son las diferencias.
-			</p>
-			<p>Lo diferente, lo que sale de lo común es lo que nos entusiasma.</p>
-			<p>No somos indiferentes a lo diferente.</p>
-			<p>La poesía en todos sus géneros.</p>
-			<p>La edición en todos sus formatos.</p>
-			<p>
-				De alguna manera se plantea una continuidad conceptual con lo que fuera el colectivo de
-				trabajo Ediciones de UNO (1982-93), sello editorial que contó con más de 100 títulos
-				fundamentalmente de poesía, aunque también de narrativa, teatro, historietas y ensayo. Su
-				sistema de suscriptores llegó a contar con 600 socios-suscriptores. También se destacó su
-				actividad de recitales y performances en teatros, locales sindicales, peñas estudiantes,
-				cooperativas de vivienda, etc..
-			</p>
-			<p>
-				Conmemorando su quinto aniversario, el sello editorial yaugurú creó su propio sistema de
-				suscriptores, mediante el cual cada socio-suscriptor con el pago de una mínima cuota
-				mensual recibe en su casa una publicación –preferentemente libros, aunque también CDs,
-				colección de afiches, etc.–. En el momento EL CLÚ DE YAUGURÚ cuenta con aproximadamente 150
-				socios-suscriptores.
-			</p>
-			<p>
-				La editorial yaugurú obtiene el Premio al Mérito Gráfico y Esfuerzo Editorial, otorgado por
-				la Cámara Uruguaya del Libro en 2010, y el Morosoli institucional otorgado por la Fundación
-				Lolita Rubial, en 2018.
-			</p>
-			<p>El sello lleva editados más de 600 títulos.</p>
+		<div class="grid grid-cols-1 gap-x-16 gap-y-10 text-lg leading-[1.6] tracking-[0.18px] text-primario sm:grid-cols-2">
+			<div class="[&>p]:mb-6">
+				<p>
+					El sello editorial YAUGURÚ surge en el 2004 como respuesta a la necesidad de atender la
+					creación desde un lugar no estandarizado ni homogéneo. Cada obra, más allá de estilos y
+					géneros es única, por tanto el proceso de edición debe tomar en cuenta esa especialidad.
+				</p>
+				<p>
+					La materialidad de la edición pretende hablar precisamente de esos aspectos
+					diferenciales. Generalmente las colecciones son armadas con criterios de uniformidad,
+					todos son iguales. Sin embargo en la literatura, y en el arte en general, lo que importa
+					son las diferencias.
+				</p>
+				<p>Lo diferente, lo que sale de lo común es lo que nos entusiasma.</p>
+				<p>No somos indiferentes a lo diferente.</p>
+				<p>La poesía en todos sus géneros.</p>
+				<p>La edición en todos sus formatos.</p>
+				<p>
+					De alguna manera se plantea una continuidad conceptual con lo que fuera el colectivo de
+					trabajo Ediciones de UNO (1982-93), sello editorial que contó con más de 100 títulos
+					fundamentalmente de poesía, aunque también de narrativa, teatro, historietas y ensayo. Su
+					sistema de suscriptores llegó a contar con 600 socios-suscriptores. También se destacó su
+					actividad de recitales y performances en teatros, locales sindicales, peñas estudiantes,
+					cooperativas de vivienda, etc..
+				</p>
+				<p>
+					Conmemorando su quinto aniversario, el sello editorial yaugurú creó su propio sistema de
+					suscriptores, mediante el cual cada socio-suscriptor con el pago de una mínima cuota
+					mensual recibe en su casa una publicación –preferentemente libros, aunque también CDs,
+					colección de afiches, etc.–. En el momento EL CLÚ DE YAUGURÚ cuenta con aproximadamente
+					150 socios-suscriptores.
+				</p>
+				<p>
+					La editorial yaugurú obtiene el Premio al Mérito Gráfico y Esfuerzo Editorial, otorgado
+					por la Cámara Uruguaya del Libro en 2010, y el Morosoli institucional otorgado por la
+					Fundación Lolita Rubial, en 2018.
+				</p>
+				<p>El sello lleva editados más de 600 títulos.</p>
+				<p>
+					<a href="" class="underline decoration-from-font [text-underline-position:from-font]">email</a>
+				</p>
+				<p>
+					<a href="" class="underline decoration-from-font [text-underline-position:from-font]">instagram</a>
+				</p>
+				<p>
+					<a href="" class="underline decoration-from-font [text-underline-position:from-font]">youtube</a>
+				</p>
+			</div>
+			<div class="sticky top-6 self-start [&>p]:mb-6"></div>
 		</div>
 	</section>
 
-	<div id="filter-bar-wrap" class="sticky top-0 z-20 w-full border-y border-primario bg-white">
-		<div class="relative flex h-[59px] w-full items-center justify-between overflow-x-auto whitespace-nowrap px-6">
-			<div class="flex shrink-0 items-center gap-4">
-				<button id="btn-filters" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario">
-					Filtros<span id="filter-count"></span>
-				</button>
-				<button
-					id="btn-clear-filters"
-					type="button"
-					class="hidden shrink-0 text-lg tracking-[0.18px] text-primario"
-				>
-					(Borrar filtros)
-				</button>
+	<div id="filter-bar-wrap" class="sticky top-0 z-20 w-full bg-white">
+		<div class="mx-6 border-y border-primario">
+			<div class="relative flex h-[59px] w-full items-center justify-between overflow-x-auto whitespace-nowrap">
+				<div class="flex shrink-0 items-center gap-4">
+					<button id="btn-filters" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario">
+						Filtros<span id="filter-count"></span>
+					</button>
+					<button
+						id="btn-clear-filters"
+						type="button"
+						class="hidden shrink-0 text-lg tracking-[0.18px] text-primario"
+					>
+						(Borrar filtros)
+					</button>
+				</div>
+				<p class="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 text-lg tracking-[0.18px] text-primario sm:block">
+					<span id="result-count">{total}</span> de {total} libros
+				</p>
+				<div class="flex shrink-0 items-center gap-6 pl-6">
+					<button id="btn-view" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario">
+						Vista: Grilla
+					</button>
+					<button id="btn-sort" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario"></button>
+				</div>
 			</div>
-			<p class="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 text-lg tracking-[0.18px] text-primario sm:block">
-				<span id="result-count">{total}</span> de {total} libros
-			</p>
-			<div class="flex shrink-0 items-center gap-6 pl-6">
-				<button id="btn-view" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario">
-					Vista: Grilla
-				</button>
-				<button id="btn-sort" type="button" class="cursor-pointer shrink-0 text-lg tracking-[0.18px] text-primario"></button>
-			</div>
-		</div>
 
-		<div id="filters-panel" class="hidden border-t border-primario">
-			<div class="w-full px-6 py-8">
+			<div id="filters-panel" class="hidden border-t border-primario">
+				<div class="w-full py-8">
 				<div class="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-5">
 					<div>
 						<input
@@ -198,8 +211,9 @@ const infoRows = activeBook
 			</div>
 		</div>
 	</div>
+	</div>
 
-	<section id="grid-section" class="w-full bg-white p-2">
+	<section id="grid-section" class="w-full bg-white p-6">
 		<div id="grid"></div>
 		<p id="empty" class="hidden py-16 text-center text-primario/70">
 			No hay libros que coincidan con los filtros.
@@ -208,35 +222,37 @@ const infoRows = activeBook
 </div>
 
 {activeBook && (
-	<div id="book-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-10">
-		<a href="/" aria-label="Cerrar" class="absolute inset-0 bg-white/70"></a>
-		<div id="book-modal-content" class="relative flex w-full max-w-3xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-10">
-			<a
-				href="/"
-				aria-label="Cerrar"
-				class="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full border border-primario bg-white text-primario shadow-[0px_4px_8px_rgba(0,0,0,0.25)] sm:-top-4 sm:-right-14"
-			>
-				<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-					<line x1="2" y1="2" x2="16" y2="16"></line>
-					<line x1="16" y1="2" x2="2" y2="16"></line>
-				</svg>
-			</a>
-
-			<div class="relative h-[300px] w-[220px] shrink-0 sm:h-[380px] sm:w-[270px]" style="view-transition-name: book-cover">
-				<div class="flex h-full w-full flex-col justify-between rounded-sm border border-primario/30 bg-[#faf7f2] p-5 text-primario shadow-[0px_24px_48px_-8px_rgba(0,0,0,0.35)]">
-					<p class="text-lg font-semibold leading-snug">{activeBook.title}</p>
-					<p class="text-xs uppercase tracking-wide opacity-70">
-						{activeBook.authors[0] ?? activeBook.collectionNames[0] ?? ''}
-					</p>
+	<div id="book-modal" class="fixed inset-0 z-50">
+		<a href="/" aria-label="Cerrar" class="absolute inset-0"></a>
+		<div id="book-modal-content" class="relative flex h-full w-full flex-col overflow-y-auto bg-white sm:flex-row sm:overflow-visible">
+			<div class="m-6 flex h-[45vh] w-full shrink-0 items-center justify-center bg-[#F9F9F9] sm:h-auto sm:flex-1 sm:self-stretch">
+				<div
+					class="relative flex h-[300px] w-[220px] items-center justify-center sm:h-[520px] sm:w-[380px]"
+					style="view-transition-name: book-cover"
+				>
+					{activeBook.coverImage ? (
+						<img
+							src={activeBook.coverImage}
+							alt={activeBook.title}
+							class="book-shadow-lg max-h-full max-w-full h-auto w-auto"
+						/>
+					) : (
+						<div class="book-shadow-lg flex h-full w-full flex-col justify-between bg-[#faf7f2] p-5 text-primario">
+							<p class="text-lg font-semibold leading-snug">{activeBook.title}</p>
+							<p class="text-xs uppercase tracking-wide opacity-70">
+								{activeBook.authors[0] ?? activeBook.collectionNames[0] ?? ''}
+							</p>
+						</div>
+					)}
 				</div>
 			</div>
 
-			<div class="w-full max-w-sm border border-primario bg-white px-6 py-2 text-primario shadow-[0px_4px_8px_rgba(0,0,0,0.25)]">
+			<div class="w-full shrink-0 bg-white px-6 pb-6 pt-0 text-primario sm:h-full sm:w-[380px] sm:overflow-y-auto sm:pl-0 sm:pt-6">
 				<dl class="divide-y divide-primario">
 					{infoRows.map(([label, value]) => (
 						<div class="py-3">
 							<dt class="text-[10px] font-bold uppercase text-primario">{label}</dt>
-							<dd class="mt-1.5 text-[13px] leading-[1.5] text-primario">{value}</dd>
+							<dd class="mt-1.5 text-lg leading-[1.6] tracking-[0.18px] text-primario">{value}</dd>
 						</div>
 					))}
 				</dl>
@@ -254,6 +270,14 @@ const infoRows = activeBook
 		</div>
 	</div>
 )}
+
+<div
+	id="cursor-dot"
+	class="pointer-events-none fixed left-0 top-0 z-[9999] flex h-[10px] w-[10px] items-center justify-center rounded-full bg-primario transition-[width,height] duration-150 ease-out will-change-transform"
+	transition:persist
+>
+	<span class="text-lg leading-none text-white">+</span>
+</div>
 
 <script type="application/json" id="app-data" set:html={appData} />
 
@@ -293,15 +317,7 @@ const infoRows = activeBook
 
 	const VIEW_MODES = ['grid', 'list'];
 	let viewMode = 'grid';
-	const GRID_CLASSES = [
-		'grid',
-		'grid-cols-2',
-		'gap-2',
-		'sm:grid-cols-3',
-		'lg:grid-cols-4',
-		'xl:grid-cols-6',
-		'2xl:grid-cols-8',
-	];
+	const GRID_CLASSES = ['grid', 'grid-cols-2', 'gap-2', 'sm:grid-cols-3', 'lg:grid-cols-4'];
 	const LIST_CLASSES = ['flex', 'flex-col', 'divide-y', 'divide-primario'];
 
 	function getRadioValue(name) {
@@ -341,16 +357,16 @@ const infoRows = activeBook
 
 	function card(b, i) {
 		const rotation = rotations[i % rotations.length];
-		const cover = `<div class="flex h-[180px] w-[130px] flex-col justify-between rounded-sm border border-primario/30 bg-[#faf7f2] p-3 text-primario shadow-[0px_12px_24px_-4px_rgba(0,0,0,0.15)]">
-			<p class="line-clamp-4 text-[11px] font-semibold leading-tight">${escapeHtml(b.title)}</p>
-			<p class="line-clamp-1 text-[9px] uppercase tracking-wide opacity-70">${escapeHtml(b.authors[0] ?? b.collectionNames[0] ?? '')}</p>
+		const cover = b.coverImage
+			? `<img src="${escapeHtml(b.coverImage)}" alt="${escapeHtml(b.title)}" loading="lazy" decoding="async" class="book-shadow max-h-full max-w-full h-auto w-auto">`
+			: `<div class="book-shadow flex h-[260px] w-[190px] flex-col justify-between bg-[#faf7f2] p-3 text-primario">
+			<p class="line-clamp-4 text-sm font-semibold leading-tight">${escapeHtml(b.title)}</p>
+			<p class="line-clamp-1 text-xs uppercase tracking-wide opacity-70">${escapeHtml(b.authors[0] ?? b.collectionNames[0] ?? '')}</p>
 		</div>`;
 		return `
-		<div class="flex h-[310px] w-full items-center justify-center">
-			<a href="/libro/${encodeURIComponent(b.slug)}" class="book-cover-link relative block h-[180px] w-[130px]" aria-label="Ver ${escapeHtml(b.title)}">
-				<div class="book-cover-box absolute inset-0" style="transform: rotate(${rotation}deg)">${cover}</div>
-			</a>
-		</div>`;
+		<a href="/libro/${encodeURIComponent(b.slug)}" class="book-cell book-cover-link relative flex h-[450px] w-full items-center justify-center overflow-hidden bg-[#F9F9F9]" aria-label="Ver ${escapeHtml(b.title)}">
+			<div class="book-cover-box relative flex h-[260px] w-[190px] items-center justify-center" style="--rotate: ${rotation}deg">${cover}</div>
+		</a>`;
 	}
 
 	// No hay una tapa que animar en este modo, así que el link no lleva
@@ -443,13 +459,17 @@ const infoRows = activeBook
 		els.btnView.textContent = `Vista: ${viewMode === 'grid' ? 'Grilla' : 'Lista'}`;
 	}
 
-	// La sección de la grilla trae su propio padding (p-2) para separar las
-	// tarjetas del borde de la ventana; la lista, en cambio, debe quedar a
-	// ras como la barra de filtros, así que ese padding se saca en ese modo.
+	// La sección de la grilla trae su propio padding (p-6, el mismo margen
+	// que se usa en la barra de filtros y el texto de about, en los cuatro
+	// lados) para separar las tarjetas del borde de la ventana; la lista,
+	// en cambio, ya tiene ese margen en cada fila (px-6) y debe quedar a
+	// ras como la barra de filtros arriba, así que ese padding se saca por
+	// completo en ese modo.
 	function updateGridClasses() {
 		els.grid.classList.remove(...GRID_CLASSES, ...LIST_CLASSES);
 		els.grid.classList.add(...(viewMode === 'grid' ? GRID_CLASSES : LIST_CLASSES));
-		els.gridSection.classList.toggle('p-2', viewMode === 'grid');
+		els.gridSection.classList.toggle('px-6', viewMode === 'grid');
+		els.gridSection.classList.toggle('py-6', viewMode === 'grid');
 	}
 
 	function render() {
@@ -576,12 +596,90 @@ const infoRows = activeBook
 	if (!window.__yauguruTransitionsBound) {
 		window.__yauguruTransitionsBound = true;
 
+		// Trailing cursor dot: eases toward the real pointer position every
+		// frame instead of snapping to it, so it always lags a little while
+		// moving but settles dead-center once the pointer stops. Skipped on
+		// touch devices (`transition:persist` keeps this exact element node
+		// across view-transition navigations, so the loop/listeners below
+		// only need to be set up this one time all session).
+		const cursorDot = document.getElementById('cursor-dot');
+		if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
+			const glyph = cursorDot.querySelector('span');
+			let mouseX = window.innerWidth / 2;
+			let mouseY = window.innerHeight / 2;
+			let dotX = mouseX;
+			let dotY = mouseY;
+			let isHoveringBook = false;
+
+			document.addEventListener('mousemove', (e) => {
+				mouseX = e.clientX;
+				mouseY = e.clientY;
+			});
+
+			document.addEventListener('mouseover', (e) => {
+				if (e.target instanceof Element && e.target.closest('.book-cover-link')) isHoveringBook = true;
+			});
+			document.addEventListener('mouseout', (e) => {
+				const isLeavingToAnotherBookEl =
+					e.relatedTarget instanceof Element && e.relatedTarget.closest('.book-cover-link');
+				if (!isLeavingToAnotherBookEl && e.target instanceof Element && e.target.closest('.book-cover-link')) {
+					isHoveringBook = false;
+				}
+			});
+
+			// While the detail modal is open, the dot stays enlarged and
+			// swaps its "+" for an "×" — it doubles as the close affordance
+			// (see the click listener below), replacing the corner button.
+			// wasActive/wasGlyph guard the two DOM writes below so they only
+			// touch the element on an actual state change rather than every
+			// frame — textContent in particular replaces its text node on
+			// every assignment (unlike classList.toggle, which no-ops when
+			// the class is already in that state), so writing it 60x/sec
+			// regardless of whether it changed was churning the DOM forever
+			// in the background and showed up as janky cadence later on.
+			let wasActive = false;
+			let wasGlyph = '';
+			(function tick() {
+				dotX += (mouseX - dotX) * 0.1;
+				dotY += (mouseY - dotY) * 0.1;
+				cursorDot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
+
+				const isBookOpen = !!document.getElementById('book-modal');
+				const shouldBeActive = isBookOpen || isHoveringBook;
+				if (shouldBeActive !== wasActive) {
+					cursorDot.classList.toggle('cursor-dot--active', shouldBeActive);
+					wasActive = shouldBeActive;
+				}
+				const nextGlyph = isBookOpen ? '×' : '+';
+				if (glyph && nextGlyph !== wasGlyph) {
+					glyph.textContent = nextGlyph;
+					wasGlyph = nextGlyph;
+				}
+
+				requestAnimationFrame(tick);
+			})();
+		}
+
 		// Escape closes the detail modal by re-using the real close link, so
 		// it goes through the same navigation (and view transition) as
 		// clicking it.
 		document.addEventListener('keydown', (e) => {
 			if (e.key !== 'Escape') return;
 			const closeLink = document.querySelector('#book-modal a[aria-label="Cerrar"]');
+			if (closeLink instanceof HTMLElement) closeLink.click();
+		});
+
+		// With the corner "×" button gone, the cursor dot is the only close
+		// affordance shown — but the whole page still needs to act on it:
+		// any click while the detail modal is open re-uses the real close
+		// link (the dim backdrop), except real links (e.g. "Comprar", or
+		// the close link itself, which already navigates on its own).
+		document.addEventListener('click', (e) => {
+			const modal = document.getElementById('book-modal');
+			if (!modal) return;
+			const target = e.target instanceof Element ? e.target : null;
+			if (!target || target.closest('a[href]')) return;
+			const closeLink = modal.querySelector('a[aria-label="Cerrar"]');
 			if (closeLink instanceof HTMLElement) closeLink.click();
 		});
 

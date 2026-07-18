@@ -7,6 +7,7 @@ authors:
 - Ediciones de UNO
 genre: poesía
 featured: false
+coverImage: /covers/clu-de-yauguru--julio-2024--si-el-pampero-la-acaricia.jpg
 ---
 
 Julio|2024 / si el pampero la acaricia. Librillo de poesía de Ediciones de UNO.

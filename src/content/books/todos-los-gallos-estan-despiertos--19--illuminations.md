@@ -11,6 +11,7 @@ genre: otro
 translators:
 - Juan Carlos Mondragón
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--19--illuminations.jpg
 ---
 
 19. / Illuminations. Arthur Rimbaud (traducción Juan Carlos Mondragón). 2024.

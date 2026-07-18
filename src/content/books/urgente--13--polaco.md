@@ -8,6 +8,7 @@ authors:
 - Gustavo Wojciechowski
 genre: poesía
 featured: false
+coverImage: /covers/urgente--13--polaco.jpg
 ---
 
 13. / Polaco de Gustavo Wojciechowski (obra plástica y poesía) (Librillo). 2024.

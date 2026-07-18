@@ -8,6 +8,7 @@ authors:
 - María Jaramillo
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--33--sangrar.jpg
 ---
 
 33. / Sangrar. María Jaramillo (Colombia). 2025.

@@ -8,6 +8,7 @@ authors:
 - Camila López
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--2--hambienta.jpg
 ---
 
 2. / Hambienta. Camila López. 2026.

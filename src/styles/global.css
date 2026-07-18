@@ -12,6 +12,48 @@ body:has(#book-modal) {
 	overflow: hidden;
 }
 
+/* After a view-transition navigation (opening/closing a book), the trailing
+   cursor dot's per-frame transform write was forcing Chromium to redo full
+   compositor layerization every frame — each of the 559 grid cards gets its
+   own stacking context (the tilt is a per-card `transform: rotate()`), and
+   the browser was re-testing the moving fixed dot for overlap against all
+   of them every frame instead of treating the grid as one unit. Containment
+   gives the compositor a boundary to stop that overlap search at. */
+#grid {
+	contain: layout paint;
+}
+
+/* Grid card hover: the whole cell (not just the cover) is the click target
+   (it's an <a>), a red fill wipes in from the left behind the cover, and
+   the cover itself grows slightly — scale is combined with the per-card
+   --rotate custom property (set inline per card) rather than the inline
+   transform it used to be, so hover can add a scale without JS having to
+   know/preserve each card's rotation. */
+.book-cell::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background: var(--color-primario);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 300ms ease-out;
+}
+
+.book-cell:hover::before {
+	transform: scaleX(1);
+}
+
+.book-cell .book-cover-box {
+	z-index: 1;
+	transform: rotate(var(--rotate)) scale(1);
+	transition: transform 200ms ease-out;
+}
+
+.book-cell:hover .book-cover-box {
+	transform: rotate(var(--rotate)) scale(1.05);
+}
+
 /* Closing the book detail can't land the cover precisely back on its grid
    card (see BookCatalog.astro's close click handler for why), so instead of
    the default crossfade the whole modal (cover + info panel, as one unit)
@@ -41,4 +83,46 @@ body:has(#book-modal) {
 	display: none;
 	width: 0;
 	height: 0;
+}
+
+/* The +/× glyph stays in the markup at all times (JS just swaps its text
+   and toggles this class) but is hidden while the dot is small — at 10px
+   it has no room to render legibly, so it only fades in once the dot has
+   grown for a book hover or an open detail page. */
+#cursor-dot span {
+	opacity: 0;
+	transition: opacity 100ms ease-out;
+}
+
+#cursor-dot.cursor-dot--active {
+	width: 40px;
+	height: 40px;
+}
+
+#cursor-dot.cursor-dot--active span {
+	opacity: 1;
+}
+
+/* Simulates a book's physical volume instead of a flat drop-shadow: a thin
+   dark sliver along the right and bottom edges hints at the page block
+   without trying to render fake paper tones (those clashed against
+   arbitrary cover art), a tight shadow close to the edges reads as
+   contact/thickness, and a softer wider shadow further out gives it lift
+   off the page. Used on both real cover images and the text-placeholder
+   box, so books without artwork still read as objects. */
+.book-shadow {
+	box-shadow:
+		2px 0 0 0 rgba(0, 0, 0, 0.08),
+		0 2px 0 0 rgba(0, 0, 0, 0.08),
+		2px 3px 6px rgba(0, 0, 0, 0.22),
+		9px 12px 22px -10px rgba(0, 0, 0, 0.35);
+}
+
+/* Same effect, scaled up for the larger book-detail modal cover. */
+.book-shadow-lg {
+	box-shadow:
+		3px 0 0 0 rgba(0, 0, 0, 0.08),
+		0 3px 0 0 rgba(0, 0, 0, 0.08),
+		3px 4px 8px rgba(0, 0, 0, 0.22),
+		14px 18px 32px -12px rgba(0, 0, 0, 0.4);
 }

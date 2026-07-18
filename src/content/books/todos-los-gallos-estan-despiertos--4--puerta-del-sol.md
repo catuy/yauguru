@@ -10,6 +10,7 @@ genre: otro
 translators:
 - Mariano Rolando Andrade
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--4--puerta-del-sol.jpg
 ---
 
 4. / Puerta del Sol. Christophe Manon (Francia), (traducción Mariano Rolando Andrade), 2026

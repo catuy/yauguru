@@ -9,6 +9,7 @@ authors:
 - poetas
 genre: otro
 featured: false
+coverImage: /covers/urgente--14--8x8-cita-a-ciegas.jpg
 ---
 
 14. / 8x8 cita a ciegas de varias artitas y poetas (postales). 2024.

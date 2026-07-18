@@ -8,6 +8,7 @@ authors:
 - Gabriel Weiss
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--22--el-extrano-amor-de-las-libelulas.jpg
 ---
 
 22. / El extraño amor de las libélulas. Gabriel Weiss. 2024.

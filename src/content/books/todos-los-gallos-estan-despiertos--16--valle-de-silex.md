@@ -8,6 +8,7 @@ authors:
 - Freddy Enrich
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--16--valle-de-silex.jpg
 ---
 
 16. / Valle de Silex. Freddy Enrich. 2024.

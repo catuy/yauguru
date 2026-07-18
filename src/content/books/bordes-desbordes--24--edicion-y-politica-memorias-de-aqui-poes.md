@@ -7,6 +7,7 @@ authors:
 - Alejandra Torres Torres
 genre: otro
 featured: false
+coverImage: /covers/bordes-desbordes--24--edicion-y-politica-memorias-de-aqui-poes.jpg
 ---
 
 24. / Edición y política. Memorias de Aquí, Poesía (1962-1974). Alejandra Torres Torres. 2025.

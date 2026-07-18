@@ -10,6 +10,7 @@ genre: otro
 translators:
 - Juan Carlos Mondragón
 featured: false
+coverImage: /covers/rescate--d--los-cantos-de-maldoror.jpg
 ---
 
 D | Los Cantos de Maldoror de Isidore Ducasse, el Conde de Lautréamont (versión castellana –Uruguay– de Juan Carlos Mondragón). 2025.

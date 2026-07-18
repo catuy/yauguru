@@ -27,6 +27,7 @@ export interface BookCard {
 	awards: string[];
 	purchaseLink: string;
 	featured: boolean;
+	coverImage: string;
 }
 
 export function buildNotes(b: Pick<BookCard, 'awards' | 'coEdition' | 'translators' | 'illustrators'>) {
@@ -69,6 +70,7 @@ export async function getBookData() {
 			awards: b.data.awards ?? [],
 			purchaseLink: b.data.purchaseLink ?? '',
 			featured: b.data.featured,
+			coverImage: b.data.coverImage ?? '',
 		};
 	});
 

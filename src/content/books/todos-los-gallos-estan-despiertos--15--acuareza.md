@@ -8,6 +8,7 @@ authors:
 - Graciela Estévez Rivero
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--15--acuareza.jpg
 ---
 
 15. / Acuareza. Graciela Estévez Rivero. 2024.

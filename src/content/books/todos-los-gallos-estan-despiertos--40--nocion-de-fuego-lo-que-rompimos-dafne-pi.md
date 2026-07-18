@@ -8,6 +8,7 @@ authors:
 - Dafne Pidemunt
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--40--nocion-de-fuego-lo-que-rompimos-dafne-pi.jpg
 ---
 
 40. / Noción de Fuego / Lo que rompimos. Dafne Pidemunt (Argentina). 2026.

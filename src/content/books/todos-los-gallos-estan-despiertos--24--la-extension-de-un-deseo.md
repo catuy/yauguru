@@ -9,6 +9,7 @@ authors:
 - Carolina Zamudio
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--24--la-extension-de-un-deseo.jpg
 ---
 
 24. / La extensión de un deseo. Carolina Zamudio (Argentina). 2024.

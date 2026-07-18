@@ -9,6 +9,7 @@ authors:
 - Pablo Alvira
 genre: ensayo
 featured: false
+coverImage: /covers/bordes-desbordes--23--formas-de-contar-estudios-sobre-la-ficci.jpg
 ---
 
 23. / Formas de contar. Estudios sobre la ficción en el cine y el audiovisual uruguayos (ensayo). Georgina Torello, Cecilia Lacruz y Pablo Alvira. 2024.

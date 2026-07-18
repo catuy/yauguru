@@ -11,6 +11,7 @@ genre: otro
 illustrators:
 - Maca
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--9--versos-disleex1cos-s-obrascompletas.jpg
 ---
 
 9. / VeRSOS DISLeèX1Cos (S/obrasCompletaS). Luis Lorenzo Lerena. 2024.

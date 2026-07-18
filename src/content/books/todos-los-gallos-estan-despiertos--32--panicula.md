@@ -12,6 +12,7 @@ translators:
 - Lucía Bonilla Cal
 - María Eugenia Meneses
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--32--panicula.jpg
 ---
 
 32. / Panícula. Gillian Sza (Canadá), Traducción de Lucía Bonilla Cal y María Eugenia Meneses. 2025.

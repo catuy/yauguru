@@ -8,6 +8,7 @@ authors:
 - Ann-Marie Almada
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--28--rapsodia-in-blue.jpg
 ---
 
 28. / Rapsodia in blue. Ann-Marie Almada. 2025

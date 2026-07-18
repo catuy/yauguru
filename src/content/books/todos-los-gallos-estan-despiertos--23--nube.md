@@ -9,6 +9,7 @@ authors:
 - Gabriel Pereira
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--23--nube.jpg
 ---
 
 23. / Nube. Gabriel Pereira. 2024.

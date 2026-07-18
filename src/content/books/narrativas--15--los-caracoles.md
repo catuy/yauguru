@@ -8,6 +8,7 @@ authors:
 - Hugo Gargiulo
 genre: novela
 featured: false
+coverImage: /covers/narrativas--15--los-caracoles.jpg
 ---
 
 15. / Los caracoles. Novela de Hugo Gargiulo. 2025.
