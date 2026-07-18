@@ -8,6 +8,7 @@ authors:
 - Éric Sarner
 genre: otro
 featured: false
+coverImage: /covers/urgente--9--fragmentos.jpg
 ---
 
 9. / Fragmentos de Éric Sarner (Francia). 2022.

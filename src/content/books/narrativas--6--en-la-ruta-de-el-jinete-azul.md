@@ -8,6 +8,7 @@ authors:
 - Daniel Chafes
 genre: novela
 featured: false
+coverImage: /covers/narrativas--6--en-la-ruta-de-el-jinete-azul.jpg
 ---
 
 6. / En la ruta deEl jinete azul. Novela de Daniel Chafes. 2021.

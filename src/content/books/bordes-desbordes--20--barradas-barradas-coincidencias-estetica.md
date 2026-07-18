@@ -8,6 +8,7 @@ authors:
 - Santiago Tavella
 genre: ensayo
 featured: false
+coverImage: /covers/bordes-desbordes--20--barradas-barradas-coincidencias-estetica.jpg
 ---
 
 20. BARRADAS / BARRADAS. Coincidencias estéticas en una producción de alta interactividad (ensayo). Adriana Santos Melgarejo y Santiago Tavella. 2022

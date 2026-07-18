@@ -9,6 +9,7 @@ authors:
 - Álvaro Ojeda
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--29--maraton-de-series.jpg
 ---
 
 29. / Maratón de series. Álvaro Ojeda. 2022.

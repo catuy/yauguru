@@ -8,6 +8,7 @@ authors:
 - Horacio Verzi
 genre: novela
 featured: false
+coverImage: /covers/narrativas--8--nubes-con-cuervos.jpg
 ---
 
 8. / Nubes con cuervos. Novela de Horacio Verzi. 2022.

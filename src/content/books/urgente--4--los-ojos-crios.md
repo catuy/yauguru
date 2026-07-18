@@ -8,6 +8,7 @@ authors:
 - Gerardo Ciancio
 genre: otro
 featured: false
+coverImage: /covers/urgente--4--los-ojos-crios.jpg
 ---
 
 4. / Los ojos crios. (Librillo) Gerardo Ciancio. 2021.

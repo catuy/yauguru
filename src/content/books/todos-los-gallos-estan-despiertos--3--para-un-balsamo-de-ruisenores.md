@@ -8,6 +8,7 @@ authors:
 - Paula Einöder
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--3--para-un-balsamo-de-ruisenores.jpg
 ---
 
 3. / Para un bálsamo de ruiseñores. Paula Einöder. 2021.

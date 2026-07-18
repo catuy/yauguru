@@ -8,6 +8,7 @@ authors:
 - José Assandri
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--19--roer-un-mito-arrugar-un-espejo.jpg
 ---
 
 19. / Roer un mito, arrugar un espejo. José Assandri. 2022.

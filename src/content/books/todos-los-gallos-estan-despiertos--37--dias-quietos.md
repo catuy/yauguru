@@ -8,6 +8,7 @@ authors:
 - Eloisa Mastromatteo
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--37--dias-quietos.jpg
 ---
 
 37. / Días quietos. Eloisa Mastromatteo. 2023.

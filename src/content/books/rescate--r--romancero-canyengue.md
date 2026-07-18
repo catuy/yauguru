@@ -9,6 +9,7 @@ authors:
 - Horacio Ferrer
 genre: audio (cd/dvd)
 featured: false
+coverImage: /covers/rescate--r--romancero-canyengue.jpg
 ---
 
 R | Romancero canyengue de Horacio Ferrer, incluye CD con H. F. leyendo sus y textos con la guitarra de Agustín Carlevaro. 2022.

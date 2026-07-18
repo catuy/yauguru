@@ -12,6 +12,7 @@ authors:
 - Ana Strauss
 genre: otro
 featured: false
+coverImage: /covers/urgente--7--ruisenoras.jpg
 ---
 
 7. / Ruiseñoras. (Librillo de manuscritos) Claudia Campos, Lucía Delbene, Isabel de la Fuente, Claudia Magliano y Ana Strauss. Imagen de tapa: Mariana Felcman. 2021.

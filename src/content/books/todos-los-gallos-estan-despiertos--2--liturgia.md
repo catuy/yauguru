@@ -9,6 +9,7 @@ authors:
 - Jorge Arbeleche
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--2--liturgia.jpg
 ---
 
 2. / Liturgia. Jorge Arbeleche. 2023.

@@ -8,6 +8,7 @@ authors:
 - Horacio Centanino
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--30--liminar.jpg
 ---
 
 30. / Liminar. Horacio Centanino. 2022.

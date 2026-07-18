@@ -9,6 +9,7 @@ authors:
 - Rafael Courtoisie
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--10--la-palabra-desnuda.jpg
 ---
 
 10. / La palabra desnuda. Rafael Courtoisie. 2021.

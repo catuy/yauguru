@@ -11,6 +11,7 @@ genre: otro
 translators:
 - Juan Carlos Mondragón
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--26--alcools.jpg
 ---
 
 26. / Alcools.Guillaume Apollinaire (Traducción de Juan Carlos Mondragón). 2022.

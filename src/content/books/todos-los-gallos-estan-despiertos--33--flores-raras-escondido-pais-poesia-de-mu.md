@@ -10,6 +10,7 @@ authors:
 - Jesse Lee Kercheval
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--33--flores-raras-escondido-pais-poesia-de-mu.jpg
 ---
 
 33. / Flores raras: [escondido país] (poesía de mujeres uruguayas) complación de Silvia Guerra y Jesse Lee Kercheval. 2023.

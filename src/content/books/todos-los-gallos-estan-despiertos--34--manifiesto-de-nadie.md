@@ -8,6 +8,7 @@ authors:
 - Adolfo Bertonil
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--34--manifiesto-de-nadie.jpg
 ---
 
 34. / Manifiesto de Nadie. Adolfo Bertonil. 2023.

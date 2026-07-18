@@ -8,6 +8,7 @@ authors:
 - Alfredo Fressia
 genre: otro
 featured: false
+coverImage: /covers/archivivo--7--frontera-movil.jpg
 ---
 
 # 7. Frontera móvil de Alfredo Fressia. 2023.

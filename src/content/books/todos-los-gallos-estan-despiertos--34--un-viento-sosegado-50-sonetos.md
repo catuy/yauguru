@@ -8,6 +8,7 @@ authors:
 - Javier Etchevarren
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--34--un-viento-sosegado-50-sonetos.jpg
 ---
 
 34. / Un viento sosegado (50 sonetos). Javier Etchevarren. 2021.

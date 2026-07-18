@@ -15,6 +15,7 @@ authors:
 - Colectivo Periférico
 genre: otro
 featured: false
+coverImage: /covers/bordes-desbordes--19--danzas-comunes-en-el-uruguay.jpg
 ---
 
 19. / Danzas comunes en el uruguay. Virginia Arzuaga, Federica Folco, Sofía Lans, Andrea Ghuisolfi, Catalina Chouhy, Angela Alves, Marianela Vicente, Belén Sánchez y Colectivo Periférico. 2022.

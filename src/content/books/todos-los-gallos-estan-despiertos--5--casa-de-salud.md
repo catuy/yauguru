@@ -9,6 +9,7 @@ authors:
 - Gerardo Ciancio
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--5--casa-de-salud.jpg
 ---
 
 5. / Casa de Salud. Gerardo Ciancio. (Obra ganadora del Concurso Literario de Montevideo Juan Carlos Onetti). 2023.

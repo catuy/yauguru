@@ -8,6 +8,7 @@ authors:
 - Mariana Casares
 genre: cuentos
 featured: false
+coverImage: /covers/narrativas--13--la-chica-de-la-motosierra.jpg
 ---
 
 13. / La chica de la motosierra. Cuentos de Mariana Casares (con varias ilustraciones). 2024

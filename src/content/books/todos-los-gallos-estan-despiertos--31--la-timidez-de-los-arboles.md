@@ -9,6 +9,7 @@ authors:
 - Carolina Zamudio
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--31--la-timidez-de-los-arboles.jpg
 ---
 
 31. / La timidez de los árboles. Carolina Zamudio (Argentina). 2022.

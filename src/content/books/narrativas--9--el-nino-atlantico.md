@@ -8,6 +8,7 @@ authors:
 - Gabriel Vieira
 genre: novela
 featured: false
+coverImage: /covers/narrativas--9--el-nino-atlantico.jpg
 ---
 
 9. / El niño Atlántico. Novela de Gabriel Vieira. 2022.

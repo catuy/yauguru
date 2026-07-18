@@ -8,6 +8,7 @@ authors:
 - Gabriel Pereira
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--6--una-cierta-mirada.jpg
 ---
 
 6. / Una cierta mirada. Gabriel Pereira. 2023.

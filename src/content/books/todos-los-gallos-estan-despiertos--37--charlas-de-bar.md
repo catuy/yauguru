@@ -8,6 +8,7 @@ authors:
 - María Schelotto Varela
 genre: otro
 featured: false
+coverImage: /covers/todos-los-gallos-estan-despiertos--37--charlas-de-bar.jpg
 ---
 
 37. / Charlas de bar. María Schelotto Varela. 2020.

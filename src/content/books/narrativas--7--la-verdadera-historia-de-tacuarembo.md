@@ -8,6 +8,7 @@ authors:
 - Marcos Ibarra
 genre: novela
 featured: false
+coverImage: /covers/narrativas--7--la-verdadera-historia-de-tacuarembo.jpg
 ---
 
 7. / La verdadera historia de Tacuarembó. Novela de Marcos Ibarra. 2021.

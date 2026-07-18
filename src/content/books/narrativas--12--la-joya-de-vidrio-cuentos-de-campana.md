@@ -9,6 +9,7 @@ authors:
 - Marcos Ibarra
 genre: otro
 featured: false
+coverImage: /covers/narrativas--12--la-joya-de-vidrio-cuentos-de-campana.jpg
 ---
 
 12. / La joya de vidrio (cuentos de campaña) de Marcos Ibarra. 2023.

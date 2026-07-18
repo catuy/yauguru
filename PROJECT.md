@@ -180,8 +180,8 @@ en `global.css`) simula el canto de páginas de un libro real.
 
 El editor va subiendo tapas escaneadas a `materiales/<algo con el año>/` (no
 trackeado en git, ver `.gitignore`) de a tandas — hasta ahora se procesaron los
-lotes con tapas de 2023-2026. Cuando aparezcan lotes nuevos (ej. `materiales/2021`,
-`materiales/2022`, `materiales/2023`), el flujo que ya se usó es:
+lotes con tapas de 2021-2026. Cuando aparezcan lotes nuevos, el flujo que ya se
+usó es:
 
 1. **Listar los archivos** de la carpeta nueva (`ls`) — los nombres son
    inconsistentes y crípticos (fragmentos de título, apellido del autor,
@@ -198,7 +198,30 @@ lotes con tapas de 2023-2026. Cuando aparezcan lotes nuevos (ej. `materiales/202
 3. **Optimizar cada imagen** con `sips` (viene instalado en macOS, no hace
    falta ninguna librería): `sips -Z 760 --setProperty formatOptions 78 "<origen>" --out "public/covers/<slug>.jpg"`
    — reduce de varios MB a ~80-150KB por tapa, suficiente para el tamaño real
-   en pantalla (grilla ~190px, modal ~380px).
+   en pantalla (grilla ~190px, modal ~380px). Detalles que salieron al procesar
+   los lotes 2021-2023 (fuentes en `.tif`/`.psd`/`.pdf`, no solo `.jpg`):
+   - Muchos originales (tanto `.tif`/`.psd` como varios `.jpg`) vienen en **CMYK**
+     de Photoshop/QuarkXPress. `sips` los deja tal cual si no se le pide
+     conversión — hay que agregar `-m "/System/Library/ColorSync/Profiles/sRGB Profile.icc"`
+     antes de `-s format jpeg` para forzar RGB real (si no, el jpg queda con
+     4 components y se ve mal/no renderiza en navegador).
+   - Para `.tif`/`.psd`/`.pdf`, `sips` **no** infiere el formato de salida del
+     `--out ....jpg` (a diferencia de un `.jpg` de entrada) — hace falta el
+     flag explícito `-s format jpeg`, si no guarda el archivo con la extensión
+     `.jpg` pero contenido tiff/psd intacto.
+   - Comando completo recomendado para cualquier fuente (sirve también para
+     `.jpg`/`.jpeg` ya en RGB, no hace daño):
+     `sips -m "/System/Library/ColorSync/Profiles/sRGB Profile.icc" -s format jpeg -Z 760 --setProperty formatOptions 78 "<origen>" --out "public/covers/<slug>.jpg"`
+   - Algunas tapas son en realidad la **tapa completa** (contratapa + lomo +
+     tapa, formato apaisado, ratio ancho/alto > 1.2) en vez de sólo la tapa
+     frontal — se detectan por el ratio y por tener marcas de corte de imprenta
+     en las esquinas. Hay que recortar sólo el panel de tapa (lado derecho)
+     antes de optimizar: convertir a jpg RGB de resolución completa, mirar la
+     imagen (el tool Read acepta jpg pero no tif/psd — convertir primero con
+     `sips` a un jpg temporal para poder verla), y recortar con Python/PIL
+     (`im.crop((left, 0, w, h))`, `left` como % del ancho hasta encontrar el
+     lomo) — `sips -c` sólo recorta centrado, no sirve para esto. Verificar
+     visualmente el recorte final antes de optimizar a 760px.
 4. **Agregar `coverImage: /covers/<slug>.jpg`** al frontmatter del `.md`
    correspondiente (después de `featured:`, ver cualquier libro ya migrado
    como ejemplo).
@@ -210,14 +233,25 @@ lotes con tapas de 2023-2026. Cuando aparezcan lotes nuevos (ej. `materiales/202
 
 ## Estado actual (revisar con `git status` / `git log`)
 
-Todos los commits en `main` están pusheados a GitHub. Trabajo hecho hasta
-ahora: grilla/lista unificadas con toggle, tapas reales para ~50 libros +
-7 libros nuevos encontrados entre las tapas, rediseño del modal de detalle
-(dos paneles full-bleed), punto rojo que sigue al mouse (con modos hover/
-cerrar/lápiz), zona de dibujo en la sección "about", footer fijo que aparece
-cuando la barra de filtros queda sticky. Quedan pendientes las tapas de los
-lotes `materiales/2021`, `materiales/2022` y `materiales/2023` (subidas por
-el editor, todavía sin procesar — ver "Cómo agregar tapas nuevas" arriba).
+Trabajo hecho hasta ahora: grilla/lista unificadas con toggle, rediseño del
+modal de detalle (dos paneles full-bleed), punto rojo que sigue al mouse (con
+modos hover/cerrar/lápiz), zona de dibujo en la sección "about", footer fijo
+que aparece cuando la barra de filtros queda sticky. Tapas reales para ~130
+libros (lotes 2021-2026 ya procesados, ver "Cómo agregar tapas nuevas"
+arriba) + 3 libros nuevos encontrados entre las tapas de `materiales/2021`,
+`materiales/2022` y `materiales/2023` (**562 libros** en total ahora, era 559).
+Sin cambios sin commitear — confirmar con `git status` antes de asumir esto.
+
+Libros nuevos agregados con metadata inferida por patrón del lote (colección/
+serie/año no confirmados en la tapa misma — sí el título/autor) que conviene
+que el editor revise:
+- `narrativas--19--tiritantes-de-la-ciudad.md` (Raquel Lubartowski Nogara)
+- `todos-los-gallos-estan-despiertos--41--casi-vacio.md` (Viktor Gómez)
+- `todos-los-gallos-estan-despiertos--43--la-caida.md` (Pablo Galante
+  Martorelli) — la tapa fuente tiene un ratio apaisado inusual (título
+  "LA CAÍDA" con letras dispersas por todo el ancho); se dejó sin recortar
+  porque el título no es legible si se recorta a sólo un panel — confirmar
+  con el editor si es al diseño o un jpg de tapa completa mal exportado.
 
 ## Cómo levantar el entorno
 
@@ -234,9 +268,9 @@ Nota: ~13 archivos de `src/content/books/*.md` fallan el schema
 
 ## Próximos pasos posibles (no pedidos aún, solo ideas si preguntan)
 
-- Procesar las tapas de `materiales/2021`, `materiales/2022` y
-  `materiales/2023` (ver "Cómo agregar tapas nuevas" arriba) — es lo
-  próximo que pidió el usuario.
+- Confirmar con el editor la colección/serie/año de los 3 libros nuevos
+  agregados en esta sesión (ver "Estado actual" arriba) y si la tapa de
+  "La caída" debe recortarse o no.
 - `catalogo.astro` (la vista tabla vieja) ya no existe — se eliminó al
   fusionar grilla y listado en un solo toggle dentro de `BookCatalog.astro`.
 - El "zoom out" preciso a la tarjeta (punto 5) quedaría resuelto si se

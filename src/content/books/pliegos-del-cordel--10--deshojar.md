@@ -8,6 +8,7 @@ authors:
 - Kike Zepeda
 genre: otro
 featured: false
+coverImage: /covers/pliegos-del-cordel--10--deshojar.jpg
 ---
 
 10| Deshojar. De Kike Zepeda (El Salvador). 2021.
