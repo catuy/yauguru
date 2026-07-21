@@ -1,0 +1,153 @@
+backend:
+  name: github
+  repo: catuy/yauguru
+  branch: main
+
+media_folder: public/covers
+public_folder: /covers
+
+collections:
+  - name: books
+    label: Libros
+    label_singular: Libro
+    folder: src/content/books
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    identifier_field: title
+    slug: '{{title}}'
+    summary: '{{title}} — {{fields.authors}}'
+    sortable_fields: [title, year]
+    fields:
+      - label: Título
+        name: title
+        widget: string
+
+      - label: Colecciones
+        name: collections
+        widget: relation
+        collection: collections
+        multiple: true
+        min: 1
+        search_fields: [name]
+        value_field: '{{slug}}'
+        display_fields: [name]
+        hint: A qué colección(es) editorial(es) pertenece este libro.
+
+      - label: Serie
+        name: series
+        widget: string
+        required: false
+
+      - label: Año de publicación
+        name: year
+        widget: number
+        value_type: int
+        required: false
+        min: 1900
+        max: 2030
+
+      - label: Autores
+        name: authors
+        widget: list
+        field: { label: Autor, name: author, widget: string }
+
+      - label: Género
+        name: genre
+        widget: select
+        required: false
+        options:
+          - poesía
+          - novela
+          - cuentos
+          - ensayo
+          - teatro
+          - 'audio (cd/dvd)'
+          - historieta
+          - otro
+
+      - label: Traductores
+        name: translators
+        widget: list
+        required: false
+        field: { label: Traductor, name: translator, widget: string }
+
+      - label: Ilustradores
+        name: illustrators
+        widget: list
+        required: false
+        field: { label: Ilustrador, name: illustrator, widget: string }
+
+      - label: Coedición
+        name: coEdition
+        widget: string
+        required: false
+
+      - label: Premios
+        name: awards
+        widget: list
+        required: false
+        field: { label: Premio, name: award, widget: string }
+
+      - label: Tapa
+        name: coverImage
+        widget: image
+        required: false
+        media_library:
+          config:
+            max_file_size: 5242880
+
+      - label: Link de compra
+        name: purchaseLink
+        widget: string
+        required: false
+        pattern: ['^https?://.+', 'Tiene que ser una URL que empiece con http:// o https://']
+
+      - label: Destacado
+        name: featured
+        widget: boolean
+        default: false
+
+      - label: Cita / descripción
+        name: body
+        widget: markdown
+        required: false
+        hint: 'La línea "N. / Título. Autor. Año." que aparece bajo la tapa.'
+
+  - name: collections
+    label: Colecciones editoriales
+    label_singular: Colección
+    folder: src/content/collections
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    identifier_field: name
+    slug: '{{name}}'
+    sortable_fields: [name, order]
+    fields:
+      - label: Nombre
+        name: name
+        widget: string
+
+      - label: Orden
+        name: order
+        widget: number
+        value_type: int
+        hint: Los números más bajos aparecen primero.
+
+      - label: Descripción
+        name: description
+        widget: text
+        required: false
+
+      - label: Tapa
+        name: coverImage
+        widget: image
+        required: false
+
+      - label: Contenido adicional
+        name: body
+        widget: markdown
+        required: false

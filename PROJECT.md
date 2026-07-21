@@ -266,6 +266,40 @@ Nota: ~13 archivos de `src/content/books/*.md` fallan el schema
 (`authors` vacío) — son preexistentes, no relacionados a este trabajo
 (ver TODO en `src/content.config.ts`).
 
+## Editor de catálogo (Sveltia CMS, para el editor de Yaugurú)
+
+`public/admin/index.html` + `public/admin/config.yml` — un editor web para
+que el editor de Yaugurú cargue/edite libros y colecciones sin tocar
+markdown, sin depender de ningún servicio externo:
+
+- Es [Sveltia CMS](https://sveltiacms.app), un CMS git-based que corre
+  como página estática (se sirve junto con el resto del sitio, sin build
+  ni servidor propio).
+- **Login: "Sign In Using Access Token"** — el editor genera un Personal
+  Access Token en GitHub (botón de la propia UI de login da el link con
+  los scopes ya seleccionados) y lo pega ahí. Se guarda en el
+  `localStorage` del navegador. **No hace falta GitHub App, OAuth App, ni
+  ningún worker/proxy** — así se descartó explícitamente la alternativa de
+  Pages CMS (ver git history si hace falta el porqué: pedía crear una
+  GitHub App con private key/webhook secret pensada para self-hosting,
+  cuando este proyecto no necesita nada de eso).
+- `config.yml` mapea 1:1 el schema real de `src/content.config.ts` (los
+  mismos 14 campos de libros incluyendo el `genre` enum, la referencia a
+  `collections` por slug, etc.) — hay tests en
+  `src/test/cms-config.test.ts` que parsean el `config.yml` de verdad
+  (con `js-yaml`, `npm test`) y fallan si el archivo se rompe o se
+  desincroniza del schema de Astro.
+- Detalle de dev local: `astro dev` no resuelve `/admin/` (sin el
+  `index.html` explícito) porque el dev server de Astro no hace
+  directory-index sobre `public/` — entrar a `/admin/index.html` a mano.
+  En producción (GitHub Pages o cualquier host estático real) `/admin/`
+  funciona normal.
+- Filenames: los libros existentes siguen su convención
+  `{colección}--{número}--{slug}` sin cambios (Sveltia edita por path, no
+  la toca); libros *nuevos* creados desde la UI usan un slug más simple
+  basado solo en el título — no rompe nada, pero no imita el patrón viejo
+  automáticamente.
+
 ## Próximos pasos posibles (no pedidos aún, solo ideas si preguntan)
 
 - Confirmar con el editor la colección/serie/año de los 3 libros nuevos
