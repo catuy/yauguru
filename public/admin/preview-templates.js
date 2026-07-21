@@ -45,6 +45,6 @@ CMS.registerPreviewTemplate(
 );
 
 CMS.registerPreviewTemplate(
-  'collections',
+  'editorial-collections',
   coverFirstPreview(['coverImage', 'name', 'order', 'description', 'body'])
 );

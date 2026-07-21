@@ -14,7 +14,7 @@ const GENRES = [
 
 const config = loadCmsConfig();
 const books = config.collections.find((c) => c.name === 'books');
-const collections = config.collections.find((c) => c.name === 'collections');
+const collections = config.collections.find((c) => c.name === 'editorial-collections');
 
 describe('admin/config.yml — backend', () => {
   it('uses the GitHub backend with no OAuth client (PAT-only auth)', () => {
@@ -32,9 +32,18 @@ describe('admin/config.yml — books collection', () => {
   it('requires at least one collection reference, matching by slug', () => {
     const field = findField(books.fields, 'collections');
     expect(field.widget).toBe('relation');
-    expect(field.collection).toBe('collections');
+    expect(field.collection).toBe('editorial-collections');
     expect(field.min).toBe(1);
     expect(field.value_field).toBe('{{slug}}');
+  });
+
+  it('does not name a top-level collection the same as a field on another collection (Sveltia identifier collision — caused book fields to bleed into the editorial-collections form)', () => {
+    const topLevelNames = config.collections.map((c) => c.name);
+    for (const collection of config.collections) {
+      for (const field of collection.fields) {
+        expect(topLevelNames).not.toContain(field.name);
+      }
+    }
   });
 
   it('restricts publication year to 1900-2030', () => {
