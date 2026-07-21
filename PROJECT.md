@@ -244,12 +244,9 @@ abajo.
 
 **`main` está pusheado y sincronizado con `origin/main`** (confirmado con
 `git rev-list --count origin/main..HEAD` / `HEAD..origin/main`, ambos en 0).
-La única excepción: hay un rediseño del cursor-lápiz (la sección "about",
-`#cursor-dot`/`.cursor-pencil-icon` en `BookCatalog.astro` y `global.css`)
-**sin commitear a propósito** — quedó así varias sesiones porque nunca se
-pidió commitearlo, no porque esté roto. Antes de tocar esos dos archivos,
-correr `git status`/`git diff` para no perderlo por accidente; si el editor
-quiere el commit, es la única tarea suelta de esa sesión.
+El rediseño del cursor-lápiz (la sección "about", `#cursor-dot`/
+`.cursor-pencil-icon` en `BookCatalog.astro` y `global.css`) que había
+quedado sin commitear varias sesiones ya se commiteó y pusheó.
 
 Libros nuevos agregados con metadata inferida por patrón del lote (colección/
 serie/año no confirmados en la tapa misma — sí el título/autor) que conviene
