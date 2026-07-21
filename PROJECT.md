@@ -236,11 +236,20 @@ usó es:
 Trabajo hecho hasta ahora: grilla/lista unificadas con toggle, rediseño del
 modal de detalle (dos paneles full-bleed), punto rojo que sigue al mouse (con
 modos hover/cerrar/lápiz), zona de dibujo en la sección "about", footer fijo
-que aparece cuando la barra de filtros queda sticky. Tapas reales para ~130
-libros (lotes 2021-2026 ya procesados, ver "Cómo agregar tapas nuevas"
-arriba) + 3 libros nuevos encontrados entre las tapas de `materiales/2021`,
-`materiales/2022` y `materiales/2023` (**562 libros** en total ahora, era 559).
-Sin cambios sin commitear — confirmar con `git status` antes de asumir esto.
+que aparece cuando la barra de filtros queda sticky, tapas reales para
+~130 libros + 3 libros nuevos (**562 libros** en total, ver "Cómo agregar
+tapas nuevas" arriba), y un editor web (Sveltia CMS) para que el editor de
+Yaugurú cargue/edite contenido sin tocar markdown — ver sección propia
+abajo.
+
+**`main` está pusheado y sincronizado con `origin/main`** (confirmado con
+`git rev-list --count origin/main..HEAD` / `HEAD..origin/main`, ambos en 0).
+La única excepción: hay un rediseño del cursor-lápiz (la sección "about",
+`#cursor-dot`/`.cursor-pencil-icon` en `BookCatalog.astro` y `global.css`)
+**sin commitear a propósito** — quedó así varias sesiones porque nunca se
+pidió commitearlo, no porque esté roto. Antes de tocar esos dos archivos,
+correr `git status`/`git diff` para no perderlo por accidente; si el editor
+quiere el commit, es la única tarea suelta de esa sesión.
 
 Libros nuevos agregados con metadata inferida por patrón del lote (colección/
 serie/año no confirmados en la tapa misma — sí el título/autor) que conviene
@@ -260,6 +269,7 @@ cd /Users/diego/www/yauguru
 astro dev --background     # o node_modules/.bin/astro dev --background
 astro dev logs             # ver logs
 astro dev stop
+npm test                   # vitest — valida admin/config.yml contra el schema real
 ```
 
 Nota: ~13 archivos de `src/content/books/*.md` fallan el schema
@@ -270,25 +280,64 @@ Nota: ~13 archivos de `src/content/books/*.md` fallan el schema
 
 `public/admin/index.html` + `public/admin/config.yml` — un editor web para
 que el editor de Yaugurú cargue/edite libros y colecciones sin tocar
-markdown, sin depender de ningún servicio externo:
+markdown. Es [Sveltia CMS](https://sveltiacms.app), un CMS git-based que
+corre como página estática (se sirve junto con el resto del sitio, sin
+build ni servidor propio) y escribe **directo al repo de GitHub vía su
+API** — no toca ni lee el filesystem local para nada.
 
-- Es [Sveltia CMS](https://sveltiacms.app), un CMS git-based que corre
-  como página estática (se sirve junto con el resto del sitio, sin build
-  ni servidor propio).
+**Esto es clave para retomar sesiones**: como Sveltia lee/escribe contra
+`catuy/yauguru` en GitHub y no contra el checkout local, **el estado de
+`origin/main` y el del working directory local pueden divergir en
+cualquier momento** si el editor guarda algo desde el navegador entre
+sesiones. Al arrancar a trabajar acá, conviene `git fetch` +
+revisar `git log --oneline HEAD..origin/main` antes de asumir que el
+local está al día — si hay commits nuevos (mensaje
+`Update {colección} {entrada}`, el formato que define `config.yml` en
+`settings.commit`), son ediciones reales hechas desde el CMS y hay que
+traerlas con `git pull` antes de seguir.
+
+Detalles de la config:
+
 - **Login: "Sign In Using Access Token"** — el editor genera un Personal
   Access Token en GitHub (botón de la propia UI de login da el link con
   los scopes ya seleccionados) y lo pega ahí. Se guarda en el
   `localStorage` del navegador. **No hace falta GitHub App, OAuth App, ni
-  ningún worker/proxy** — así se descartó explícitamente la alternativa de
-  Pages CMS (ver git history si hace falta el porqué: pedía crear una
-  GitHub App con private key/webhook secret pensada para self-hosting,
-  cuando este proyecto no necesita nada de eso).
-- `config.yml` mapea 1:1 el schema real de `src/content.config.ts` (los
-  mismos 14 campos de libros incluyendo el `genre` enum, la referencia a
-  `collections` por slug, etc.) — hay tests en
-  `src/test/cms-config.test.ts` que parsean el `config.yml` de verdad
-  (con `js-yaml`, `npm test`) y fallan si el archivo se rompe o se
-  desincroniza del schema de Astro.
+  ningún worker/proxy** — se evaluó y se descartó Pages CMS explícitamente
+  por esto (su modo self-hosted pedía crear una GitHub App con private
+  key/webhook secret, y el modo hosteado dependía de un tercero — ninguno
+  de los dos hacía falta).
+- El content type de nivel superior para colecciones editoriales se llama
+  `editorial-collections` en `config.yml`, **no** `collections` — si se
+  renombra de vuelta a `collections` se reintroduce una colisión de
+  nombre con el campo `collections` (la referencia) dentro de `books`, que
+  hacía que Sveltia mezclara campos de libros en el formulario de
+  colecciones. Hay un test de regresión para esto en
+  `src/test/cms-config.test.ts`.
+- **Campos de `books` en el CMS = exactamente los que usa el sitio**, ni
+  uno más: `title`, `collections`, `series`, `year`, `authors`, `genre`,
+  `notes`, `coverImage`. Se sacaron `translators`/`illustrators`/
+  `coEdition`/`awards` (se migraron los ~65 archivos que tenían datos a un
+  solo campo `notes` de texto libre — antes esos 4 campos sólo alimentaban
+  una línea "Notas" armada a mano en `books.ts`) y `featured`/
+  `purchaseLink`/`body` (cero uso real en el sitio, confirmado con grep
+  antes de tocar nada). `notes` es `widget: text` (multi-línea,
+  `white-space: pre-line` en el sitio) para que los saltos de línea se
+  respeten.
+- **Campos de `editorial-collections` = solo `name` y `order`** —
+  `description`/`coverImage`/`body` no se leen en ningún lado de
+  `books.ts`, así que se sacaron del CMS. 4 archivos (`boca-a-boca`,
+  `clu-de-yauguru`, `urgente`, `yauguru`) todavía tienen `description`
+  cargada en el frontmatter — es un dato dormido a propósito (decisión
+  explícita del editor de no borrarlo), no editable desde el CMS.
+- Sin preview template custom para ninguna de las dos colecciones —se
+  probó uno para libros (tapa a la izquierda, texto rojo a la derecha,
+  imitando la ficha real del sitio) pero se sacó porque desentonaba con el
+  tema oscuro del editor de Sveltia; el preview default alcanza.
+- `config.yml` se valida en cada sesión contra el JSON schema real de
+  Sveltia (`https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json`) y
+  hay tests en `src/test/cms-config.test.ts` (`npm test`, usa `js-yaml`)
+  que lo parsean de verdad y fallan si se desincroniza del schema de
+  Astro (`src/content.config.ts`) o si vuelve a aparecer un campo muerto.
 - Detalle de dev local: `astro dev` no resuelve `/admin/` (sin el
   `index.html` explícito) porque el dev server de Astro no hace
   directory-index sobre `public/` — entrar a `/admin/index.html` a mano.
@@ -296,9 +345,9 @@ markdown, sin depender de ningún servicio externo:
   funciona normal.
 - Filenames: los libros existentes siguen su convención
   `{colección}--{número}--{slug}` sin cambios (Sveltia edita por path, no
-  la toca); libros *nuevos* creados desde la UI usan un slug más simple
-  basado solo en el título — no rompe nada, pero no imita el patrón viejo
-  automáticamente.
+  la toca, aunque sí reformatea las listas YAML a `  - item` indentado en
+  vez de `- item`, cosmético); libros *nuevos* creados desde la UI usan un
+  slug más simple basado solo en el título.
 
 ## Próximos pasos posibles (no pedidos aún, solo ideas si preguntan)
 

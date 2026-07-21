@@ -24,7 +24,7 @@ const books = defineCollection({
       series: z.string().optional(),
       year: z.number().optional(),
       // TODO: restore .min(1) once the ~13 entries flagged in the import
-      // summary get an author filled in manually via PagesCMS
+      // summary get an author filled in manually (via the CMS or by hand)
       authors: z.array(z.string()),
       genre: z.enum(GENRES).optional(),
       // Texto libre para traductores/ilustradores/coedición/premios — antes
