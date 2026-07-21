@@ -57,24 +57,29 @@ describe('admin/config.yml — books collection', () => {
     expect(field.options).toEqual(GENRES);
   });
 
-  it('validates purchaseLink as an http(s) URL', () => {
-    const field = mustFindField(books.fields, 'purchaseLink');
-    const [pattern] = field.pattern as string[];
-    const regex = new RegExp(pattern);
-    expect('https://example.com').toMatch(regex);
-    expect('ftp://example.com').not.toMatch(regex);
-  });
-
   it('stores cover images under public/covers, matching the site convention', () => {
     expect(config.media_folder).toBe('public/covers');
     expect(config.public_folder).toBe('/covers');
   });
 
-  it('has a single free-text notes field instead of separate translators/illustrators/coEdition/awards fields', () => {
-    expect(findField(books.fields, 'notes')).toBeDefined();
-    for (const removed of ['translators', 'illustrators', 'coEdition', 'awards', 'featured']) {
-      expect(findField(books.fields, removed)).toBeUndefined();
-    }
+  it('has exactly the fields actually used on the site — nothing dead, nothing missing', () => {
+    // Keep this list in sync with content.config.ts's books schema. Every
+    // field here must earn its place by being read somewhere in books.ts /
+    // BookCatalog.astro (either displayed, or feeding search/filters) —
+    // translators/illustrators/coEdition/awards/featured/purchaseLink/body
+    // all got removed for failing that bar. If you're adding a field back,
+    // add the matching UI usage first.
+    const fieldNames = books.fields.map((f) => f.name);
+    expect(fieldNames).toEqual([
+      'title',
+      'collections',
+      'series',
+      'year',
+      'authors',
+      'genre',
+      'notes',
+      'coverImage',
+    ]);
   });
 });
 

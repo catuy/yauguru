@@ -22,7 +22,6 @@ export interface BookCard {
 	authors: string[];
 	genre: string;
 	notes: string;
-	purchaseLink: string;
 	coverImage: string;
 }
 
@@ -52,7 +51,6 @@ export async function getBookData() {
 			authors: b.data.authors ?? [],
 			genre: b.data.genre ?? '',
 			notes: b.data.notes ?? '',
-			purchaseLink: b.data.purchaseLink ?? '',
 			coverImage: b.data.coverImage ?? '',
 		};
 	});

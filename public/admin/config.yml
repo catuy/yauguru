@@ -39,6 +39,7 @@ collections:
         name: series
         widget: string
         required: false
+        hint: No aparece en la ficha del libro, pero se usa para buscarlo en el buscador de la grilla.
 
       - label: Año de publicación
         name: year
@@ -80,18 +81,6 @@ collections:
         media_library:
           config:
             max_file_size: 5242880
-
-      - label: Link de compra
-        name: purchaseLink
-        widget: string
-        required: false
-        pattern: ['^https?://.+', 'Tiene que ser una URL que empiece con http:// o https://']
-
-      - label: Cita / descripción
-        name: body
-        widget: markdown
-        required: false
-        hint: 'La línea "N. / Título. Autor. Año." que aparece bajo la tapa.'
 
   - name: editorial-collections
     label: Colecciones editoriales

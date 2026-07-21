@@ -37,7 +37,6 @@ const books = defineCollection({
       // el grid se arma client-side desde un JSON embebido (ver books.ts),
       // así que necesita una URL de string plana, no un objeto ImageMetadata.
       coverImage: z.string().optional(),
-      purchaseLink: z.string().url().optional(),
     }),
 });
 
