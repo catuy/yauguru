@@ -103,18 +103,3 @@ collections:
         widget: number
         value_type: int
         hint: Los números más bajos aparecen primero.
-
-      - label: Descripción
-        name: description
-        widget: text
-        required: false
-
-      - label: Tapa
-        name: coverImage
-        widget: image
-        required: false
-
-      - label: Contenido adicional
-        name: body
-        widget: markdown
-        required: false

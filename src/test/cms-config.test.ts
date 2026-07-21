@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { loadCmsConfig, findField, mustFindField, mustFindCollection } from './helpers/load-cms-config';
+import { loadCmsConfig, mustFindField, mustFindCollection } from './helpers/load-cms-config';
 
 const GENRES = [
   'poesía',
@@ -93,8 +93,8 @@ describe('admin/config.yml — collections (editorial)', () => {
     expect(collections.folder).toBe('src/content/collections');
   });
 
-  it('has the name/order fields required by content.config.ts', () => {
-    expect(findField(collections.fields, 'name')).toBeDefined();
-    expect(findField(collections.fields, 'order')).toBeDefined();
+  it('has exactly name/order — description/coverImage/body are never read anywhere in books.ts, so they stayed out of the editing UI', () => {
+    const fieldNames = collections.fields.map((f) => f.name);
+    expect(fieldNames).toEqual(['name', 'order']);
   });
 });

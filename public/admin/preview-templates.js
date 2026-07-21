@@ -122,27 +122,6 @@ var BooksPreview = createClass({
 
 CMS.registerPreviewTemplate('books', BooksPreview);
 
-function coverFirstPreview(fieldOrder) {
-  return createClass({
-    render: function () {
-      var widgetFor = this.props.widgetFor;
-      return h(
-        'div',
-        { className: 'cover-first-preview' },
-        h('div', { style: { marginBottom: '24px' } }, widgetFor('coverImage')),
-        fieldOrder
-          .filter(function (name) {
-            return name !== 'coverImage';
-          })
-          .map(function (name) {
-            return h('div', { key: name, style: { marginBottom: '16px' } }, widgetFor(name));
-          })
-      );
-    },
-  });
-}
-
-CMS.registerPreviewTemplate(
-  'editorial-collections',
-  coverFirstPreview(['coverImage', 'name', 'order', 'description', 'body'])
-);
+// editorial-collections has no custom preview — it's just name/order, a
+// dynamic listing rendered by the site itself, not a standalone page with
+// its own layout worth previewing.
