@@ -8,7 +8,6 @@ year: 2019
 authors:
 - Jorge Arbeleche
 genre: otro
-featured: false
 ---
 
 32. / Cuaderno de las conjugaciones. Jorge Arbeleche. 2019.

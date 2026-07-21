@@ -8,7 +8,6 @@ year: 2020
 authors:
 - Mario Barahora
 genre: otro
-featured: false
 ---
 
 11. / Coto. Mario Barahora (Chile). 2020.

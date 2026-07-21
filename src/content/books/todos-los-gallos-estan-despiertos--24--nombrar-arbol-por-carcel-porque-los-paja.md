@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Juan Antonio Correa
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--24--nombrar-arbol-por-carcel-porque-los-paja.jpg
 ---
 

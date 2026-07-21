@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Kike Zepeda
 genre: otro
-featured: false
 coverImage: /covers/pliegos-del-cordel--10--deshojar.jpg
 ---
 

@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Carlos Rosas
 genre: otro
-featured: false
 ---
 
 16. / Manto. Carlos Rosas. 2018.

@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Horacio Verzi
 genre: novela
-featured: false
 coverImage: /covers/narrativas--8--nubes-con-cuervos.jpg
 ---
 

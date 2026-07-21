@@ -1,5 +1,5 @@
 ---
-import { getBookData, GENRE_LABELS, buildNotes } from '../lib/books';
+import { getBookData, GENRE_LABELS } from '../lib/books';
 
 interface Props {
 	activeSlug?: string;
@@ -28,7 +28,7 @@ const infoRows = activeBook
 			['Año', activeBook.year ? String(activeBook.year) : '—'],
 			['Autor(es)', activeBook.authors.length ? activeBook.authors.join(', ') : '—'],
 			['Género', activeBook.genre ? (GENRE_LABELS[activeBook.genre] ?? activeBook.genre) : '—'],
-			...(buildNotes(activeBook) ? [['Notas', buildNotes(activeBook)]] : []),
+			...(activeBook.notes ? [['Notas', activeBook.notes]] : []),
 		] as [string, string][])
 	: [];
 

@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Daniel Chafes
 genre: novela
-featured: false
 coverImage: /covers/narrativas--6--en-la-ruta-de-el-jinete-azul.jpg
 ---
 

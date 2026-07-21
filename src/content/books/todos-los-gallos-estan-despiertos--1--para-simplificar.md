@@ -8,7 +8,6 @@ year: 2019
 authors:
 - Cristina Carneiro
 genre: otro
-featured: false
 ---
 
 1. / Para simplificar. Cristina Carneiro. 2019.

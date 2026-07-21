@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Camila López
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--2--hambienta.jpg
 ---
 

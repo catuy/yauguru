@@ -7,7 +7,6 @@ authors:
 - Alejandro Tuana
 - Samantha Navarro
 genre: audio (cd/dvd)
-featured: false
 ---
 
 agosto|11 / Santuario. cd de Alejandro Tuana y Samantha Navarro.

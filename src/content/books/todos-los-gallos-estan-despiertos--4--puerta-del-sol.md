@@ -7,9 +7,7 @@ year: 2026
 authors:
 - Christophe Manon
 genre: otro
-translators:
-- Mariano Rolando Andrade
-featured: false
+notes: 'Trad.: Mariano Rolando Andrade'
 coverImage: /covers/todos-los-gallos-estan-despiertos--4--puerta-del-sol.jpg
 ---
 

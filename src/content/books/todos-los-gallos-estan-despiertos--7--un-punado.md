@@ -7,7 +7,6 @@ year: 2017
 authors:
 - Macarena Gómez
 genre: otro
-featured: false
 ---
 
 7. / Un puñado. Macarena Gómez. 2017.

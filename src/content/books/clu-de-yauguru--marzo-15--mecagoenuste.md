@@ -5,8 +5,7 @@ collections:
 year: 2015
 authors: []
 genre: otro
-coEdition: Libros de l(a) Imperdible (España) y Amordemisamores (Francia)
-featured: false
+notes: 'Co-ed.: Libros de l(a) Imperdible (España) y Amordemisamores (Francia)'
 ---
 
 marzo|15 / MECAGOENUSTÉ. Libro con textos e imágenes, de varios autores. Co-edición con Libros de l(a) Imperdible (España) y Amordemisamores (Francia).

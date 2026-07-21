@@ -8,7 +8,6 @@ year: 2017
 authors:
 - Carlos Pellegrino
 genre: otro
-featured: false
 ---
 
 10. / El verde más secreto. Carlos Pellegrino. 2017.

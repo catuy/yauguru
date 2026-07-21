@@ -6,7 +6,6 @@ year: 2012
 authors:
 - Pablo Fernández
 genre: otro
-featured: false
 ---
 
 25. / Granada. Cuentos para leer en el auto. Pablo Fernández. 2012.

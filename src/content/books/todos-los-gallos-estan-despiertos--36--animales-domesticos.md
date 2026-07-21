@@ -7,7 +7,6 @@ year: 2017
 authors:
 - Juan Pablo Moresco
 genre: otro
-featured: false
 ---
 
 36. / Animales domésticos, de Juan Pablo Moresco. 2017.

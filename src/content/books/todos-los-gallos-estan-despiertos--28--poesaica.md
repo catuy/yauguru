@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Haracio D’Angelo
 genre: otro
-featured: false
 ---
 
 28. / Poesaica. Haracio D’Angelo. 2018.

@@ -7,9 +7,7 @@ year: 2020
 authors:
 - María Laura Pintos
 genre: otro
-illustrators:
-- Marcos Ibarra
-featured: false
+notes: 'Il.: Marcos Ibarra'
 ---
 
 16. / a todo lo que tiene alas: María Laura Pintos (con ilustraciones de Marcos Ibarra). 2020.

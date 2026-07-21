@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Gerardo Ciancio
 genre: otro
-featured: false
 coverImage: /covers/urgente--4--los-ojos-crios.jpg
 ---
 

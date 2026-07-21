@@ -8,7 +8,6 @@ year: 2020
 authors:
 - Gustavo Wojciechowski
 genre: otro
-featured: false
 ---
 
 21. / Lengua a raz. Gustavo Wojciechowski. 2020.

@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Victoria Estol
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--1--paja-infiel.jpg
 ---
 

@@ -7,7 +7,6 @@ year: 2015
 authors:
 - Marcela Matta
 genre: otro
-featured: false
 ---
 
 17. / Muñeca, de Marcela Matta. 2015.

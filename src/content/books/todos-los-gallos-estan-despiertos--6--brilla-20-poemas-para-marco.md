@@ -7,9 +7,7 @@ year: 2014
 authors:
 - Teresa Amy
 genre: otro
-illustrators:
-- Inés Olmedo
-featured: false
+notes: 'Il.: Inés Olmedo'
 ---
 
 6. / Brilla (20 poemas para Marco),de Teresa Amy, con ilustraciones de Inés Olmedo. 2014.

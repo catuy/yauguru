@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Mariana Figueroa Dacasto
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--4--de-todos-los-haces-de-luz-que-mi-corazon.jpg
 ---
 

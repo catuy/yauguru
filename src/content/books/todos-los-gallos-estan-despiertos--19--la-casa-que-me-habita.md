@@ -7,7 +7,6 @@ year: 2015
 authors:
 - Melba Guariglia
 genre: otro
-featured: false
 ---
 
 19. / La casa que me habita, de Melba Guariglia. 2015

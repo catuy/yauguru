@@ -8,7 +8,6 @@ year: 2023
 authors:
 - Hebert Abimorad
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--39--en-la-plaza-33-33-dias-33-minutos-33-poe.jpg
 ---
 

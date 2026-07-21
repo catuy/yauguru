@@ -8,7 +8,6 @@ year: 2024
 authors:
 - Hugo Achugar
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--14--de-que-va.jpg
 ---
 

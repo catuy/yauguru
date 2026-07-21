@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Diego Cubelli
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--1--rasga-los-blando.jpg
 ---
 

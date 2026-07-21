@@ -7,7 +7,6 @@ year: 2024
 authors:
 - Ana Arjona
 genre: otro
-featured: false
 coverImage: /covers/narrativas--14--por-el-pretil-del-cielo.jpg
 ---
 

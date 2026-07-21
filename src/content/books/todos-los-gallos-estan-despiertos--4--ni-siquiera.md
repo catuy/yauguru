@@ -8,7 +8,6 @@ year: 2017
 authors:
 - Gustavo Wojciechowski
 genre: otro
-featured: false
 ---
 
 4. / Ni siquiera. Gustavo Wojciechowski. 2017.

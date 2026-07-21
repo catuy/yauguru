@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Sonia Calcagno
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--16--noche-de-salamandras.jpg
 ---
 

@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Gustavo Wojciechowski
 genre: otro
-featured: false
 ---
 
 2. / Dié y uno má. (Librillo) Gustavo Wojciechowski. 2021.

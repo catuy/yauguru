@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Raquel Diana
 genre: otro
-featured: false
 ---
 
 10. / Historia de una ballena. Raquel Diana. 2023.

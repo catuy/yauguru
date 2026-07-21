@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Adolfo Betroni
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--7--la-rey-a-la-cobarda-antologia-rota.jpg
 ---
 

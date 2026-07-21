@@ -7,7 +7,6 @@ year: 2019
 authors:
 - Cecilia Gianlupi
 genre: otro
-featured: false
 ---
 
 4. / Las horas posibles. Cecilia Gianlupi. 2019.

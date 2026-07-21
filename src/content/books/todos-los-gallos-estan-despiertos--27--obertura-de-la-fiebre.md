@@ -7,7 +7,6 @@ year: 2016
 authors:
 - Alicia Preza
 genre: otro
-featured: false
 ---
 
 27. / Obertura de la fiebre de Alicia Preza. 2016.

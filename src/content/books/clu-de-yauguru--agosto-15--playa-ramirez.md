@@ -6,7 +6,6 @@ year: 2015
 authors:
 - David Liquen
 genre: poesía
-featured: false
 ---
 
 agosto|15 / Playa Ramírez. Poesía de David Liquen (España).

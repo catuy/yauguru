@@ -7,7 +7,6 @@ year: 2017
 authors:
 - Luis Bravo Juan Ángel Italiano
 genre: audio (cd/dvd)
-featured: false
 ---
 
 1. / Fonozoo. (cd sobre textos de Alfredo Mario Ferreiro) Luis Bravo Juan Ángel Italiano. 2017.

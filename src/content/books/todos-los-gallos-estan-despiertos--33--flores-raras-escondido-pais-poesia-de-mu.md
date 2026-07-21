@@ -9,7 +9,6 @@ authors:
 - Silvia Guerra
 - Jesse Lee Kercheval
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--33--flores-raras-escondido-pais-poesia-de-mu.jpg
 ---
 

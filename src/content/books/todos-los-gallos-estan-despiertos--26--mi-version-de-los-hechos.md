@@ -8,7 +8,6 @@ year: 2020
 authors:
 - Roberto Appratto
 genre: otro
-featured: false
 ---
 
 26. / Mi versión de los hechos. Roberto Appratto. 2020.

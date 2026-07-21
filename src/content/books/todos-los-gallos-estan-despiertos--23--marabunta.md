@@ -8,7 +8,6 @@ year: 2018
 authors:
 - Balam Rodrigo
 genre: otro
-featured: false
 ---
 
 23. / Marabunta. Balam Rodrigo (México). 2018.

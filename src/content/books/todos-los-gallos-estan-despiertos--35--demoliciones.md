@@ -8,7 +8,6 @@ year: 2019
 authors:
 - Hugo Achugar
 genre: otro
-featured: false
 ---
 
 35. / Demoliciones. Hugo Achugar. 2019.

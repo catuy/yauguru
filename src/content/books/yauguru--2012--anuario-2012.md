@@ -6,7 +6,6 @@ year: 2013
 authors:
 - Gustavo Wojciechowski
 genre: otro
-featured: false
 ---
 
 2012 | anuario 2012. Librito de maca diseño gráfico. 2013.

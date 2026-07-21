@@ -7,7 +7,6 @@ year: 2017
 authors:
 - Mariella Nigro
 genre: otro
-featured: false
 ---
 
 3. / Frida y México. De visiones y miradas. Mariella Nigro. 2017.

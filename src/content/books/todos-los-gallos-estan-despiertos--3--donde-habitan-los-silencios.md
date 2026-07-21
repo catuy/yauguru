@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Myriam Bianchi
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--3--donde-habitan-los-silencios.jpg
 ---
 

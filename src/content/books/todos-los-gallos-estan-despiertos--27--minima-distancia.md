@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Ruben Quepfert
 genre: otro
-featured: false
 ---
 
 27. / Mínima distancia. Ruben Quepfert. 2020.

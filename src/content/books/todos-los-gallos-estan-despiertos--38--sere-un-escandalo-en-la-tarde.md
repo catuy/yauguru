@@ -7,7 +7,6 @@ year: 2019
 authors:
 - Cristina Monzón Tabó
 genre: otro
-featured: false
 ---
 
 38. / Seré un escándalo en la tarde. Cristina Monzón Tabó. 2019.

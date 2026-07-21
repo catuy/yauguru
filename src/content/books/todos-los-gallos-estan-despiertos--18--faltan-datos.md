@@ -8,7 +8,6 @@ year: 2020
 authors:
 - Eduardo Nogareda
 genre: otro
-featured: false
 ---
 
 18. / Faltan datos. Eduardo Nogareda. 2020.

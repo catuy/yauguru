@@ -6,7 +6,6 @@ year: 2011
 authors:
 - Andrés Echevarría
 genre: poesía
-featured: false
 ---
 
 18. / La plaza del ángelus. (Poesía) Andrés Echevarría. 2011.

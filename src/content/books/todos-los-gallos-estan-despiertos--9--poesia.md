@@ -8,7 +8,6 @@ year: 2017
 authors:
 - Jaap Blonk
 genre: otro
-featured: false
 ---
 
 9. / Poesía. (Librillo) Jaap Blonk (Holanda). 2017.

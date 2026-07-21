@@ -7,7 +7,6 @@ year: 2020
 authors:
 - María Schelotto Varela
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--37--charlas-de-bar.jpg
 ---
 

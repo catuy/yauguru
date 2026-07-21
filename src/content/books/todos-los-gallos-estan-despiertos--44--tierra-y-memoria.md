@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Miguel Ángel Olivera Prietto
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--44--tierra-y-memoria.jpg
 ---
 

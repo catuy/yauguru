@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Mariella Nigro
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--18--de-los-dias-y-las-noches.jpg
 ---
 

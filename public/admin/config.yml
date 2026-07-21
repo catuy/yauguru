@@ -67,28 +67,11 @@ collections:
           - historieta
           - otro
 
-      - label: Traductores
-        name: translators
-        widget: list
-        required: false
-        field: { label: Traductor, name: translator, widget: string }
-
-      - label: Ilustradores
-        name: illustrators
-        widget: list
-        required: false
-        field: { label: Ilustrador, name: illustrator, widget: string }
-
-      - label: Coedición
-        name: coEdition
+      - label: Notas
+        name: notes
         widget: string
         required: false
-
-      - label: Premios
-        name: awards
-        widget: list
-        required: false
-        field: { label: Premio, name: award, widget: string }
+        hint: 'Traductor/ilustrador/coedición/premios, como texto libre (ej: "Trad.: Fulano · Premio: Tal cosa"). Se muestra tal cual en la ficha del libro.'
 
       - label: Tapa
         name: coverImage
@@ -103,11 +86,6 @@ collections:
         widget: string
         required: false
         pattern: ['^https?://.+', 'Tiene que ser una URL que empiece con http:// o https://']
-
-      - label: Destacado
-        name: featured
-        widget: boolean
-        default: false
 
       - label: Cita / descripción
         name: body

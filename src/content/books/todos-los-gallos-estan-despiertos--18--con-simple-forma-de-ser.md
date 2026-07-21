@@ -7,7 +7,6 @@ year: 2015
 authors:
 - Malena González
 genre: otro
-featured: false
 ---
 
 18. / Con simple forma de ser, de Malena González. 2015.

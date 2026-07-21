@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Lucía Delbene
 genre: otro
-featured: false
 ---
 
 9. / Gesta Hembra. Lucía Delbene. 2026.

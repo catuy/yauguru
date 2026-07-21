@@ -6,7 +6,6 @@ year: 2014
 authors:
 - Elbio Chitaro
 genre: poesía
-featured: false
 ---
 
 septiembre|14 / Idealidad de cántaro. Poesía de Elbio Chitaro.

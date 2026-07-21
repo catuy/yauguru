@@ -27,17 +27,17 @@ const books = defineCollection({
       // summary get an author filled in manually via PagesCMS
       authors: z.array(z.string()),
       genre: z.enum(GENRES).optional(),
-      translators: z.array(z.string()).optional(),
-      illustrators: z.array(z.string()).optional(),
-      coEdition: z.string().optional(),
-      awards: z.array(z.string()).optional(),
+      // Texto libre para traductores/ilustradores/coedición/premios — antes
+      // eran 4 campos estructurados separados, pero lo único que hacían era
+      // alimentar una única línea "Notas" armada a mano; se unificaron en un
+      // solo campo de texto que refleja directamente lo que se muestra.
+      notes: z.string().optional(),
       // Ruta pública a un archivo pre-optimizado en public/covers/ (ver
       // materiales/), no una imagen procesada por el pipeline de Vite/Astro:
       // el grid se arma client-side desde un JSON embebido (ver books.ts),
       // así que necesita una URL de string plana, no un objeto ImageMetadata.
       coverImage: z.string().optional(),
       purchaseLink: z.string().url().optional(),
-      featured: z.boolean().default(false),
     }),
 });
 

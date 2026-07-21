@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Alfredo Fressia
 genre: otro
-featured: false
 coverImage: /covers/archivivo--7--frontera-movil.jpg
 ---
 

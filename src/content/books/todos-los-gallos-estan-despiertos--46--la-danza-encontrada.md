@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Lila Nudelman Blejwas
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--46--la-danza-encontrada.jpg
 ---
 

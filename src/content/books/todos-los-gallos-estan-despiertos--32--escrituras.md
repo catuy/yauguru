@@ -8,9 +8,7 @@ year: 2020
 authors:
 - Jorge Arbeleche
 genre: otro
-illustrators:
-- Maca
-featured: false
+notes: 'Il.: Maca'
 coverImage: /covers/todos-los-gallos-estan-despiertos--32--escrituras.jpg
 ---
 

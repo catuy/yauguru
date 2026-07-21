@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Alfredo Fressia
 genre: otro
-featured: false
 ---
 
 12. / Sobre roca resbaladiza. Recuerdos y reflexiones de un poeta. Alfredo Fressia. 2020.

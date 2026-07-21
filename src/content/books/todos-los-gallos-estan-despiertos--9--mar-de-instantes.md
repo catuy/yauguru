@@ -7,7 +7,6 @@ year: 2021
 authors:
 - María Jaramillo
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--9--mar-de-instantes.jpg
 ---
 

@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Fernando Errandonea
 genre: otro
-featured: false
 ---
 
 17. / Sur. Fernando Errandonea. 2020.

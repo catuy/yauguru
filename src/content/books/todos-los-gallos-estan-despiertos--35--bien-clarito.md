@@ -8,7 +8,6 @@ year: 2021
 authors:
 - Otro Tavella y Los embajadores del buen gusto
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--35--bien-clarito.jpg
 ---
 

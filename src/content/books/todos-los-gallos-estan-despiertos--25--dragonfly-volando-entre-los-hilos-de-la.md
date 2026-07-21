@@ -7,7 +7,6 @@ year: 2020
 authors:
 - María Elena Jaramillo Román
 genre: otro
-featured: false
 ---
 
 25. / Dragonfly: volando entre los hilos de la vida. María Elena Jaramillo Román (Colombia). 2020.

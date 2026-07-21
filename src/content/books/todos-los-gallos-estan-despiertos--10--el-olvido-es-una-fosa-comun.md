@@ -7,9 +7,7 @@ year: 2026
 authors:
 - Leandro Taramasco
 genre: poesía
-awards:
-- Primer premio Poesía. Concurso Literario Juan Carlos Onetti, 2025
-featured: false
+notes: 'Premio: Primer premio Poesía. Concurso Literario Juan Carlos Onetti, 2025'
 ---
 
 10. / El olvido es una fosa común. Leandro Taramasco. (Primer premio Poesía. Concurso Literario Juan Carlos Onetti, 2025). 2026.

@@ -7,7 +7,6 @@ year: 2025
 authors:
 - Mariella Huelmo Guerra
 genre: otro
-featured: false
 ---
 
 34. / Cuatro formas del temblor. Mariella Huelmo Guerra. 2025.

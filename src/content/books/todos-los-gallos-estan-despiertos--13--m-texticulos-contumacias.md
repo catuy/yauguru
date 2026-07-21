@@ -8,7 +8,6 @@ year: 2021
 authors:
 - Gustavo Wojciechowski
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--13--m-texticulos-contumacias.jpg
 ---
 

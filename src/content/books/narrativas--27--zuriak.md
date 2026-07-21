@@ -7,7 +7,6 @@ authors:
 - Nelson Traba
 - Willni Dávalos
 genre: novela
-featured: false
 ---
 
 27. / Zúriák. Novela de Nelson Traba & Willni Dávalos. 2017.

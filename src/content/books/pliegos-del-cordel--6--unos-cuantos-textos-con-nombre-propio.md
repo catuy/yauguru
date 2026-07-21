@@ -13,7 +13,6 @@ authors:
 - Alfredo Fressia
 - Carlos Liscano
 genre: otro
-featured: false
 ---
 
 6| Unos cuantos textos con nombre propio, de Jotamario Arbeláez, Oscar Cruz, Mariano Dubín, Bob Dylan, Ferreira Gullar, Alfredo Fressia y Carlos Liscano. 2017.

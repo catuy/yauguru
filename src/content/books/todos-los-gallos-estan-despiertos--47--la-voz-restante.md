@@ -7,7 +7,6 @@ year: 2026
 authors:
 - C. Alberto Villanueva Ghelfa
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--47--la-voz-restante.jpg
 ---
 

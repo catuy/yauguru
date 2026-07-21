@@ -8,7 +8,6 @@ year: 2023
 authors:
 - Marcos Ibarra
 genre: otro
-featured: false
 coverImage: /covers/narrativas--12--la-joya-de-vidrio-cuentos-de-campana.jpg
 ---
 

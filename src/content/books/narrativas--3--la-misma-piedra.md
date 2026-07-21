@@ -6,7 +6,6 @@ year: 2012
 authors:
 - José Pedro Damiani
 genre: novela
-featured: false
 ---
 
 3. / La misma piedra. Novela de José Pedro Damiani, 2012.

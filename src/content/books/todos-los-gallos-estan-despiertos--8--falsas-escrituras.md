@@ -6,7 +6,6 @@ year: 2011
 authors:
 - Sofía Rosa
 genre: poesía
-featured: false
 ---
 
 8. / Falsas escrituras. (Poesía) Sofía Rosa. 2011.

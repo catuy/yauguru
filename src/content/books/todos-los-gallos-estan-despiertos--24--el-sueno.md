@@ -8,7 +8,6 @@ year: 2020
 authors:
 - Atilio Pérez Da Cunha
 genre: otro
-featured: false
 ---
 
 24. / El sueño. Atilio Pérez Da Cunha (Macunaíma). 2020.

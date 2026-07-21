@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Cristina Beatriz Piñeyro
 genre: otro
-featured: false
 ---
 
 25. / Hacer tiempo. Cristina Beatriz Piñeyro. 2018.

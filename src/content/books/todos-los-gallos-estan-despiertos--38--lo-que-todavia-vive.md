@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Marina Cuiek
 genre: otro
-featured: false
 ---
 
 38. / Lo que todavía vive. Marina Cuiek. 2023.

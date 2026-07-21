@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Juan Fealártigas
 genre: otro
-featured: false
 ---
 
 22. / La rubia de Waldorf. Juan Fealártigas. 2020.

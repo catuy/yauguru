@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Cecilia Croci
 genre: novela
-featured: false
 ---
 
 3. / Construcciones. El mecanismo de las sombras. Novela de Cecilia Croci. 2020.

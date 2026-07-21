@@ -6,7 +6,6 @@ year: 2014
 authors:
 - Carlos Liscano
 genre: otro
-featured: false
 ---
 
 19. | Viaje a la noche. Textos y dibujos de Carlos Liscano. 2014.

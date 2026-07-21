@@ -34,12 +34,8 @@ CMS.registerPreviewTemplate(
     'year',
     'authors',
     'genre',
-    'translators',
-    'illustrators',
-    'coEdition',
-    'awards',
+    'notes',
     'purchaseLink',
-    'featured',
     'body',
   ])
 );

@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Lorena Spatakis
 genre: otro
-featured: false
 ---
 
 29. / La reveladora confusión de la codeína. Lorena Spatakis. 2020.

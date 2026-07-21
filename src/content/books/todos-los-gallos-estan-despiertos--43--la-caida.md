@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Pablo Galante Martorelli
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--43--la-caida.jpg
 ---
 

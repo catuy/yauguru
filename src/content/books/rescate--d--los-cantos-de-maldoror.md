@@ -7,9 +7,7 @@ year: 2025
 authors:
 - Isidore Ducasse (el Conde de Lautréamont)
 genre: otro
-translators:
-- Juan Carlos Mondragón
-featured: false
+notes: 'Trad.: Juan Carlos Mondragón'
 coverImage: /covers/rescate--d--los-cantos-de-maldoror.jpg
 ---
 

@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Nicolás Alberte
 genre: otro
-featured: false
 ---
 
 23. / Área de Broca. Nicolás Alberte. 2020.

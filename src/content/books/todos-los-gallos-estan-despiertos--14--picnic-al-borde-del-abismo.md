@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Natacha Majerczyk
 genre: otro
-featured: false
 ---
 
 14. / Picnic al borde del abismo. Natacha Majerczyk. 2020.

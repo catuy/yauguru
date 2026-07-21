@@ -8,7 +8,6 @@ year: 2020
 authors:
 - Radamés Buffa
 genre: otro
-featured: false
 ---
 
 9. / El volumen impreciso del amor. Radamés Buffa. 2020.

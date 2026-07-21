@@ -8,7 +8,6 @@ year: 2021
 authors:
 - Samantha Navarro
 genre: novela
-featured: false
 coverImage: /covers/narrativas--4--la-coleccionista-de-orgasmos-antina.jpg
 ---
 

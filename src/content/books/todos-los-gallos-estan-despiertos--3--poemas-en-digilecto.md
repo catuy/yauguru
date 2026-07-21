@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Virginia Frade
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--3--poemas-en-digilecto.jpg
 ---
 

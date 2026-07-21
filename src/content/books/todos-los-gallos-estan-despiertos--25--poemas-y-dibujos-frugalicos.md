@@ -7,7 +7,6 @@ year: 2015
 authors:
 - Heber Abimorad
 genre: otro
-featured: false
 ---
 
 25. / Poemas y dibujos frugálicos, de Heber Abimorad. 2015.

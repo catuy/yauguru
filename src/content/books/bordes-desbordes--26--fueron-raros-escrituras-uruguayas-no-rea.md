@@ -6,7 +6,6 @@ year: 2025
 authors:
 - Hebert Benítez Pezzolano
 genre: otro
-featured: false
 coverImage: /covers/bordes-desbordes--26--fueron-raros-escrituras-uruguayas-no-rea.jpg
 ---
 

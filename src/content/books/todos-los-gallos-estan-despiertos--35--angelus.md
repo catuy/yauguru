@@ -7,7 +7,6 @@ year: 2025
 authors:
 - Diego Ponce
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--35--angelus.jpg
 ---
 

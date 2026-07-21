@@ -7,7 +7,6 @@ year: 2024
 authors:
 - Gabriel Weiss
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--22--el-extrano-amor-de-las-libelulas.jpg
 ---
 

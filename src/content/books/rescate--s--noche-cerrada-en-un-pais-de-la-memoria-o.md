@@ -8,7 +8,6 @@ year: 2010
 authors:
 - Susana Soca
 genre: otro
-featured: false
 ---
 
 S | Noche cerrada en un país de la memoria (obra poética) de Susana Soca. 2010.

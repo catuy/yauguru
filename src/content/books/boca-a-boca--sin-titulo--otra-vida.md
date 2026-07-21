@@ -7,7 +7,6 @@ year: 2012
 authors:
 - Rodrigo Lacerda
 genre: otro
-featured: false
 ---
 
 Otra vida | Rodrigo Lacerda. 2012.

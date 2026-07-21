@@ -6,7 +6,6 @@ year: 2023
 authors:
 - Gustavo Wojciechowski
 genre: otro
-featured: false
 ---
 
 2022 | anuario 2022. Librito de maca diseño gráfico (Digital). 2023.

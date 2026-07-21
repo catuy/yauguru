@@ -7,9 +7,7 @@ year: 2023
 authors:
 - Arthur Rimbaud
 genre: otro
-translators:
-- Juan Carlos Mondragón
-featured: false
+notes: 'Trad.: Juan Carlos Mondragón'
 coverImage: /covers/todos-los-gallos-estan-despiertos--1--una-temporada-en-el-infierno.jpg
 ---
 

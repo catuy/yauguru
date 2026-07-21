@@ -14,7 +14,6 @@ authors:
 - Belén Sánchez
 - Colectivo Periférico
 genre: otro
-featured: false
 coverImage: /covers/bordes-desbordes--19--danzas-comunes-en-el-uruguay.jpg
 ---
 

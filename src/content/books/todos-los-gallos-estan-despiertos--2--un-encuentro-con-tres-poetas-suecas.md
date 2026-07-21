@@ -6,9 +6,7 @@ series: Quinta serie (poesía)
 year: 2021
 authors: []
 genre: otro
-translators:
-- Hebert Abimorad
-featured: false
+notes: 'Trad.: Hebert Abimorad'
 coverImage: /covers/todos-los-gallos-estan-despiertos--2--un-encuentro-con-tres-poetas-suecas.jpg
 ---
 

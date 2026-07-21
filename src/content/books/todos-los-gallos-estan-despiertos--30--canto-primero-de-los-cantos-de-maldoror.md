@@ -8,7 +8,6 @@ year: 2025
 authors:
 - Juan Carlos Mondragón
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--30--canto-primero-de-los-cantos-de-maldoror.jpg
 ---
 

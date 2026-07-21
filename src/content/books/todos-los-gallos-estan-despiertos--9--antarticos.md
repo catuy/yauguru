@@ -8,7 +8,6 @@ authors:
 - Ricardo Pallares
 - Raquel Barboza
 genre: otro
-featured: false
 ---
 
 9. / Antárticos, de Ricardo Pallares (textos) y Raquel Barboza (dibujos). 2014.

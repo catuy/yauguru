@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Jorge Nández Britos
 genre: otro
-featured: false
 ---
 
 15. / Reunida. Jorge Nández Britos. 2018.

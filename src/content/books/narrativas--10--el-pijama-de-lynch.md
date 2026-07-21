@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Felipe Palomeque
 genre: novela
-featured: false
 coverImage: /covers/narrativas--10--el-pijama-de-lynch.jpg
 ---
 

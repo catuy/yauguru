@@ -8,7 +8,6 @@ year: 2019
 authors:
 - Rozalie Hirs
 genre: otro
-featured: false
 ---
 
 36. / Ahora es una rosa. Rozalie Hirs (Holanda). 2019.

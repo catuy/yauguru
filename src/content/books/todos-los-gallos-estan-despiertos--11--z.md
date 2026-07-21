@@ -7,7 +7,6 @@ year: 2017
 authors:
 - Elena Lafett
 genre: otro
-featured: false
 ---
 
 11. / Z. Elena Lafett. 2017.

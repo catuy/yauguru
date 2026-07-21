@@ -6,7 +6,6 @@ year: 2011
 authors:
 - Nicole Sus
 genre: poesía
-featured: false
 ---
 
 16. / Canas de voyeur. (Poesía) Nicole Sus. 2011.

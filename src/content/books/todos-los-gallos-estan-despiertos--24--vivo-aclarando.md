@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Alejandro Suárez
 genre: otro
-featured: false
 ---
 
 24. / Vivo aclarando. Alejandro Suárez. 2018.

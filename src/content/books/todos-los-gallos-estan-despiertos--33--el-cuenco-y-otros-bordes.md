@@ -7,7 +7,6 @@ year: 2016
 authors:
 - Mariam Legnani
 genre: otro
-featured: false
 ---
 
 33. / El cuenco y otros bordes, de Mariam Legnani. 2016.

@@ -8,7 +8,6 @@ year: 2024
 authors:
 - Carolina Zamudio
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--24--la-extension-de-un-deseo.jpg
 ---
 

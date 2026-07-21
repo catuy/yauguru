@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { loadCmsConfig, findField } from './helpers/load-cms-config';
+import { loadCmsConfig, findField, mustFindField, mustFindCollection } from './helpers/load-cms-config';
 
 const GENRES = [
   'poesía',
@@ -13,8 +13,8 @@ const GENRES = [
 ];
 
 const config = loadCmsConfig();
-const books = config.collections.find((c) => c.name === 'books');
-const collections = config.collections.find((c) => c.name === 'editorial-collections');
+const books = mustFindCollection(config, 'books');
+const collections = mustFindCollection(config, 'editorial-collections');
 
 describe('admin/config.yml — backend', () => {
   it('uses the GitHub backend with no OAuth client (PAT-only auth)', () => {
@@ -30,7 +30,7 @@ describe('admin/config.yml — books collection', () => {
   });
 
   it('requires at least one collection reference, matching by slug', () => {
-    const field = findField(books.fields, 'collections');
+    const field = mustFindField(books.fields, 'collections');
     expect(field.widget).toBe('relation');
     expect(field.collection).toBe('editorial-collections');
     expect(field.min).toBe(1);
@@ -47,19 +47,19 @@ describe('admin/config.yml — books collection', () => {
   });
 
   it('restricts publication year to 1900-2030', () => {
-    const field = findField(books.fields, 'year');
+    const field = mustFindField(books.fields, 'year');
     expect(field.min).toBe(1900);
     expect(field.max).toBe(2030);
   });
 
   it('offers exactly the genres defined in content.config.ts', () => {
-    const field = findField(books.fields, 'genre');
+    const field = mustFindField(books.fields, 'genre');
     expect(field.options).toEqual(GENRES);
   });
 
   it('validates purchaseLink as an http(s) URL', () => {
-    const field = findField(books.fields, 'purchaseLink');
-    const [pattern] = field.pattern;
+    const field = mustFindField(books.fields, 'purchaseLink');
+    const [pattern] = field.pattern as string[];
     const regex = new RegExp(pattern);
     expect('https://example.com').toMatch(regex);
     expect('ftp://example.com').not.toMatch(regex);
@@ -68,6 +68,13 @@ describe('admin/config.yml — books collection', () => {
   it('stores cover images under public/covers, matching the site convention', () => {
     expect(config.media_folder).toBe('public/covers');
     expect(config.public_folder).toBe('/covers');
+  });
+
+  it('has a single free-text notes field instead of separate translators/illustrators/coEdition/awards fields', () => {
+    expect(findField(books.fields, 'notes')).toBeDefined();
+    for (const removed of ['translators', 'illustrators', 'coEdition', 'awards', 'featured']) {
+      expect(findField(books.fields, removed)).toBeUndefined();
+    }
   });
 });
 

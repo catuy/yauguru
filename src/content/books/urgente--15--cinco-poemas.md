@@ -7,9 +7,7 @@ year: 2024
 authors:
 - Federico Tavan
 genre: otro
-translators:
-- Marisa Martínez Pérsico
-featured: false
+notes: 'Trad.: Marisa Martínez Pérsico'
 coverImage: /covers/urgente--15--cinco-poemas.jpg
 ---
 

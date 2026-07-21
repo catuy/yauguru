@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Luis Masci
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--36--para-una-ventana-sin-puerto.jpg
 ---
 

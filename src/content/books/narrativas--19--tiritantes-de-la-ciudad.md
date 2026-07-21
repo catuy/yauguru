@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Raquel Lubartowski Nogara
 genre: novela
-featured: false
 coverImage: /covers/narrativas--19--tiritantes-de-la-ciudad.jpg
 ---
 

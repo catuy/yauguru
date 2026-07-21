@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Seth Michelson
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--21--rengo.jpg
 ---
 

@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Javier Etchavarren
 genre: otro
-featured: false
 ---
 
 22. / Cuerpo roto en los cuatro puntos cardinales. Javier Etchavarren. 2018.

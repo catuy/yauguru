@@ -8,7 +8,6 @@ year: 2023
 authors:
 - Juan Carlos Mondragón
 genre: novela
-featured: false
 coverImage: /covers/narrativas--11--le-croupier-magyar.jpg
 ---
 

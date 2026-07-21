@@ -8,8 +8,7 @@ year: 2012
 authors:
 - Troupe Ateniense
 genre: otro
-coEdition: Irrupciones
-featured: false
+notes: 'Co-ed.: Irrupciones'
 ---
 
 L | Aliverti liquida (Apto para señoritas) de la Troupe Ateniense (Co-edición con Irrupciones). 2012.

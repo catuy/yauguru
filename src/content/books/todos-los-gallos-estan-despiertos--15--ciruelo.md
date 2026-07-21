@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Álvaro Ferolla
 genre: otro
-featured: false
 ---
 
 15. / Ciruelo. Álvaro Ferolla. 2020.

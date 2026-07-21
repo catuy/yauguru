@@ -6,7 +6,6 @@ year: 2016
 authors:
 - Hugo Achugar
 genre: poesía
-featured: false
 ---
 
 mayo|16 / Los pasados del presente. Libro de poesía de Hugo Achugar.

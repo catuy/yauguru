@@ -11,7 +11,6 @@ authors:
 - Claudia Magliano
 - Ana Strauss
 genre: otro
-featured: false
 coverImage: /covers/urgente--7--ruisenoras.jpg
 ---
 

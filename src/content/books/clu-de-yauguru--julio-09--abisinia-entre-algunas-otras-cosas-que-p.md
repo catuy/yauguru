@@ -6,9 +6,7 @@ year: 2009
 authors:
 - Carpeta con elásticos antología de Witold Borcich
 genre: otro
-translators:
-- Gustavo Wojciechowski
-featured: false
+notes: 'Trad.: Gustavo Wojciechowski'
 ---
 
 julio|09 / Abisinia entre algunas otras cosas que pude haber escrito y que hoy ya no recuerdo. Carpeta con elásticos antología de Witold Borcich (versión de Gustavo Wojciechowski).

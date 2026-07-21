@@ -7,9 +7,7 @@ year: 2025
 authors:
 - Pablo Thiago Rocca
 genre: otro
-illustrators:
-- Pepe Viñoles
-featured: false
+notes: 'Il.: Pepe Viñoles'
 coverImage: /covers/todos-los-gallos-estan-despiertos--36--un-millon-de-perros.jpg
 ---
 

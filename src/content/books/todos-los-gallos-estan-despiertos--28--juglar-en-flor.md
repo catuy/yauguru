@@ -7,9 +7,7 @@ year: 2013
 authors:
 - María Constanza Farfalla
 genre: poesía
-illustrators:
-- Marcos Ibarra
-featured: false
+notes: 'Il.: Marcos Ibarra'
 ---
 
 28. / Juglar en flor. (Poesía) María Constanza Farfalla. Incluye ilustraciones de Marcos Ibarra. 2013.

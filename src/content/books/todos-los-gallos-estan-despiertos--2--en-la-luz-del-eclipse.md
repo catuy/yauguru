@@ -7,7 +7,6 @@ year: 2014
 authors:
 - Ingrid Tempel
 genre: otro
-featured: false
 ---
 
 2. / En la luz del eclipse, de Ingrid Tempel. 2014.

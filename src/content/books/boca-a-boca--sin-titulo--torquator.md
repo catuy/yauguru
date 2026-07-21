@@ -7,7 +7,6 @@ year: 2012
 authors:
 - Henry Trujillo
 genre: otro
-featured: false
 ---
 
 Torquator | Henry Trujillo. 2012.

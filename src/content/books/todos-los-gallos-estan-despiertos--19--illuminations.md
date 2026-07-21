@@ -8,9 +8,7 @@ year: 2024
 authors:
 - Arthur Rimbaud
 genre: otro
-translators:
-- Juan Carlos Mondragón
-featured: false
+notes: 'Trad.: Juan Carlos Mondragón'
 coverImage: /covers/todos-los-gallos-estan-despiertos--19--illuminations.jpg
 ---
 

@@ -6,7 +6,6 @@ year: 2024
 authors:
 - Gustavo Wojciechowski
 genre: otro
-featured: false
 coverImage: /covers/yauguru--2023--anuario-2023.jpg
 ---
 

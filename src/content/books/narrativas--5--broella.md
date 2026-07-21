@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Ivonne Trias
 genre: novela
-featured: false
 coverImage: /covers/narrativas--5--broella.jpg
 ---
 

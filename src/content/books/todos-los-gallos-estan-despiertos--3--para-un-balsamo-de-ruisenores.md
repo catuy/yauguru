@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Paula Einöder
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--3--para-un-balsamo-de-ruisenores.jpg
 ---
 

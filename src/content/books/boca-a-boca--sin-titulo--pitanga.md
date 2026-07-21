@@ -7,7 +7,6 @@ year: 2013
 authors:
 - Carlos Eduardo de Magalhães
 genre: otro
-featured: false
 ---
 
 Pitanga| Carlos Eduardo de Magalhães. 2013.

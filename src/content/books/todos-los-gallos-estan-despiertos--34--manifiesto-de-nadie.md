@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Adolfo Bertonil
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--34--manifiesto-de-nadie.jpg
 ---
 

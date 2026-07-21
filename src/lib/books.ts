@@ -21,22 +21,9 @@ export interface BookCard {
 	year: number | null;
 	authors: string[];
 	genre: string;
-	coEdition: string;
-	translators: string[];
-	illustrators: string[];
-	awards: string[];
+	notes: string;
 	purchaseLink: string;
-	featured: boolean;
 	coverImage: string;
-}
-
-export function buildNotes(b: Pick<BookCard, 'awards' | 'coEdition' | 'translators' | 'illustrators'>) {
-	const parts: string[] = [];
-	if (b.awards?.length) parts.push(`Premio: ${b.awards.join('; ')}`);
-	if (b.coEdition) parts.push(`Co-ed.: ${b.coEdition}`);
-	if (b.translators?.length) parts.push(`Trad.: ${b.translators.join(', ')}`);
-	if (b.illustrators?.length) parts.push(`Il.: ${b.illustrators.join(', ')}`);
-	return parts.join(' · ');
 }
 
 export async function getBookData() {
@@ -64,12 +51,8 @@ export async function getBookData() {
 			year: b.data.year ?? null,
 			authors: b.data.authors ?? [],
 			genre: b.data.genre ?? '',
-			coEdition: b.data.coEdition ?? '',
-			translators: b.data.translators ?? [],
-			illustrators: b.data.illustrators ?? [],
-			awards: b.data.awards ?? [],
+			notes: b.data.notes ?? '',
 			purchaseLink: b.data.purchaseLink ?? '',
-			featured: b.data.featured,
 			coverImage: b.data.coverImage ?? '',
 		};
 	});

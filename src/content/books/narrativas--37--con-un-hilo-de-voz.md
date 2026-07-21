@@ -7,7 +7,6 @@ year: 2019
 authors:
 - José Arenas
 genre: novela
-featured: false
 ---
 
 37. / Con un hilo de voz. Novela de José Arenas. 2019.

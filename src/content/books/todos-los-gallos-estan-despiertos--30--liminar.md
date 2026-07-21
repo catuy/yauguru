@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Horacio Centanino
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--30--liminar.jpg
 ---
 

@@ -8,7 +8,6 @@ year: 2022
 authors:
 - Carolina Zamudio
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--31--la-timidez-de-los-arboles.jpg
 ---
 

@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Sergio Gutiérrez Martiello
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--7--las-mananas-de-este-mundo.jpg
 ---
 

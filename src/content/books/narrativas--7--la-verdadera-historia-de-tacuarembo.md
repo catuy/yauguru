@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Marcos Ibarra
 genre: novela
-featured: false
 coverImage: /covers/narrativas--7--la-verdadera-historia-de-tacuarembo.jpg
 ---
 

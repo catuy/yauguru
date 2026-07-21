@@ -6,10 +6,7 @@ year: 2011
 authors:
 - Juan Manuel Sánchez
 genre: poesía
-coEdition: La cAsa de los Escritores del Uruguay
-awards:
-- Premio Poesía Joven
-featured: false
+notes: 'Premio: Premio Poesía Joven · Co-ed.: La cAsa de los Escritores del Uruguay'
 ---
 
 11. / Para las focas. Juan Manuel Sánchez. Premio Poesía Joven. Co-edición con La cAsa de los Escritores del Uruguay.

@@ -7,7 +7,6 @@ year: 2024
 authors:
 - Nany Salazar
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--17--taller-de-pintura.jpg
 ---
 

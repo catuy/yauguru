@@ -8,7 +8,6 @@ year: 2018
 authors:
 - Vania Vargas
 genre: poesía
-featured: false
 ---
 
 21. / Invocación de los náufragos. Poesía de Vania Vargas (Guatemala). 2018.

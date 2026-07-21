@@ -7,7 +7,6 @@ year: 2013
 authors:
 - Beatriz Bracher
 genre: otro
-featured: false
 ---
 
 Antonio | Beatriz Bracher. 2013.

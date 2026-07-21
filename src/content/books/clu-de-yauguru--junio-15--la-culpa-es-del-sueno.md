@@ -6,9 +6,7 @@ year: 2015
 authors:
 - Mariela Laudecina
 genre: poesía
-illustrators:
-- Maca
-featured: false
+notes: 'Il.: Maca'
 ---
 
 junio|15 / La culpa es del sueño. Poesía de Mariela Laudecina (Argentina), ilustraciones de Maca.

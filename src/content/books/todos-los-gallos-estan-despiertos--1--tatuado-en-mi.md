@@ -6,7 +6,6 @@ year: 2009
 authors:
 - Léonïe Garicoïts
 genre: poesía
-featured: false
 ---
 
 1. / Tatuado en mí. (Poesía) Léonïe Garicoïts. 2009.

@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Andrea Blanqué
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--43--manana-te-contare.jpg
 ---
 

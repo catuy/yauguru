@@ -7,7 +7,6 @@ year: 2025
 authors:
 - Mateo Rovira
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--27--aceptacion-de-la-derrota.jpg
 ---
 

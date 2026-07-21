@@ -8,7 +8,6 @@ year: 2024
 authors:
 - Juan Andrés Felártigas
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--13--ya-no-seremos-tapa-de-disco.jpg
 ---
 

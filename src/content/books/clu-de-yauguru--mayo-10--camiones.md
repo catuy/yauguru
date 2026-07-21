@@ -8,7 +8,6 @@ authors:
 - Mauricio Ubal
 - Gustavo Wojciechowski
 genre: otro
-featured: false
 ---
 
 mayo|10 / Camiones, plaqueta con textos de Rubén Olivera, Mauricio Ubal y Gustavo Wojciechowski.

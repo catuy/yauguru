@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Analía Di Leone
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--5--soliloquio.jpg
 ---
 

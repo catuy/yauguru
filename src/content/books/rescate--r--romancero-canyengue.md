@@ -8,7 +8,6 @@ year: 2022
 authors:
 - Horacio Ferrer
 genre: audio (cd/dvd)
-featured: false
 coverImage: /covers/rescate--r--romancero-canyengue.jpg
 ---
 

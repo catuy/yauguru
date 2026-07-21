@@ -7,7 +7,6 @@ year: 2024
 authors:
 - Fabrice Lengronne
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--42--ruido-negro-bruit-noir.jpg
 ---
 

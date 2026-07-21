@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Radamés Buffa
 genre: otro
-featured: false
 ---
 
 38. / TWEETS. Radamés Buffa. 2021.

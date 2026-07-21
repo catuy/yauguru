@@ -7,7 +7,6 @@ year: 2024
 authors:
 - Víctor Guichón
 genre: novela
-featured: false
 coverImage: /covers/narrativas--13-bis--el-viento-bajo-las-alas.jpg
 ---
 

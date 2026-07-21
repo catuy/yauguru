@@ -7,7 +7,6 @@ year: 2025
 authors:
 - Mariana Casares
 genre: cuentos
-featured: false
 coverImage: /covers/narrativas--16--la-hora-del-sol-fuerte.jpg
 ---
 

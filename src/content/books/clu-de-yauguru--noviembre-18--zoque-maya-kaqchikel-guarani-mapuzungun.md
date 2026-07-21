@@ -9,8 +9,7 @@ authors:
 - Miguelángel Meza
 - Liliana Ancalao
 genre: poesía
-coEdition: Libros de l(a) Imperdible (España) y Amordemisamores (Francia)
-featured: false
+notes: 'Co-ed.: Libros de l(a) Imperdible (España) y Amordemisamores (Francia)'
 ---
 
 noviembre|18 / ZOQUE MAYA KAQCHIKEL GUARANÍ MAPUZUNGUN (poetas en lenguas nativas, traducidos al castellano y francés). Poesía de Mikeas Sánchez, Negma Coy, Miguelángel Meza y Liliana Ancalao. Co-edición con Libros de l(a) Imperdible (España) y Amordemisamores (Francia).

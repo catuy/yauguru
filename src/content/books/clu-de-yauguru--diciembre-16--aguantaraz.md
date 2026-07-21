@@ -6,9 +6,7 @@ year: 2016
 authors:
 - Elbio Chitaro
 genre: otro
-illustrators:
-- Fernando Stevenazzi
-featured: false
+notes: 'Il.: Fernando Stevenazzi'
 ---
 
 Diciembre|16 / Aguantaraz de Elbio Chitaro (con ilustraciones de Fernando Stevenazzi).

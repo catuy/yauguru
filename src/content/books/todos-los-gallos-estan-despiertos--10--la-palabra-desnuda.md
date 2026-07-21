@@ -8,7 +8,6 @@ year: 2021
 authors:
 - Rafael Courtoisie
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--10--la-palabra-desnuda.jpg
 ---
 

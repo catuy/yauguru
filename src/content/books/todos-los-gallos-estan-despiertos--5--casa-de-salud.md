@@ -8,7 +8,6 @@ year: 2023
 authors:
 - Gerardo Ciancio
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--5--casa-de-salud.jpg
 ---
 

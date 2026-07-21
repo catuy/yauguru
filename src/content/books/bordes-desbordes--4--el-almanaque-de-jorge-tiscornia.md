@@ -13,7 +13,6 @@ authors:
 - Ana Tiscornia
 - J. Tiscornia
 genre: otro
-featured: false
 ---
 
 4. / El almanaque de Jorge Tiscornia. (Derechos humanos) de Arturo Bentancour, José Pedro Charlo, Elbio Ferrario, Daniel Gil, José López Mazz, Sonia Mosquera, Ana Tiscornia y J. Tiscornia. Compiladores: José Pedro Charlo y Jorge Tiscornia. 2013

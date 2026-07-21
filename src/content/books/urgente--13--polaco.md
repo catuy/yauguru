@@ -7,7 +7,6 @@ year: 2024
 authors:
 - Gustavo Wojciechowski
 genre: poesía
-featured: false
 coverImage: /covers/urgente--13--polaco.jpg
 ---
 

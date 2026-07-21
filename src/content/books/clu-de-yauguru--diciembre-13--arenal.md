@@ -7,8 +7,7 @@ authors:
 - John Bennett
 - Luis Bravo
 genre: audio (cd/dvd)
-coEdition: Ayuí
-featured: false
+notes: 'Co-ed.: Ayuí'
 ---
 
 diciembre|13 / Areñal cd de John Bennett & Luis Bravo (Co-edición con Ayuí).

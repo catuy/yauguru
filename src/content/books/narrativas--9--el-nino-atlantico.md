@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Gabriel Vieira
 genre: novela
-featured: false
 coverImage: /covers/narrativas--9--el-nino-atlantico.jpg
 ---
 

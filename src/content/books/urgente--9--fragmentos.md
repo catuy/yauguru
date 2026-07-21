@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Éric Sarner
 genre: otro
-featured: false
 coverImage: /covers/urgente--9--fragmentos.jpg
 ---
 

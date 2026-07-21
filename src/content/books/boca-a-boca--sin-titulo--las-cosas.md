@@ -7,7 +7,6 @@ year: 2012
 authors:
 - Arnaldo Antunes
 genre: otro
-featured: false
 ---
 
 Las cosas | Arnaldo Antunes. 2012.

@@ -7,9 +7,7 @@ year: 2021
 authors:
 - Elbio Chitaro
 genre: otro
-illustrators:
-- Maca
-featured: false
+notes: 'Il.: Maca'
 ---
 
 39. / Extracción de la piedra de la locura. Elbio Chitaro (con ilustraciones de Maca). 2021.

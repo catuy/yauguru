@@ -8,7 +8,6 @@ authors:
 - Cecilia Lacruz
 - Pablo Alvira
 genre: ensayo
-featured: false
 coverImage: /covers/bordes-desbordes--23--formas-de-contar-estudios-sobre-la-ficci.jpg
 ---
 

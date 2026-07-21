@@ -6,7 +6,6 @@ year: 2017
 authors:
 - Nelson Díaz
 genre: novela
-featured: false
 ---
 
 23. / Metástasis. Novela de Nelson Díaz, 2017.

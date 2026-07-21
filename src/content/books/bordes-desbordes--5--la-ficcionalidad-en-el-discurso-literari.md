@@ -6,7 +6,6 @@ year: 2014
 authors:
 - Roberto Appratto
 genre: ensayo
-featured: false
 ---
 
 5. / La ficcionalidad en el discurso literario y en el fílmico. (Ensayo) de Roberto Appratto. 2014.

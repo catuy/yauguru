@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Lara Campiglia
 genre: otro
-featured: false
 ---
 
 30. / Yo estuve en ese corsé. Lara Campiglia. 2018.

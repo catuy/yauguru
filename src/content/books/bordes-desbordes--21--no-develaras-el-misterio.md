@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Entrevistas a Marosa di Giorgio
 genre: otro
-featured: false
 coverImage: /covers/bordes-desbordes--21--no-develaras-el-misterio.jpg
 ---
 

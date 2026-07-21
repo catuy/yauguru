@@ -6,9 +6,7 @@ year: 2021
 authors:
 - Elbio Chitaro
 genre: poesía
-illustrators:
-- Maca
-featured: false
+notes: 'Il.: Maca'
 ---
 
 Julio|2021 / Extracción de la piedra de la locura según el método Moskelenko. Poesía de Elbio Chitaro (con ilustraciones de Maca)

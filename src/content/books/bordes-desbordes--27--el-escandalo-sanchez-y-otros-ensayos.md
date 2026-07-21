@@ -6,7 +6,6 @@ year: 2026
 authors:
 - Jorge Arias
 genre: otro
-featured: false
 coverImage: /covers/bordes-desbordes--27--el-escandalo-sanchez-y-otros-ensayos.jpg
 ---
 

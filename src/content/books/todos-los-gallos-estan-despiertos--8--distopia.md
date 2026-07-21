@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Álvaro Malmierca
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--8--distopia.jpg
 ---
 

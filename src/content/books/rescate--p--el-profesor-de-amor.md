@@ -8,8 +8,7 @@ year: 2008
 authors:
 - José Parrilla
 genre: otro
-coEdition: la Biblioteca Nacional
-featured: false
+notes: 'Co-ed.: la Biblioteca Nacional'
 ---
 
 P | El profesor de amor de José Parrilla. (Co-edición con la Biblioteca Nacional). 2008.

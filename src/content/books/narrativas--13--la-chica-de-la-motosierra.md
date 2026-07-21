@@ -7,7 +7,6 @@ year: 2024
 authors:
 - Mariana Casares
 genre: cuentos
-featured: false
 coverImage: /covers/narrativas--13--la-chica-de-la-motosierra.jpg
 ---
 

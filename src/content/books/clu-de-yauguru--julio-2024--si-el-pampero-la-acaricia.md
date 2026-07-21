@@ -6,7 +6,6 @@ year: 2024
 authors:
 - Ediciones de UNO
 genre: poesía
-featured: false
 coverImage: /covers/clu-de-yauguru--julio-2024--si-el-pampero-la-acaricia.jpg
 ---
 

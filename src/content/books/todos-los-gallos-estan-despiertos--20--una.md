@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Ann-Marie Almada
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--20--una.jpg
 ---
 

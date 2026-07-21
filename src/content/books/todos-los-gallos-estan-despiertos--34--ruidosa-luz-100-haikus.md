@@ -7,7 +7,6 @@ year: 2016
 authors:
 - Javier Etchavarren
 genre: otro
-featured: false
 ---
 
 34. / Ruidosa luz (100 haikús), de Javier Etchavarren. 2016.

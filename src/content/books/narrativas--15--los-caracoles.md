@@ -7,7 +7,6 @@ year: 2025
 authors:
 - Hugo Gargiulo
 genre: novela
-featured: false
 coverImage: /covers/narrativas--15--los-caracoles.jpg
 ---
 

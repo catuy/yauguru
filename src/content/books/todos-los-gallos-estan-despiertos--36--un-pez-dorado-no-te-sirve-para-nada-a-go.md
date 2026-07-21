@@ -7,9 +7,7 @@ year: 2023
 authors:
 - Jesse Lee Kercheval
 genre: otro
-translators:
-- Ezequiel Zaidenwerg
-featured: false
+notes: 'Trad.: Ezequiel Zaidenwerg'
 coverImage: /covers/todos-los-gallos-estan-despiertos--36--un-pez-dorado-no-te-sirve-para-nada-a-go.jpg
 ---
 

@@ -6,7 +6,6 @@ year: 2025
 authors:
 - Alejandra Torres Torres
 genre: otro
-featured: false
 coverImage: /covers/bordes-desbordes--24--edicion-y-politica-memorias-de-aqui-poes.jpg
 ---
 

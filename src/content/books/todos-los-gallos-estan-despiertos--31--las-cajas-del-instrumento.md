@@ -6,7 +6,6 @@ year: 2013
 authors:
 - Ricardo Pallares
 genre: poesía
-featured: false
 ---
 
 31. / Las cajas del instrumento. (Poesía) Ricardo Pallares. 2013.

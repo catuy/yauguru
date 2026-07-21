@@ -7,7 +7,6 @@ year: 2016
 authors:
 - Teresa Korondi
 genre: otro
-featured: false
 ---
 
 31. / La enunciación, de Teresa Korondi. 2016

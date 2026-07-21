@@ -9,9 +9,7 @@ authors:
 - José Arenas
 - Sofía Núñez
 genre: otro
-illustrators:
-- Sofía Núñez
-featured: false
+notes: 'Il.: Sofía Núñez'
 ---
 
 11. / Tangos chinos. José Arenas & Sofía Núñez. 2021.

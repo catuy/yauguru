@@ -6,7 +6,6 @@ year: 2015
 authors:
 - Gabriel Peluffo Linari
 genre: ensayo
-featured: false
 ---
 
 7. / DISLOCACIONES. Arte contemporáneo desde América Latina. (Ensayos de coyuntura). Gabriel Peluffo Linari. 2015.

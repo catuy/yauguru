@@ -7,7 +7,6 @@ authors:
 - Adriana Santos Melgarejo
 - Santiago Tavella
 genre: ensayo
-featured: false
 coverImage: /covers/bordes-desbordes--20--barradas-barradas-coincidencias-estetica.jpg
 ---
 

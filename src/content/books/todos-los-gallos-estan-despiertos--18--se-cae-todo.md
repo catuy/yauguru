@@ -7,9 +7,7 @@ year: 2024
 authors:
 - Trixy Miranda
 genre: otro
-illustrators:
-- Martina Russomando
-featured: false
+notes: 'Il.: Martina Russomando'
 coverImage: /covers/todos-los-gallos-estan-despiertos--18--se-cae-todo.jpg
 ---
 

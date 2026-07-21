@@ -7,7 +7,6 @@ authors:
 - Agustín Lucas
 - María Langone (fotografías)
 genre: otro
-featured: false
 ---
 
 7. / Club. Agustín Lucas, incluye postales con fotografías de María Noel Langone. 2011.

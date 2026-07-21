@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Radamés Buffa
 genre: otro
-featured: false
 ---
 
 29. / El peso de la memoria. Radamés Buffa. 2018.

@@ -8,9 +8,7 @@ year: 2024
 authors:
 - Luis Lorenzo Lerena
 genre: otro
-illustrators:
-- Maca
-featured: false
+notes: 'Il.: Maca'
 coverImage: /covers/todos-los-gallos-estan-despiertos--9--versos-disleex1cos-s-obrascompletas.jpg
 ---
 

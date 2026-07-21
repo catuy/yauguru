@@ -7,7 +7,6 @@ year: 2023
 authors:
 - Pablo Galante
 genre: otro
-featured: false
 ---
 
 8. / El sol en la nieve. Pablo Galante. 2023.

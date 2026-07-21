@@ -8,7 +8,6 @@ year: 2023
 authors:
 - Jorge Arbeleche
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--2--liturgia.jpg
 ---
 

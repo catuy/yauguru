@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Marcos Ibarra
 genre: otro
-featured: false
 ---
 
 22. / Consisto. Marcos Ibarra. 2022.

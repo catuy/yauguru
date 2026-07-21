@@ -6,7 +6,6 @@ year: 2014
 authors:
 - Varios autores
 genre: otro
-featured: false
 ---
 
 5| GUAY (20 poemas paraguayos), de varios autores (Paraguay). 2014.

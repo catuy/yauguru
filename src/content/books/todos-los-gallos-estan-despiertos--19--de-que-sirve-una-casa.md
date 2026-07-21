@@ -7,7 +7,6 @@ year: 2020
 authors:
 - Andrés Olveira
 genre: otro
-featured: false
 ---
 
 19. / De qué sirve una casa. Andrés Olveira. 2020.

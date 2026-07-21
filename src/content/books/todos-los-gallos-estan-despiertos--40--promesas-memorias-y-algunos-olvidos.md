@@ -8,8 +8,7 @@ year: 2023
 authors:
 - Walter Bordoni
 genre: audio (cd/dvd)
-coEdition: Bizarro Records
-featured: false
+notes: 'Co-ed.: Bizarro Records'
 coverImage: /covers/todos-los-gallos-estan-despiertos--40--promesas-memorias-y-algunos-olvidos.jpg
 ---
 

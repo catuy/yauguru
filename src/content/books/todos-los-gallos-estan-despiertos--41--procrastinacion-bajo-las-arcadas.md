@@ -7,7 +7,6 @@ year: 2024
 authors:
 - Ibéro Laventure
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--41--procrastinacion-bajo-las-arcadas.jpg
 ---
 

@@ -8,8 +8,7 @@ year: 2013
 authors:
 - Alfredo Mario Ferreiro
 genre: otro
-coEdition: Irrupciones
-featured: false
+notes: 'Co-ed.: Irrupciones'
 ---
 
 F | Se ruega no dar la mano de Alfredo Mario Ferreiro. (Co-edición con Irrupciones). 2013.

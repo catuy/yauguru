@@ -6,7 +6,6 @@ series: Segunda Serie
 authors:
 - Hugo Achugar
 genre: otro
-featured: false
 coverImage: /covers/rescate--ch--poesia-in-completa.jpg
 ---
 

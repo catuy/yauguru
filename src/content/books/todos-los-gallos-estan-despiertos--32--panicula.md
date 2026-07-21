@@ -8,10 +8,7 @@ year: 2025
 authors:
 - Gillian Sza
 genre: otro
-translators:
-- Lucía Bonilla Cal
-- María Eugenia Meneses
-featured: false
+notes: 'Trad.: Lucía Bonilla Cal, María Eugenia Meneses'
 coverImage: /covers/todos-los-gallos-estan-despiertos--32--panicula.jpg
 ---
 

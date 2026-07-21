@@ -7,7 +7,6 @@ year: 2022
 authors:
 - Julieta Lopérgolo
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--25--estado-anterior.jpg
 ---
 

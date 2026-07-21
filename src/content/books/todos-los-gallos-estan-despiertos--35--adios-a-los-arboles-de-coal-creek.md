@@ -7,7 +7,6 @@ year: 2017
 authors:
 - Santiago Pereira
 genre: otro
-featured: false
 ---
 
 35. / Adiós a los árboles de Coal Creek, de Santiago Pereira. 2017.

@@ -6,7 +6,6 @@ year: 2012
 authors:
 - Rafael Courtoisie
 genre: poesía
-featured: false
 ---
 
 agosto|12 / Santa poesía. Poesía de Rafael Courtoisie.

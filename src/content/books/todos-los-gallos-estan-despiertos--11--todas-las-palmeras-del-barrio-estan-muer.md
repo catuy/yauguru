@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Juana de Marzo
 genre: otro
-featured: false
 ---
 
 11. / Todas las palmeras del barrio están muertas. Juana de Marzo. 2026.

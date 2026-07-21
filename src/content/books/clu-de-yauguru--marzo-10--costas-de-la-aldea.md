@@ -6,10 +6,7 @@ year: 2010
 authors:
 - Agamenón Castrillón
 genre: cuentos
-illustrators:
-- varios dibujantes
-- diseñadores
-featured: false
+notes: 'Il.: varios dibujantes, diseñadores'
 ---
 
 marzo|10 / Costas de la aldea. Libro de cuentos de Agamenón Castrillón, ilustrados por varios dibujantes y diseñadores.

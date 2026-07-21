@@ -8,7 +8,6 @@ year: 2022
 authors:
 - Alfredo Fressia
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--17--ultima-thule.jpg
 ---
 

@@ -8,9 +8,7 @@ year: 2022
 authors:
 - Guillaume Apollinaire
 genre: otro
-translators:
-- Juan Carlos Mondragón
-featured: false
+notes: 'Trad.: Juan Carlos Mondragón'
 coverImage: /covers/todos-los-gallos-estan-despiertos--26--alcools.jpg
 ---
 

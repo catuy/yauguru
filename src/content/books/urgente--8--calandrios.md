@@ -11,7 +11,6 @@ authors:
 - Jorge Nádez
 - Luis Pereira Severo
 genre: otro
-featured: false
 ---
 
 8. / Calandrios. (Librillo de manuscritos) Héctor Bardanca, Alfresdo Fressia, Rafael Courtoisie, Jorge Nádez y Luis Pereira Severo. Imagen de tapa: Gustavo Fernández Cabrera. 2022.

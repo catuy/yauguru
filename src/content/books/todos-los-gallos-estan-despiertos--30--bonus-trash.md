@@ -8,9 +8,7 @@ year: 2020
 authors:
 - Nelson Díaz
 genre: otro
-illustrators:
-- Óscar Larroca
-featured: false
+notes: 'Il.: Óscar Larroca'
 ---
 
 30. / Bonus Trash de Nelson Díaz (con ilustraciones de Óscar Larroca) 2020.

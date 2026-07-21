@@ -6,7 +6,6 @@ year: 2011
 authors:
 - Radamés Buffa
 genre: poesía
-featured: false
 ---
 
 9. / Planos del diluvio. (Poesía) Radamés Buffa. 2011.

@@ -7,7 +7,6 @@ year: 2019
 authors:
 - Richard Garín
 genre: otro
-featured: false
 ---
 
 2. / Círculo de arena (plaqueta) Richard Garín. 2019.

@@ -6,7 +6,6 @@ year: 2007
 authors:
 - Carlos Cipriani
 genre: poesía
-featured: false
 ---
 
 63 | Palabras en el reloj. Libro de poemas de Carlos Cipriani. 2007.

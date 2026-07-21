@@ -8,7 +8,6 @@ authors:
 - varias artitas
 - poetas
 genre: otro
-featured: false
 coverImage: /covers/urgente--14--8x8-cita-a-ciegas.jpg
 ---
 

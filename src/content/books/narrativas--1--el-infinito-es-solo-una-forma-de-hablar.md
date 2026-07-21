@@ -6,7 +6,6 @@ year: 2011
 authors:
 - Horacio Verzi
 genre: novela
-featured: false
 ---
 
 1. / El infinito es solo una forma de hablar. Novela de Horacio Verzi, 2011.

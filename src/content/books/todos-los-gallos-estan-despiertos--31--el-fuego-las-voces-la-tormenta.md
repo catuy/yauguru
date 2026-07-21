@@ -8,7 +8,6 @@ year: 2025
 authors:
 - Elbio Chitaro
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--31--el-fuego-las-voces-la-tormenta.jpg
 ---
 

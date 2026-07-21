@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Lara Campiglia
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--7--algun-cielo-hierve-sus-besos.jpg
 ---
 

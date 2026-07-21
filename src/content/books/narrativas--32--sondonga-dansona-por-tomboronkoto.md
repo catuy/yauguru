@@ -7,7 +7,6 @@ year: 2018
 authors:
 - J. Manuel García Rey
 genre: novela
-featured: false
 ---
 
 32. / Sondonga dansona por Tomboronkoto. Novela de J. Manuel García Rey, 2018

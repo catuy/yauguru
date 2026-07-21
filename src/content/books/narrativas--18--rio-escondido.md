@@ -7,7 +7,6 @@ year: 2026
 authors:
 - Sergio Altesor Licandro
 genre: novela
-featured: false
 coverImage: /covers/narrativas--18--rio-escondido.jpg
 ---
 

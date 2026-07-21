@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Lucía Baltar
 genre: otro
-featured: false
 ---
 
 14. / Resaca emocional. Dícese del día siguiente al orgasmo o el amor. Lucía Baltar (España). 2018.

@@ -7,7 +7,6 @@ year: 2018
 authors:
 - Daniel Veloso
 genre: otro
-featured: false
 ---
 
 27. / El aljibe y otros poemas de amor y desamor. Daniel Veloso. 2018.

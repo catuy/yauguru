@@ -7,7 +7,6 @@ year: 2021
 authors:
 - Isabella Acerenza
 genre: otro
-featured: false
 coverImage: /covers/todos-los-gallos-estan-despiertos--28--cuando-olvide-la-espina.jpg
 ---
 
