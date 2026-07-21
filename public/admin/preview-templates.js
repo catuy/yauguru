@@ -39,7 +39,15 @@ function infoRow(label, value) {
     ),
     h(
       'div',
-      { style: { marginTop: '6px', fontSize: '18px', lineHeight: 1.6, color: RED } },
+      {
+        style: {
+          marginTop: '6px',
+          fontSize: '18px',
+          lineHeight: 1.6,
+          color: RED,
+          whiteSpace: 'pre-line',
+        },
+      },
       value
     )
   );

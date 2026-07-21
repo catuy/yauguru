@@ -70,9 +70,9 @@ collections:
 
       - label: Notas
         name: notes
-        widget: string
+        widget: text
         required: false
-        hint: 'Traductor/ilustrador/coedición/premios, como texto libre (ej: "Trad.: Fulano · Premio: Tal cosa"). Se muestra tal cual en la ficha del libro.'
+        hint: 'Traductor/ilustrador/coedición/premios, como texto libre (ej: "Trad.: Fulano" en una línea, "Premio: Tal cosa" en otra). Los saltos de línea se respetan en la ficha del libro.'
 
       - label: Tapa
         name: coverImage

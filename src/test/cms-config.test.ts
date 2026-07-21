@@ -81,6 +81,11 @@ describe('admin/config.yml — books collection', () => {
       'coverImage',
     ]);
   });
+
+  it('lets notes span multiple lines (a plain string widget only allows one line)', () => {
+    const field = mustFindField(books.fields, 'notes');
+    expect(field.widget).toBe('text');
+  });
 });
 
 describe('admin/config.yml — collections (editorial)', () => {
