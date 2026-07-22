@@ -5,6 +5,14 @@
 	--font-sans: "Stack Sans Text", ui-sans-serif, system-ui, sans-serif;
 }
 
+/* A couple shades darker than --color-primario, derived (not hardcoded) so
+   it stays in sync automatically if --color-primario ever changes. Used for
+   the grid/list hover fills — see .book-cell::before and .list-row::before
+   below for why they need a shade of their own rather than the plain color. */
+:root {
+	--color-primario-hover: color-mix(in srgb, var(--color-primario) 88%, black);
+}
+
 /* Locks page scroll whenever the book detail modal is present, including
    across Astro view-transition navigations (declarative, so it doesn't
    depend on JS timing or on a body class making it through the swap). */
@@ -34,13 +42,13 @@ body:has(#book-modal) {
 	position: absolute;
 	inset: 0;
 	z-index: 0;
-	/* A couple shades darker than --color-primario: a mix-blend-mode:multiply
+	/* --color-primario-hover, not --color-primario: a mix-blend-mode:multiply
 	   was tried first (multiplying with what the fill sits over — the cell's
 	   own near-white background, since the opaque cover always paints above
 	   it regardless of blend mode), but against #F9F9F9 that came out
-	   indistinguishable from the flat color, so this hardcodes the darker
+	   indistinguishable from the flat color, so this uses the darker derived
 	   shade directly instead. */
-	background: #c3253a;
+	background: var(--color-primario-hover);
 	transform: scaleX(0);
 	transform-origin: left;
 	transition: transform 300ms ease-out;
@@ -60,8 +68,8 @@ body:has(#book-modal) {
 	transform: rotate(var(--rotate)) scale(1.05);
 }
 
-/* List row hover: same darker-red fill as the grid tiles (see
-   .book-cell::before above for why it's a hardcoded shade rather than
+/* List row hover: same --color-primario-hover fill as the grid tiles (see
+   .book-cell::before above for why it's a derived shade rather than
    --color-primario), just a plain fade rather than a wipe — a subtle 100ms
    in both directions instead of the grid's directional scale-in. Inset the
    same 24px as the filter bar's border, matching each row's own px-6 text
@@ -75,7 +83,7 @@ body:has(#book-modal) {
 	left: 24px;
 	right: 24px;
 	z-index: 0;
-	background: #c3253a;
+	background: var(--color-primario-hover);
 	opacity: 0;
 	transition: opacity 100ms ease;
 }

@@ -13,7 +13,38 @@ const { title, description } = Astro.props;
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!--
+			Picks --color-primario at random once per real page load, then keeps
+			reapplying that same value on every soft (view-transition) navigation
+			too — opening/closing a book navigates to a real URL (/libro/[slug]),
+			and Astro's transition swap resets the <html> element's own attributes
+			(including any inline style set at runtime) to match the fetched
+			page's static markup, wiping a one-time style.setProperty() call.
+			data-astro-rerun makes sure this script actually runs again on every
+			such navigation (see BookCatalog.astro for the same attribute and why
+			it's needed) rather than being skipped as a byte-identical repeat; the
+			window.__primarioColor guard is what keeps it from re-rolling the
+			color on those reruns — only a genuine reload clears it, since that's
+			a fresh `window`.
+		-->
+		<script is:inline data-astro-rerun>
+			(function () {
+				if (!window.__primarioColor) {
+					const PRIMARIO_COLORS = [
+						'#008b95',
+						'#e2003a',
+						'#01adec',
+						'#be08b5',
+						'#ec6f06',
+						'#a2418b',
+						'#2bb802',
+					];
+					window.__primarioColor = PRIMARIO_COLORS[Math.floor(Math.random() * PRIMARIO_COLORS.length)];
+				}
+				document.documentElement.style.setProperty('--color-primario', window.__primarioColor);
+			})();
+		</script>
+		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>

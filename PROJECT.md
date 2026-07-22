@@ -179,6 +179,32 @@ detalle muestran `coverImage` si existe (con `object-contain`, no `object-cover`
 placeholder de texto de siempre. La sombra (`.book-shadow` / `.book-shadow-lg`
 en `global.css`) simula el canto de páginas de un libro real.
 
+### 10. `--color-primario` es random por carga real, no por navegación
+
+`Layout.astro` tiene un `<script is:inline data-astro-rerun>` en el `<head>`
+que elige un color al azar de una lista fija de 7 y lo aplica con
+`document.documentElement.style.setProperty('--color-primario', ...)`. Todo
+lo que antes tenía el rojo hardcodeado (fill/stroke del ícono-lápiz, fondo
+del hover en grilla/lista vía `--color-primario-hover`, que es
+`color-mix(in srgb, var(--color-primario) 88%, black)`) ahora lo sigue
+automáticamente — ver `global.css`.
+
+Dos cosas no obvias de la implementación:
+
+- **`data-astro-rerun` es obligatorio, pero por una razón distinta al punto
+  2**: no es para que el script vuelva a ejecutar el body (de hecho, no
+  queremos que elija un color nuevo en cada navegación) — es porque el swap
+  de View Transitions de Astro resetea los atributos del propio `<html>`
+  (incluido cualquier `style` puesto en runtime por JS) para que coincidan
+  con el markup estático de la página recién fetcheada. Sin volver a correr
+  el script en cada navegación, el `--color-primario` puesto a mano
+  desaparecería apenas se abre un libro. La guarda `window.__primarioColor`
+  es la que evita elegir un color nuevo en esas re-ejecuciones — sólo se
+  vuelve a sortear cuando `window` es nuevo de verdad (F5/recarga real).
+- Envuelto en un IIFE por la misma razón que el punto 4: al reejecutarse
+  como classic script, un `const` de nivel superior repetido tiraría
+  `SyntaxError: Identifier already declared`.
+
 ## Cómo agregar tapas nuevas
 
 El editor va subiendo tapas escaneadas a `materiales/<algo con el año>/` (no
@@ -350,6 +376,29 @@ Detalles de la config:
   probó uno para libros (tapa a la izquierda, texto rojo a la derecha,
   imitando la ficha real del sitio) pero se sacó porque desentonaba con el
   tema oscuro del editor de Sveltia; el preview default alcanza.
+- **Logo custom**: `logo: { src: /logo-yauguru.png }` a nivel raíz de
+  `config.yml` — reemplaza el logo de Sveltia por el logo de Yaugurú en la
+  pantalla de login, el header del editor, y el favicon de la pestaña. Se
+  probó primero `favicon.svg` (cuadrado, vectorial, se adapta a modo
+  oscuro — más cercano a lo que Sveltia recomienda para este campo), pero
+  resultó ser el favicon default de Astro sin personalizar, no una marca
+  real de Yaugurú — se cambió a `logo-yauguru.png` (el mismo wordmark
+  ancho que se usa de fondo en el hero de la home), que Sveltia escala a
+  su caja sin problema aunque no sea cuadrado.
+- **Idioma**: se evaluó agregar español a la UI del editor (no al
+  contenido) y se descartó — Sveltia CMS todavía no tiene traducción al
+  español, solo inglés y japonés (confirmado en su repo/docs a 2026-07).
+- **Favicon del sitio** (no confundir con el logo del editor de arriba,
+  que es un campo aparte): `public/favicon.svg` y `favicon.ico` eran el
+  ícono default de Astro (el cohete), nunca personalizados — visibles en
+  la pestaña del navegador y en resultados de búsqueda/bookmarks. Se
+  generaron `favicon.png` (512×512) y un `favicon.ico` multi-resolución
+  (16/32/48px) a partir de `logo-yauguru.png`, centrado en un canvas
+  cuadrado con padding transparente arriba/abajo (sin recortar ni estirar
+  el wordmark — mismo criterio que el logo del CMS). `Layout.astro` ahora
+  apunta a `favicon.png`; no había ningún otro ícono de Astro visible
+  (sin manifest, apple-touch-icon, ni og:image en el sitio — confirmado
+  con grep antes de tocar nada).
 - **Colección `about` = "file collection"** (`files:` en vez de `folder:`,
   apuntando a `src/content/about/about.md`) para el texto "Sobre nosotros"
   que antes estaba hardcodeado en `BookCatalog.astro`. Se probó primero una

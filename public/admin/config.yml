@@ -3,6 +3,9 @@ backend:
   repo: catuy/yauguru
   branch: main
 
+logo:
+  src: /logo-yauguru.png
+
 media_folder: public/covers
 public_folder: /covers
 
