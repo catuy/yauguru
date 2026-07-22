@@ -5,7 +5,7 @@ collections:
 year: 2009
 authors:
 - Alejandro Tuana
-genre: poesía
+genre: poesia
 ---
 
 noviembre|09 / Oriental. Libro de haikú de Alejandro Tuana.

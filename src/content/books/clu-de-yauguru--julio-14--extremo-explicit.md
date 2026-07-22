@@ -5,7 +5,7 @@ collections:
 year: 2014
 authors:
 - Riccardo Boglione
-genre: poesía
+genre: poesia
 ---
 
 julio|14 / Extremo explicit. Poesía de Riccardo Boglione.

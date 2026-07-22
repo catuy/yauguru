@@ -5,7 +5,7 @@ collections:
 year: 2011
 authors:
 - Laura Cesarco Eglin
-genre: poesía
+genre: poesia
 ---
 
 octubre|11 / Sastrería. Libro de poesía de Laura Cesarco Eglin.

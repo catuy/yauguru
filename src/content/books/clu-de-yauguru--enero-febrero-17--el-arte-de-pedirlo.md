@@ -5,7 +5,7 @@ collections:
 year: 2017
 authors:
 - Jotamario Arbeláez
-genre: poesía
+genre: poesia
 ---
 
 enero/febrero|17 / El arte de pedirlo. Poesía de Jotamario Arbeláez (Colombia).

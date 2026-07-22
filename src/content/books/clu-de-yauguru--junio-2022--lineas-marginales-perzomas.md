@@ -5,7 +5,7 @@ collections:
 year: 2022
 authors:
 - Agamenón Castrillón
-genre: poesía
+genre: poesia
 coverImage: /covers/clu-de-yauguru--junio-2022--lineas-marginales-perzomas.jpg
 ---
 

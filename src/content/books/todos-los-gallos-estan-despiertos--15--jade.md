@@ -5,7 +5,7 @@ collections:
 year: 2011
 authors:
 - Teresa Amy
-genre: poesía
+genre: poesia
 ---
 
 15. / Jade. (Poesía) Teresa Amy. 2011.

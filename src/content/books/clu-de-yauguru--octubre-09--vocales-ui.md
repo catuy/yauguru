@@ -5,7 +5,7 @@ collections:
 year: 2009
 authors:
 - Héctor Bardanca
-genre: audio (cd/dvd)
+genre: audio-cd-dvd
 ---
 
 octubre|09 / Vocales.ui. cd de Héctor Bardanca.

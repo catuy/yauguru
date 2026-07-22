@@ -6,7 +6,7 @@ series: Tercera serie (poesía)
 year: 2019
 authors:
 - M. Miranda Maloney
-genre: poesía
+genre: poesia
 notes: 'Trad.: Laura Cesarco Eglin'
 ---
 

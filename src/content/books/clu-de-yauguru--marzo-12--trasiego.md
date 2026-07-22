@@ -5,7 +5,7 @@ collections:
 year: 2012
 authors:
 - Poesía
-genre: poesía
+genre: poesia
 ---
 
 marzo|12 / Trasiego. Poesía. Un texto de Gustavo Wojciechowski traducido a varios idiomas.

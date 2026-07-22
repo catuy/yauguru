@@ -5,7 +5,7 @@ collections:
 year: 2026
 authors:
 - Hugo Achugar
-genre: poesía
+genre: poesia
 ---
 
 Enero/Febrero|2026 / Poesía (in)Completa (Tomo 1) de Hugo Achugar.

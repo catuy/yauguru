@@ -6,7 +6,7 @@ series: Segunda serie (poesía)
 year: 2016
 authors:
 - Mariella Huelmo
-genre: audio (cd/dvd)
+genre: audio-cd-dvd
 ---
 
 29. / En el pliegue de la noche, de Mariella Huelmo (incluye cd con canciones). 2016.

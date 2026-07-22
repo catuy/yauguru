@@ -5,7 +5,7 @@ collections:
 year: 2013
 authors:
 - Ana Strauss
-genre: poesía
+genre: poesia
 ---
 
 39. / No sé qué hago en Inglaterra. (Poesía) Ana Strauss. 2013.

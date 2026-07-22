@@ -6,7 +6,7 @@ year: 2011
 authors:
 - Eduardo Nogareda
 - Fernando Pareja
-genre: audio (cd/dvd)
+genre: audio-cd-dvd
 ---
 
 mayo|11 / Ruido de poemas. cd de Eduardo Nogareda y Fernando Pareja.

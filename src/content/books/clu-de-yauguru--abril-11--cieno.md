@@ -5,7 +5,7 @@ collections:
 year: 2011
 authors:
 - Gerardo Ciancio
-genre: poesía
+genre: poesia
 notes: 'Premio: Primer Premio de Poesía Inédita mec'
 ---
 

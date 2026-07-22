@@ -6,7 +6,7 @@ collections:
 year: 2013
 authors:
 - Víctor Guichón
-genre: poesía
+genre: poesia
 ---
 
 34. / Bailarina invisible. (Poesía) Víctor Guichón. 2013.

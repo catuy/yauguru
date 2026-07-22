@@ -1,20 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { loadCmsConfig, mustFindField, mustFindCollection, mustFindFile } from './helpers/load-cms-config';
 
-const GENRES = [
-  'poesía',
-  'novela',
-  'cuentos',
-  'ensayo',
-  'teatro',
-  'audio (cd/dvd)',
-  'historieta',
-  'otro',
-];
-
 const config = loadCmsConfig();
 const books = mustFindCollection(config, 'books');
 const collections = mustFindCollection(config, 'editorial-collections');
+const genres = mustFindCollection(config, 'genres');
 const about = mustFindCollection(config, 'about');
 
 describe('admin/config.yml — backend', () => {
@@ -52,9 +42,11 @@ describe('admin/config.yml — books collection', () => {
     expect(field.max).toBe(2030);
   });
 
-  it('offers exactly the genres defined in content.config.ts', () => {
+  it('references the genres collection by slug (a relation, not a hardcoded select — genres are editable from the CMS same as editorial collections)', () => {
     const field = mustFindField(books.fields, 'genre');
-    expect(field.options).toEqual(GENRES);
+    expect(field.widget).toBe('relation');
+    expect(field.collection).toBe('genres');
+    expect(field.value_field).toBe('{{slug}}');
   });
 
   it('stores cover images under public/covers, matching the site convention', () => {
@@ -95,6 +87,17 @@ describe('admin/config.yml — collections (editorial)', () => {
 
   it('has exactly name/order — description/coverImage/body are never read anywhere in books.ts, so they stayed out of the editing UI', () => {
     const fieldNames = collections.fields.map((f) => f.name);
+    expect(fieldNames).toEqual(['name', 'order']);
+  });
+});
+
+describe('admin/config.yml — genres', () => {
+  it('points at the real content folder', () => {
+    expect(genres.folder).toBe('src/content/genres');
+  });
+
+  it('has exactly name/order, same shape as editorial collections', () => {
+    const fieldNames = genres.fields.map((f) => f.name);
     expect(fieldNames).toEqual(['name', 'order']);
   });
 });

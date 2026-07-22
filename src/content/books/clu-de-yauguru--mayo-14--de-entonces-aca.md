@@ -5,7 +5,7 @@ collections:
 year: 2014
 authors:
 - Gustavo Wojciechowski
-genre: poesía
+genre: poesia
 ---
 
 mayo|14 / De entonces acá. Poesía de Gustavo Wojciechowski.

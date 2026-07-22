@@ -6,7 +6,7 @@ collections:
 year: 2010
 authors:
 - Laura Alonso
-genre: poesía
+genre: poesia
 ---
 
 6. / (o diáspora la lengua) (Plaqueta de poesía) Laura Alonso. 2010.

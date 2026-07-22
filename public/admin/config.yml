@@ -56,17 +56,13 @@ collections:
 
       - label: Género
         name: genre
-        widget: select
+        widget: relation
+        collection: genres
         required: false
-        options:
-          - poesía
-          - novela
-          - cuentos
-          - ensayo
-          - teatro
-          - 'audio (cd/dvd)'
-          - historieta
-          - otro
+        search_fields: [name]
+        value_field: '{{slug}}'
+        display_fields: [name]
+        hint: A qué género pertenece este libro.
 
       - label: Notas
         name: notes
@@ -103,6 +99,28 @@ collections:
         widget: number
         value_type: int
         hint: Los números más bajos aparecen primero.
+
+  - name: genres
+    label: Géneros
+    label_singular: Género
+    folder: src/content/genres
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    identifier_field: name
+    slug: '{{name}}'
+    sortable_fields: [name, order]
+    fields:
+      - label: Nombre
+        name: name
+        widget: string
+
+      - label: Orden
+        name: order
+        widget: number
+        value_type: int
+        hint: Los números más bajos aparecen primero (así se ordenan en el filtro "Género" de la grilla).
 
   - name: about
     label: Nosotros

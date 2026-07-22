@@ -1,17 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const GENRES = [
-  'poesía',
-  'novela',
-  'cuentos',
-  'ensayo',
-  'teatro',
-  'audio (cd/dvd)',
-  'historieta',
-  'otro',
-] as const;
-
 const books = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/books' }),
   schema: () =>
@@ -26,7 +15,11 @@ const books = defineCollection({
       // TODO: restore .min(1) once the ~13 entries flagged in the import
       // summary get an author filled in manually (via the CMS or by hand)
       authors: z.array(z.string()),
-      genre: z.enum(GENRES).optional(),
+      // Slug de una entrada de la collection "genres" (ver más abajo) — antes
+      // era un z.enum() hardcodeado; se migró a colección editable desde el
+      // CMS igual que "collections". Singular, no array: un libro tiene a lo
+      // sumo un género (a diferencia de collections, que admite varios).
+      genre: z.string().optional(),
       // Texto libre para traductores/ilustradores/coedición/premios — antes
       // eran 4 campos estructurados separados, pero lo único que hacían era
       // alimentar una única línea "Notas" armada a mano; se unificaron en un
@@ -61,8 +54,20 @@ const about = defineCollection({
   schema: z.object({}),
 });
 
+// Same shape as editorialCollections (name + order) — the "genre" filter in
+// the front and the genre relation field in the books CMS form both read
+// from this instead of a hardcoded enum, same idea as editorial collections.
+const genres = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/genres' }),
+  schema: z.object({
+    name: z.string(),
+    order: z.number(),
+  }),
+});
+
 export const collections = {
   books,
   collections: editorialCollections,
   about,
+  genres,
 };

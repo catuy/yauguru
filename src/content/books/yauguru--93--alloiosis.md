@@ -5,7 +5,7 @@ collections:
 year: 2007
 authors:
 - Inés Trabal
-genre: poesía
+genre: poesia
 ---
 
 93 | alloiosis. Libro de poemas de Inés Trabal. 2007.

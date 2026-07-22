@@ -5,7 +5,7 @@ collections:
 year: 2011
 authors:
 - Roberto Appratto
-genre: poesía
+genre: poesia
 ---
 
 julio|11 / Lugar perfecto. Libro de poesía de Roberto Appratto.

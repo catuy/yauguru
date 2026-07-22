@@ -5,7 +5,7 @@ collections:
 year: 2018
 authors:
 - Vicente Huidobro
-genre: poesía
+genre: poesia
 ---
 
 mayo|18 / Poemas árticos / Ecuatorial. Poesía de Vicente Huidobro (Chile).

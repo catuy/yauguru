@@ -5,7 +5,7 @@ collections:
 year: 2021
 authors:
 - Elbio Chitaro
-genre: poesía
+genre: poesia
 notes: 'Il.: Maca'
 ---
 

@@ -5,7 +5,7 @@ collections:
 year: 2015
 authors:
 - Roberto López Belloso
-genre: poesía
+genre: poesia
 notes: 'Premio: Obra ganadora del Premio Anual de Literatura 2014 del Ministerio de Eduación y Cultura [poesía inédita]'
 ---
 

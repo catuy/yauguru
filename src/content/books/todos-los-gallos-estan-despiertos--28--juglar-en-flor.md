@@ -6,7 +6,7 @@ collections:
 year: 2013
 authors:
 - María Constanza Farfalla
-genre: poesía
+genre: poesia
 notes: 'Il.: Marcos Ibarra'
 ---
 

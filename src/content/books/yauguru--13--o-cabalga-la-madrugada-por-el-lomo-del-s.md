@@ -6,7 +6,7 @@ year: 2004
 authors:
 - Fernando Goicoechea (música)
 - Gustavo Wojciechowski (textículos)
-genre: audio (cd/dvd)
+genre: audio-cd-dvd
 notes: 'Co-ed.: Perro Andaluz Records'
 ---
 

@@ -6,7 +6,7 @@ collections:
 year: 2010
 authors:
 - Paula Bader / Silvia II G
-genre: poesía
+genre: poesia
 ---
 
 5. / Corazonada (Poesía/pintura) Paula Bader / Silvia II G. 2010.

@@ -5,7 +5,7 @@ collections:
 year: 2013
 authors:
 - Varios autores
-genre: poesía
+genre: poesia
 notes: 'Co-ed.: Los libros de l(a) imperdible (España)'
 ---
 

@@ -5,7 +5,7 @@ collections:
 year: 2012
 authors:
 - Sergio Altesor
-genre: poesía
+genre: poesia
 notes: 'Il.: Domingo Ferreira'
 ---
 

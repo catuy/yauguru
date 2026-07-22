@@ -6,7 +6,7 @@ collections:
 year: 2023
 authors:
 - Martín Barea Mattos
-genre: poesía
+genre: poesia
 ---
 
 12 ./ Secuenciales de Martín Barea Mattos (poesía visual) 2023.

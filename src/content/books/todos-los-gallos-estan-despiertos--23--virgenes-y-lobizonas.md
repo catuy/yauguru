@@ -5,7 +5,7 @@ collections:
 year: 2012
 authors:
 - Léonie Garicoïts
-genre: poesía
+genre: poesia
 notes: 'Il.: Elián Stolarsky'
 ---
 

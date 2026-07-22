@@ -5,7 +5,7 @@ collections:
 year: 2014
 authors:
 - Juan Gustavo Cobo Borda
-genre: poesía
+genre: poesia
 ---
 
 noviembre|14 / Poesía: última trinchera. Poesía de Juan Gustavo Cobo Borda (Colombia).

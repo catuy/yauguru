@@ -5,7 +5,7 @@ collections:
 year: 2014
 authors:
 - Varios autores
-genre: poesía
+genre: poesia
 notes: 'Co-ed.: Libros de l(a) imperdible (España) y Julieta Cartonera (Francia)'
 ---
 

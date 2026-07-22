@@ -5,7 +5,7 @@ collections:
 year: 2018
 authors:
 - Roberto Appratto
-genre: poesía
+genre: poesia
 ---
 
 setiembre|18 / Los límites del control. Poesía de Roberto Appratto.

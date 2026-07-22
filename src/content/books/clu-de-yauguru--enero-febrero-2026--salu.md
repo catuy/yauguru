@@ -5,7 +5,7 @@ collections:
 year: 2026
 authors:
 - Varios autores
-genre: poesía
+genre: poesia
 ---
 
 Enero/Febrero|2026 / Salú (desplegable de poesía venezolana).

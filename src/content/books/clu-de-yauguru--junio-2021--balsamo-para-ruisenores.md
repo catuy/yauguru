@@ -5,7 +5,7 @@ collections:
 year: 2021
 authors:
 - Paula Einöder
-genre: poesía
+genre: poesia
 ---
 
 Junio|2021 / Bálsamo para ruiseñores. Poesía de Paula Einöder.

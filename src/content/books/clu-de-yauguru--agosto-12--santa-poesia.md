@@ -5,7 +5,7 @@ collections:
 year: 2012
 authors:
 - Rafael Courtoisie
-genre: poesía
+genre: poesia
 ---
 
 agosto|12 / Santa poesía. Poesía de Rafael Courtoisie.

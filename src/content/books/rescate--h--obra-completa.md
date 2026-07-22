@@ -7,7 +7,7 @@ series: Segunda Serie
 year: 2019
 authors:
 - Humberto Megget
-genre: poesía
+genre: poesia
 notes: 'Co-ed.: la Intendencia de Paysandú'
 ---
 

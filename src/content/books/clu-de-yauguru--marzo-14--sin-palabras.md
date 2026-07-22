@@ -5,7 +5,7 @@ collections:
 year: 2014
 authors:
 - Roberto Appratto
-genre: poesía
+genre: poesia
 ---
 
 marzo|14 / Sin palabras. Poesía de Roberto Appratto.

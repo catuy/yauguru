@@ -1,5 +1,5 @@
 ---
-import { getBookData, GENRE_LABELS } from '../lib/books';
+import { getBookData } from '../lib/books';
 import { getAboutData } from '../lib/about';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 const { activeSlug } = Astro.props;
 
-const { bookData, collectionOptions, genresPresent, years } = await getBookData();
+const { bookData, collectionOptions, genreOptions, years } = await getBookData();
 const total = bookData.length;
 const aboutData = await getAboutData();
 
@@ -29,7 +29,7 @@ const infoRows = activeBook
 			['Colección', activeBook.collectionNames.join(', ') || '—'],
 			['Año', activeBook.year ? String(activeBook.year) : '—'],
 			['Autor(es)', activeBook.authors.length ? activeBook.authors.join(', ') : '—'],
-			['Género', activeBook.genre ? (GENRE_LABELS[activeBook.genre] ?? activeBook.genre) : '—'],
+			['Género', activeBook.genreName || '—'],
 			...(activeBook.notes ? [['Notas', activeBook.notes]] : []),
 		] as [string, string][])
 	: [];
@@ -127,11 +127,11 @@ const infoRows = activeBook
 									<span class="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-primario peer-checked:bg-primario"></span>
 									Todos
 								</label>
-								{genresPresent.map((g) => (
+								{genreOptions.map((g) => (
 									<label class="flex cursor-pointer items-center gap-2 text-lg text-primario">
-										<input type="radio" name="f-genre" value={g} class="peer sr-only" />
+										<input type="radio" name="f-genre" value={g.slug} class="peer sr-only" />
 										<span class="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-primario peer-checked:bg-primario"></span>
-										{GENRE_LABELS[g] ?? g}
+										{g.name}
 									</label>
 								))}
 							</div>

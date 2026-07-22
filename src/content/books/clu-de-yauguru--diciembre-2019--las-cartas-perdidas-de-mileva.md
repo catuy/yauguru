@@ -5,7 +5,7 @@ collections:
 year: 2019
 authors:
 - M. Miranda Maloney
-genre: poesía
+genre: poesia
 ---
 
 diciembre|2019 / Las cartas perdidas de Mileva.Poesía de M. Miranda Maloney (EEUU).

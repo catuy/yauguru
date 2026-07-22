@@ -5,7 +5,7 @@ collections:
 year: 2010
 authors:
 - Primer Premio del Concurso Literario Poesía
-genre: poesía
+genre: poesia
 notes: 'Premio: Primer Premio del Concurso Literario Poesía. Intendencia de Montevideo'
 ---
 

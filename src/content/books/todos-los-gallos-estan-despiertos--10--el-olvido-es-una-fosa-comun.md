@@ -6,7 +6,7 @@ series: Séptima serie (poesía)
 year: 2026
 authors:
   - Leandro Taramasco
-genre: poesía
+genre: poesia
 notes: 'Premio: Primer premio Poesía. Concurso Literario Juan Carlos Onetti, 2025'
 ---
 

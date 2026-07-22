@@ -5,7 +5,7 @@ collections:
 year: 2014
 authors:
 - Eduardo Nogareda
-genre: poesía
+genre: poesia
 ---
 
 junio|14 / Los hornos. Poesía de Eduardo Nogareda.

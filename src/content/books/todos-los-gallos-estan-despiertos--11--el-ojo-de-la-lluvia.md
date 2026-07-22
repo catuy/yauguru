@@ -5,7 +5,7 @@ collections:
 year: 2011
 authors:
 - Alicia Preza
-genre: poesía
+genre: poesia
 notes: 'Premio: Premio Poesía Joven · Co-ed.: La cAsa de los Escritores del Uruguay'
 ---
 

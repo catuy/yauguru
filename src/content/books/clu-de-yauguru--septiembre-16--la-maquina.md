@@ -5,7 +5,7 @@ collections:
 year: 2016
 authors:
 - Lalo Barrubia
-genre: poesía
+genre: poesia
 ---
 
 Septiembre|16 / La máquina. Libro de poesía de Lalo Barrubia.

@@ -5,7 +5,7 @@ collections:
 year: 2010
 authors:
 - Léonïe Garicoïts
-genre: poesía
+genre: poesia
 ---
 
 3. / Mar de las lluvias. (Poesía) Léonïe Garicoïts. 2010.

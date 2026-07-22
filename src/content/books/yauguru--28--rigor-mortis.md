@@ -5,7 +5,7 @@ collections:
 year: 2005
 authors:
 - Nelson Díaz
-genre: poesía
+genre: poesia
 ---
 
 28 | Rigor mortis. Libro de poesía de Nelson Díaz. 2005.

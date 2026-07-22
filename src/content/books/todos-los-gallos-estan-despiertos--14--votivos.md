@@ -5,7 +5,7 @@ collections:
 year: 2011
 authors:
 - Jorge Nandéz Britos
-genre: poesía
+genre: poesia
 ---
 
 14. / Votivos. (Poesía) Jorge Nandéz Britos. 2011.

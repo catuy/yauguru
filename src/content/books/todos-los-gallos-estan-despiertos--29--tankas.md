@@ -5,7 +5,7 @@ collections:
 year: 2012
 authors:
 - Leonardo Rossiello
-genre: poesía
+genre: poesia
 ---
 
 29. / Tankas. (Poesía) Leonardo Rossiello. 2012.

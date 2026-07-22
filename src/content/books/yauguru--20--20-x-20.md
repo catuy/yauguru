@@ -6,7 +6,7 @@ collections:
 year: 2008
 authors:
 - Varios autores
-genre: poesía
+genre: poesia
 notes: 'Co-ed.: Editorial Argonauta (Bs. As.)'
 ---
 

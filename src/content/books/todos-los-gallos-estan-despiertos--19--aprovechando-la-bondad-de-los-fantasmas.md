@@ -5,7 +5,7 @@ collections:
 year: 2011
 authors:
 - Walter Biurrun
-genre: poesía
+genre: poesia
 ---
 
 19. / Aprovechando la bondad de los fantasmas. (Poesía) Walter Biurrun. 2011.

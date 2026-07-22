@@ -6,7 +6,7 @@ collections:
 year: 2012
 authors:
 - Victoria Estol
-genre: poesía
+genre: poesia
 ---
 
 21. / Bicho bola. (Poesía) Victoria Estol. 2012.

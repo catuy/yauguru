@@ -5,7 +5,7 @@ collections:
 year: 2016
 authors:
 - Eduardo Nogareda
-genre: poesía
+genre: poesia
 ---
 
 abril|16 / Acá no es. Libro de poesía de Eduardo Nogareda.

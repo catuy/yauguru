@@ -5,7 +5,7 @@ collections:
 year: 2009
 authors:
 - Mariella Nigro
-genre: poesía
+genre: poesia
 notes: 'Il.: Cecilia Mattos'
 ---
 

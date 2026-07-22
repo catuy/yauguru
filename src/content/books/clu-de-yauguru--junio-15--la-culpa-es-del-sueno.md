@@ -5,7 +5,7 @@ collections:
 year: 2015
 authors:
 - Mariela Laudecina
-genre: poesía
+genre: poesia
 notes: 'Il.: Maca'
 ---
 

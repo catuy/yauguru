@@ -5,7 +5,7 @@ collections:
 year: 2010
 authors:
 - Jotamario Arbeláez
-genre: poesía
+genre: poesia
 ---
 
 junio|10 / Culito de rana (antología poética). Libro de poesía de Jotamario Arbeláez (Colombia).

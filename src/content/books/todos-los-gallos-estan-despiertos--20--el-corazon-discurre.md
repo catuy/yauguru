@@ -5,7 +5,7 @@ collections:
 year: 2011
 authors:
 - Gabriel Weiss
-genre: poesía
+genre: poesia
 ---
 
 20. / El corazón discurre. (Poesía) Gabriel Weiss. 2011.

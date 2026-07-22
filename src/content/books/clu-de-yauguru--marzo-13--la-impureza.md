@@ -5,7 +5,7 @@ collections:
 year: 2013
 authors:
 - Elbio Chitaro
-genre: poesía
+genre: poesia
 ---
 
 marzo|13 / La impureza. Poesía de Elbio Chitaro.

@@ -11,7 +11,7 @@ authors:
 - Daniela Pássaro
 - Marcelo Vidal
 - Leonardo Barzelli
-genre: audio (cd/dvd)
+genre: audio-cd-dvd
 notes: 'Co-ed.: Ediciones Ayuí'
 ---
 

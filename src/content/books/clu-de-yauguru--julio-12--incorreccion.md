@@ -5,7 +5,7 @@ collections:
 year: 2012
 authors:
 - Hugo Achugar
-genre: poesía
+genre: poesia
 ---
 
 julio|12 / incorrección. Poesía de Hugo Achugar.

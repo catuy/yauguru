@@ -6,7 +6,7 @@ collections:
 year: 2011
 authors:
 - Léonïe Garicoïts
-genre: poesía
+genre: poesia
 ---
 
 17. / Amarga misericordia. (Poesía) Léonïe Garicoïts. 2011.

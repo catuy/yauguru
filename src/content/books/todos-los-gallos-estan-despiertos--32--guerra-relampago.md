@@ -5,7 +5,7 @@ collections:
 year: 2013
 authors:
 - Diego Cunha
-genre: poesía
+genre: poesia
 ---
 
 32. / Guerra relámpago. (Poesía) Diego Cunha. 2013.

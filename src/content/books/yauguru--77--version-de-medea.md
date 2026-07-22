@@ -5,7 +5,7 @@ collections:
 year: 2008
 authors:
 - Elbio Chitaro
-genre: poesía
+genre: poesia
 ---
 
 77 | Versión de Medea. Libro de poesía de elbio chitaro. 2008.

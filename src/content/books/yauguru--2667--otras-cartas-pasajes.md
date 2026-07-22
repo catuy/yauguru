@@ -5,7 +5,7 @@ collections:
 year: 2005
 authors:
 - Inés Trabal
-genre: poesía
+genre: poesia
 notes: 'Co-ed.: Civiles iletrados'
 ---
 

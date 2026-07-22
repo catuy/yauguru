@@ -329,6 +329,23 @@ Detalles de la config:
   `clu-de-yauguru`, `urgente`, `yauguru`) todavía tienen `description`
   cargada en el frontmatter — es un dato dormido a propósito (decisión
   explícita del editor de no borrarlo), no editable desde el CMS.
+- **Colección `genres`** — igual patrón que `editorial-collections` (`name`
+  + `order`, `folder: src/content/genres`), y el campo `genre` de `books`
+  pasó de `widget: select` con opciones hardcodeadas a `widget: relation`
+  apuntando a `genres` (igual que `collections`, pero singular, sin
+  `multiple: true` — un libro tiene a lo sumo un género). Antes era un
+  `z.enum()` fijo en `content.config.ts`; antes de migrar, los 561 libros
+  ya usaban 8 valores distintos como género (`grep -h "^genre:"
+  src/content/books/*.md | sort | uniq -c`), todos coincidiendo 1:1 con el
+  enum viejo — se creó una entrada de `genres` por cada uno, y se
+  actualizaron a mano los `genre:` de los 125 libros cuyo valor no era ya
+  un slug ASCII-safe (`poesía` → `poesia`, `audio (cd/dvd)` → `audio-cd-dvd`;
+  los otros 6 valores ya coincidían con su slug nuevo, sin tocar). El
+  filtro "Género" de la grilla y el `<select>` del CMS ahora leen de esta
+  colección (`genreOptions` en `books.ts`, mismo mecanismo que
+  `collectionOptions`) en vez de derivar de un enum o de "lo que aparece
+  en los libros actuales" — un género nuevo agregado desde el CMS aparece
+  en el filtro de inmediato, aunque ningún libro lo use todavía.
 - Sin preview template custom para ninguna de las dos colecciones —se
   probó uno para libros (tapa a la izquierda, texto rojo a la derecha,
   imitando la ficha real del sitio) pero se sacó porque desentonaba con el

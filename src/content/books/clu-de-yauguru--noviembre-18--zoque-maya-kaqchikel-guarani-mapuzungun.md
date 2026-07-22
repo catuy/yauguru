@@ -8,7 +8,7 @@ authors:
 - Negma Coy
 - Miguelángel Meza
 - Liliana Ancalao
-genre: poesía
+genre: poesia
 notes: 'Co-ed.: Libros de l(a) Imperdible (España) y Amordemisamores (Francia)'
 ---
 

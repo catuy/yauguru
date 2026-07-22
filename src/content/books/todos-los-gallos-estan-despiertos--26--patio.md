@@ -5,7 +5,7 @@ collections:
 year: 2012
 authors:
 - Leonardo Garet
-genre: poesía
+genre: poesia
 ---
 
 26. / Patio. (Poesía) Leonardo Garet. 2012

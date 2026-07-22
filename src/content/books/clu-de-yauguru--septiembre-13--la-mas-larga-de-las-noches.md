@@ -5,7 +5,7 @@ collections:
 year: 2013
 authors:
 - Jan Skácel
-genre: poesía
+genre: poesia
 ---
 
 septiembre|13 / La más larga de las noches, antología de poesía de Jan Skácel (Checoslocaquia).

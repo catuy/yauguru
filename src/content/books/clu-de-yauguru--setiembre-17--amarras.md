@@ -5,7 +5,7 @@ collections:
 year: 2017
 authors:
 - L.L.L
-genre: poesía
+genre: poesia
 notes: 'Il.: Maca'
 ---
 

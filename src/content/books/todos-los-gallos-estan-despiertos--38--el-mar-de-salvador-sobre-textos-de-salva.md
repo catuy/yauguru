@@ -5,7 +5,7 @@ collections:
 year: 2013
 authors:
 - Andrés Stagnaro
-genre: audio (cd/dvd)
+genre: audio-cd-dvd
 ---
 
 38. / El mar de Salvador (sobre textos de Salvador Puig). dvd de Andrés Stagnaro. 2013.

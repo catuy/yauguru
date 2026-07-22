@@ -5,7 +5,7 @@ collections:
 year: 2009
 authors:
 - Luis Pereira
-genre: poesía
+genre: poesia
 ---
 
 junio|09 / Pabellón patrio. Libro de poesía de Luis Pereira.

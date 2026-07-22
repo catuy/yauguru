@@ -6,7 +6,7 @@ year: 2013
 authors:
 - John Bennett
 - Luis Bravo
-genre: audio (cd/dvd)
+genre: audio-cd-dvd
 notes: 'Co-ed.: Ayuí'
 ---
 

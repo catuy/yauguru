@@ -5,7 +5,7 @@ collections:
 year: 2018
 authors:
 - Gustavo Wojciechowski
-genre: poesía
+genre: poesia
 ---
 
 diciembre|18 / Esto no es un libro de poemas. Poesía de Gustavo Wojciechowski.

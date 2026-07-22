@@ -5,7 +5,7 @@ collections:
 year: 2013
 authors:
 - Mariana Rubio
-genre: poesía
+genre: poesia
 ---
 
 30. / En el hilo del naufragio. (Poesía) Mariana Rubio. 2013.
