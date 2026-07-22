@@ -34,7 +34,13 @@ body:has(#book-modal) {
 	position: absolute;
 	inset: 0;
 	z-index: 0;
-	background: var(--color-primario);
+	/* A couple shades darker than --color-primario: a mix-blend-mode:multiply
+	   was tried first (multiplying with what the fill sits over — the cell's
+	   own near-white background, since the opaque cover always paints above
+	   it regardless of blend mode), but against #F9F9F9 that came out
+	   indistinguishable from the flat color, so this hardcodes the darker
+	   shade directly instead. */
+	background: #c3253a;
 	transform: scaleX(0);
 	transform-origin: left;
 	transition: transform 300ms ease-out;
@@ -54,9 +60,13 @@ body:has(#book-modal) {
 	transform: rotate(var(--rotate)) scale(1.05);
 }
 
-/* List row hover: same red-fill idea as the grid tiles, but wiping in from
-   the bottom (rows are wide and short, so a vertical wipe reads better than
-   a horizontal one) and turning the text white instead of scaling anything. */
+/* List row hover: same darker-red fill as the grid tiles (see
+   .book-cell::before above for why it's a hardcoded shade rather than
+   --color-primario), just a plain fade rather than a wipe — a subtle 100ms
+   in both directions instead of the grid's directional scale-in. Inset the
+   same 24px as the filter bar's border, matching each row's own px-6 text
+   padding — no divider line between rows anymore, so nothing else marks
+   that edge. */
 .list-row::before {
 	content: '';
 	position: absolute;
@@ -65,34 +75,17 @@ body:has(#book-modal) {
 	left: 24px;
 	right: 24px;
 	z-index: 0;
-	background: var(--color-primario);
-	transform: scaleY(0);
-	transform-origin: bottom;
-	transition: transform 250ms ease-out;
+	background: #c3253a;
+	opacity: 0;
+	transition: opacity 100ms ease;
 }
 
 .list-row:hover::before {
-	transform: scaleY(1);
+	opacity: 1;
 }
 
 .list-row:hover {
 	color: #fff;
-}
-
-/* Divider between rows, inset the same 24px as the filter bar's border
-   instead of running edge-to-edge — a plain divide-y on the container would
-   span the full row width, since the row itself is a full-bleed click
-   target. z-index above the hover fill keeps it visible through the red
-   the same way a real border would sit on top of a background-color. */
-.list-row:not(:last-of-type)::after {
-	content: '';
-	position: absolute;
-	left: 24px;
-	right: 24px;
-	bottom: 0;
-	height: 1px;
-	z-index: 1;
-	background: var(--color-primario);
 }
 
 /* Closing the book detail can't land the cover precisely back on its grid
@@ -138,9 +131,6 @@ body:has(#book-modal) {
 #cursor-dot.cursor-dot--active {
 	width: 40px;
 	height: 40px;
-	/* Both the book-cell and list-row hover fills are this same red, so
-	   without an outline the circle disappears into them on hover. */
-	border: 2px solid #fff;
 }
 
 #cursor-dot.cursor-dot--active span {

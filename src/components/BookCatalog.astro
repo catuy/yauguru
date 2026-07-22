@@ -327,9 +327,9 @@ const infoRows = activeBook
 				href="https://catuy.github.io/"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="shrink-0 text-lg tracking-[0.18px] text-primario underline decoration-from-font [text-underline-position:from-font]"
+				class="shrink-0 text-lg tracking-[0.18px] text-primario no-underline"
 			>
-				&lt;/&gt;
+				{"{-_-}"}
 			</a>
 		</div>
 	</div>
@@ -374,9 +374,6 @@ const infoRows = activeBook
 	const VIEW_MODES = ['grid', 'list'];
 	let viewMode = 'grid';
 	const GRID_CLASSES = ['grid', 'grid-cols-2', 'gap-2', 'sm:grid-cols-3', 'lg:grid-cols-4'];
-	// No divide-y here: the divider between rows is drawn by .list-row's own
-	// ::after (see global.css) so it can be inset 24px like the filter bar's
-	// border, instead of divide-y's border-top spanning the full row width.
 	const LIST_CLASSES = ['flex', 'flex-col'];
 
 	function getRadioValue(name) {
