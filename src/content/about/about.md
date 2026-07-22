@@ -1,6 +1,3 @@
----
----
-
 El sello editorial YAUGURÚ surge en el 2004 como respuesta a la necesidad de atender la creación desde un lugar no estandarizado ni homogéneo. Cada obra, más allá de estilos y géneros es única, por tanto el proceso de edición debe tomar en cuenta esa especialidad.
 
 La materialidad de la edición pretende hablar precisamente de esos aspectos diferenciales. Generalmente las colecciones son armadas con criterios de uniformidad, todos son iguales. Sin embargo en la literatura, y en el arte en general, lo que importa son las diferencias.
@@ -21,8 +18,8 @@ La editorial yaugurú obtiene el Premio al Mérito Gráfico y Esfuerzo Editorial
 
 El sello lleva editados más de 600 títulos.
 
-[email]()
+[email](https://catuy.github.io/)
 
-[instagram]()
+[instagram](https://catuy.github.io/)
 
-[youtube]()
+[youtube](https://catuy.github.io/)
