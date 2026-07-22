@@ -103,3 +103,15 @@ collections:
         widget: number
         value_type: int
         hint: Los números más bajos aparecen primero.
+
+  - name: about
+    label: Nosotros
+    files:
+      - name: about
+        label: Nosotros
+        file: src/content/about/about.md
+        fields:
+          - label: Texto
+            name: body
+            widget: markdown
+            hint: El texto de la sección "Sobre nosotros" de la portada. Cada párrafo separado por una línea en blanco se muestra como un párrafo aparte. Los links (email, instagram, youtube, etc.) van como link de markdown dentro del mismo texto.

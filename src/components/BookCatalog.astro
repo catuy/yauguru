@@ -1,5 +1,6 @@
 ---
 import { getBookData, GENRE_LABELS } from '../lib/books';
+import { getAboutData } from '../lib/about';
 
 interface Props {
 	activeSlug?: string;
@@ -9,6 +10,7 @@ const { activeSlug } = Astro.props;
 
 const { bookData, collectionOptions, genresPresent, years } = await getBookData();
 const total = bookData.length;
+const aboutData = await getAboutData();
 
 // Small set of tilt angles cycled across cards, matching the hand-placed look in the design.
 const ROTATIONS = [0.8, -0.5, 0.6, -0.8, 0];
@@ -49,52 +51,8 @@ const infoRows = activeBook
 			transition:name="about-canvas"
 		></canvas>
 		<div class="grid grid-cols-1 gap-x-16 gap-y-10 text-lg leading-[1.6] tracking-[0.18px] text-primario sm:grid-cols-2">
-			<div class="[&>p]:mb-6">
-				<p>
-					El sello editorial YAUGURÚ surge en el 2004 como respuesta a la necesidad de atender la
-					creación desde un lugar no estandarizado ni homogéneo. Cada obra, más allá de estilos y
-					géneros es única, por tanto el proceso de edición debe tomar en cuenta esa especialidad.
-				</p>
-				<p>
-					La materialidad de la edición pretende hablar precisamente de esos aspectos
-					diferenciales. Generalmente las colecciones son armadas con criterios de uniformidad,
-					todos son iguales. Sin embargo en la literatura, y en el arte en general, lo que importa
-					son las diferencias.
-				</p>
-				<p>Lo diferente, lo que sale de lo común es lo que nos entusiasma.</p>
-				<p>No somos indiferentes a lo diferente.</p>
-				<p>La poesía en todos sus géneros.</p>
-				<p>La edición en todos sus formatos.</p>
-				<p>
-					De alguna manera se plantea una continuidad conceptual con lo que fuera el colectivo de
-					trabajo Ediciones de UNO (1982-93), sello editorial que contó con más de 100 títulos
-					fundamentalmente de poesía, aunque también de narrativa, teatro, historietas y ensayo. Su
-					sistema de suscriptores llegó a contar con 600 socios-suscriptores. También se destacó su
-					actividad de recitales y performances en teatros, locales sindicales, peñas estudiantes,
-					cooperativas de vivienda, etc..
-				</p>
-				<p>
-					Conmemorando su quinto aniversario, el sello editorial yaugurú creó su propio sistema de
-					suscriptores, mediante el cual cada socio-suscriptor con el pago de una mínima cuota
-					mensual recibe en su casa una publicación –preferentemente libros, aunque también CDs,
-					colección de afiches, etc.–. En el momento EL CLÚ DE YAUGURÚ cuenta con aproximadamente
-					150 socios-suscriptores.
-				</p>
-				<p>
-					La editorial yaugurú obtiene el Premio al Mérito Gráfico y Esfuerzo Editorial, otorgado
-					por la Cámara Uruguaya del Libro en 2010, y el Morosoli institucional otorgado por la
-					Fundación Lolita Rubial, en 2018.
-				</p>
-				<p>El sello lleva editados más de 600 títulos.</p>
-				<p>
-					<a href="" class="underline decoration-from-font [text-underline-position:from-font]">email</a>
-				</p>
-				<p>
-					<a href="" class="underline decoration-from-font [text-underline-position:from-font]">instagram</a>
-				</p>
-				<p>
-					<a href="" class="underline decoration-from-font [text-underline-position:from-font]">youtube</a>
-				</p>
+			<div class="[&>p]:mb-6 [&_a]:underline [&_a]:decoration-from-font [&_a]:[text-underline-position:from-font]">
+				{aboutData && <aboutData.Content />}
 			</div>
 			<div class="sticky top-6 self-start [&>p]:mb-6"></div>
 		</div>

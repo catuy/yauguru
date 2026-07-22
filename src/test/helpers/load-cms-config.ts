@@ -9,10 +9,18 @@ export interface CmsField {
   [key: string]: unknown;
 }
 
+export interface CmsFile {
+  name: string;
+  file: string;
+  fields: CmsField[];
+  [key: string]: unknown;
+}
+
 export interface CmsCollection {
   name: string;
-  folder: string;
-  fields: CmsField[];
+  folder?: string;
+  fields?: CmsField[];
+  files?: CmsFile[];
   [key: string]: unknown;
 }
 
@@ -41,4 +49,10 @@ export function mustFindCollection(config: CmsConfig, name: string): CmsCollecti
   const collection = config.collections.find((c) => c.name === name);
   if (!collection) throw new Error(`Expected collection "${name}" to exist`);
   return collection;
+}
+
+export function mustFindFile(collection: CmsCollection, name: string): CmsFile {
+  const file = collection.files?.find((f) => f.name === name);
+  if (!file) throw new Error(`Expected file "${name}" to exist in collection "${collection.name}"`);
+  return file;
 }

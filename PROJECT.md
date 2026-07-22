@@ -25,6 +25,9 @@ src/
   lib/books.ts              — getBookData(): fetch+shape de todos los libros
                                (slug, colección, notas, etc). Compartido
                                entre index, /libro/[slug] y catalogo.astro.
+  lib/about.ts               — getAboutData(): entry + Content compilado del
+                               singleton "about" (texto "sobre nosotros" +
+                               email/instagram/youtube).
   components/BookCatalog.astro
                              — TODO el homepage/catálogo grilla vive acá:
                                hero, texto "sobre nosotros", barra de
@@ -330,6 +333,23 @@ Detalles de la config:
   probó uno para libros (tapa a la izquierda, texto rojo a la derecha,
   imitando la ficha real del sitio) pero se sacó porque desentonaba con el
   tema oscuro del editor de Sveltia; el preview default alcanza.
+- **Colección `about` = "file collection"** (`files:` en vez de `folder:`,
+  apuntando a `src/content/about/about.md`) para el texto "Sobre nosotros"
+  que antes estaba hardcodeado en `BookCatalog.astro`. Se probó primero una
+  folder collection normal con `create: false`/`delete: false` para que
+  fuera un singleton, pero eso la mostraba como una lista vacía sin forma de
+  abrir la entrada existente — una file collection es el patrón correcto de
+  Decap/Sveltia para una página única editable directamente (sin
+  crear/listar/borrar entradas). Un solo campo, `body` (`widget: markdown`,
+  cada párrafo separado por línea en blanco) — se probaron campos
+  estructurados separados para email/instagram/youtube, pero se sacaron a
+  pedido del editor: esos links van como link de markdown directo dentro
+  del mismo texto (`[email](mailto:...)`, etc.), no como campos aparte. El
+  wrapper en `BookCatalog.astro` tiene `[&_a]:underline` para que cualquier
+  link dentro del body markdown salga con el mismo subrayado que el resto
+  del sitio, sin depender de una clase por link. Cargado vía
+  `src/lib/about.ts` (`getAboutData()`, usa `render()` de `astro:content`
+  para el body).
 - `config.yml` se valida en cada sesión contra el JSON schema real de
   Sveltia (`https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json`) y
   hay tests en `src/test/cms-config.test.ts` (`npm test`, usa `js-yaml`)

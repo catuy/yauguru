@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { loadCmsConfig, mustFindField, mustFindCollection } from './helpers/load-cms-config';
+import { loadCmsConfig, mustFindField, mustFindCollection, mustFindFile } from './helpers/load-cms-config';
 
 const GENRES = [
   'poesía',
@@ -15,6 +15,7 @@ const GENRES = [
 const config = loadCmsConfig();
 const books = mustFindCollection(config, 'books');
 const collections = mustFindCollection(config, 'editorial-collections');
+const about = mustFindCollection(config, 'about');
 
 describe('admin/config.yml — backend', () => {
   it('uses the GitHub backend with no OAuth client (PAT-only auth)', () => {
@@ -39,10 +40,9 @@ describe('admin/config.yml — books collection', () => {
 
   it('does not name a top-level collection the same as a field on another collection (Sveltia identifier collision — caused book fields to bleed into the editorial-collections form)', () => {
     const topLevelNames = config.collections.map((c) => c.name);
-    for (const collection of config.collections) {
-      for (const field of collection.fields) {
-        expect(topLevelNames).not.toContain(field.name);
-      }
+    const allFields = config.collections.flatMap((c) => c.fields ?? c.files?.flatMap((f) => f.fields) ?? []);
+    for (const field of allFields) {
+      expect(topLevelNames).not.toContain(field.name);
     }
   });
 
@@ -96,5 +96,28 @@ describe('admin/config.yml — collections (editorial)', () => {
   it('has exactly name/order — description/coverImage/body are never read anywhere in books.ts, so they stayed out of the editing UI', () => {
     const fieldNames = collections.fields.map((f) => f.name);
     expect(fieldNames).toEqual(['name', 'order']);
+  });
+});
+
+describe('admin/config.yml — about', () => {
+  const aboutFile = mustFindFile(about, 'about');
+
+  it('is a file collection (a directly-editable page, not a list you have to create/open entries in) — a folder collection with create:false was tried first, but that still showed as an empty list with no way to open the existing entry', () => {
+    expect(about.folder).toBeUndefined();
+    expect(about.files).toBeDefined();
+  });
+
+  it('points at the real content file', () => {
+    expect(aboutFile.file).toBe('src/content/about/about.md');
+  });
+
+  it('has exactly one field — body. Social links (email/instagram/youtube) live as plain markdown links inside that text rather than as structured fields', () => {
+    const fieldNames = aboutFile.fields.map((f) => f.name);
+    expect(fieldNames).toEqual(['body']);
+  });
+
+  it('lets the body span multiple paragraphs', () => {
+    const field = mustFindField(aboutFile.fields, 'body');
+    expect(field.widget).toBe('markdown');
   });
 });

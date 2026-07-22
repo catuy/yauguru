@@ -51,7 +51,18 @@ const editorialCollections = defineCollection({
     }),
 });
 
+// Singleton: exactly one entry (about.md), body is the "sobre nosotros" prose
+// shown in BookCatalog.astro's about section — no frontmatter fields, the
+// social links live as plain markdown links inside the body text itself
+// rather than as structured fields. The CMS collection is a "files"
+// collection to match (a directly-editable page) — see public/admin/config.yml.
+const about = defineCollection({
+  loader: glob({ pattern: 'about.md', base: './src/content/about' }),
+  schema: z.object({}),
+});
+
 export const collections = {
   books,
   collections: editorialCollections,
+  about,
 };
