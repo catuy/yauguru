@@ -13,11 +13,22 @@
 	--color-primario-hover: color-mix(in srgb, var(--color-primario) 88%, black);
 }
 
-/* Locks page scroll whenever the book detail modal is present, including
-   across Astro view-transition navigations (declarative, so it doesn't
-   depend on JS timing or on a body class making it through the swap). */
-body:has(#book-modal) {
+/* Locks page scroll whenever the book detail modal OR the entrance preloader
+   is present, including across Astro view-transition navigations
+   (declarative, so it doesn't depend on JS timing or on a body class making
+   it through the swap). padding-right compensates for the scrollbar that
+   overflow:hidden removes — without it, the page (and everything centered
+   in it) gets that little bit wider and visibly shifts sideways right when
+   the lock lifts. --scrollbar-width is measured once in Layout.astro's
+   <head> (a real scrollbar-width probe, not scrollbar-gutter: stable —
+   that alternative was tried first, but it reserves the gutter
+   permanently, all the time, which just traded the shift for a persistent
+   blank strip down the right edge showing through the site's colored
+   sections). */
+body:has(#book-modal),
+body:has(#preloader) {
 	overflow: hidden;
+	padding-right: var(--scrollbar-width, 0px);
 }
 
 /* After a view-transition navigation (opening/closing a book), the trailing
@@ -164,6 +175,32 @@ body:has(#book-modal) {
 
 #cursor-dot.cursor-dot--pencil .cursor-pencil-icon {
 	display: block;
+}
+
+/* Hero section: same fixed-circle idea as --active, just bigger — big
+   enough that "Entrar" fits on one line at the same font size as the
+   glyphs, without needing to become a pill. */
+#cursor-dot.cursor-dot--hero {
+	width: 90px;
+	height: 90px;
+}
+
+/* Reveal transition, triggered from Preloader.astro right as the overlay
+   starts fading away: eases the hero's flat --color-primario into the same
+   darker --color-primario-hover used on the book tiles/detail panel, and
+   stays there — makes the (plain-primario) cursor dot read more distinctly
+   against the hero once the page is interactive. */
+#hero-section {
+	transition: background-color 400ms ease-out;
+}
+
+#hero-section.hero-flash {
+	background-color: var(--color-primario-hover);
+}
+
+#cursor-dot.cursor-dot--hero span {
+	opacity: 1;
+	white-space: nowrap;
 }
 
 /* Simulates a book's physical volume instead of a flat drop-shadow: a thin

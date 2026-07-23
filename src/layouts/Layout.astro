@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import Preloader from '../components/Preloader.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -44,6 +45,30 @@ const { title, description } = Astro.props;
 				document.documentElement.style.setProperty('--color-primario', window.__primarioColor);
 			})();
 		</script>
+		<!--
+			Measures the real scrollbar width once (a probe element, not
+			innerWidth - clientWidth — that only reflects the CURRENT page, which
+			might already be scroll-locked or too short to scroll yet) and stores
+			it as --scrollbar-width, which global.css uses to pad body by exactly
+			that much whenever it locks scroll (book modal or preloader) — see
+			the comment there for why. Same data-astro-rerun + window-cache
+			pattern as the color picker above and for the same reason: Astro's
+			transition swap resets <html>'s own runtime-set style attribute on
+			every soft navigation, and opening/closing a book IS one.
+		-->
+		<script is:inline data-astro-rerun>
+			(function () {
+				if (window.__scrollbarWidth === undefined) {
+					const probe = document.createElement('div');
+					probe.style.cssText =
+						'position:absolute; top:-9999px; left:-9999px; width:100px; height:100px; overflow:scroll;';
+					document.documentElement.appendChild(probe);
+					window.__scrollbarWidth = probe.offsetWidth - probe.clientWidth;
+					probe.remove();
+				}
+				document.documentElement.style.setProperty('--scrollbar-width', window.__scrollbarWidth + 'px');
+			})();
+		</script>
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
@@ -53,5 +78,14 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 		<slot />
+		<!--
+			After the slot, not before: its own script reads #app-data (the
+			embedded book JSON BookCatalog.astro renders as part of the slot
+			content) for cover images and the real book count. Being fixed/
+			full-screen with a high z-index, it still visually covers everything
+			above it regardless of DOM order — this way its script runs only
+			once #app-data actually exists, no DOMContentLoaded wrapper needed.
+		-->
+		<Preloader />
 	</body>
 </html>

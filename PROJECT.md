@@ -205,6 +205,168 @@ Dos cosas no obvias de la implementación:
   como classic script, un `const` de nivel superior repetido tiraría
   `SyntaxError: Identifier already declared`.
 
+### 11. Preloader de entrada
+
+`src/components/Preloader.astro`, incluido en `Layout.astro` **después** de
+`<slot />` (no antes) — overlay fijo (`position: fixed; inset: 0; z-index`
+alto) que tapa toda la página mientras el `<slot />` real ya se renderizó
+debajo. Pasó por dos diseños completamente distintos en la misma sesión —
+si algo de esto suena raro comparado con commits viejos, es porque el
+primer intento (fondo negro, wordmark con `mask-image` relleno de tapas
+cicladas, contador subiendo a 561, cortina de color deslizándose) se
+descartó del todo y no quedó nada de esa versión en el código actual.
+
+**Diseño actual**: fondo plano en `--color-primario` (la de esa sesión, ver
+punto 10) → el logo real (`/logo-yauguru.png`) aparece chico, `scale(0.5)`
+→ arriba del logo se van apilando ~10 tapas reales del catálogo, de a una
+(fade + zoom-in, rotadas al azar, encadenadas por `transitionend` para que
+nunca se superpongan) → cuando la página termina de cargar de verdad
+(`window.load`/`document.readyState==='complete'`, no un timer fijo) Y la
+pila ya terminó de armarse (lo que tarde más de las dos), las tapas
+desaparecen, el logo crece a `scale(1)`, y recién ahí el overlay se
+disuelve (`opacity`) y se remueve del DOM. No pide datos nuevos: lee las
+tapas directo de `#app-data`, el mismo JSON que `BookCatalog.astro` ya
+embebe en cada página — por eso el componente va **después** del
+`<slot />` en el DOM (si fuera antes, su script correría, en orden de
+parseo del documento, antes de que `#app-data` exista todavía; al ser
+`position: fixed`, igual tapa toda la pantalla sin importar su posición
+real en el documento).
+
+Bugs reales encontrados mientras se armaba (en orden cronológico, todos
+con test de Playwright antes de darlos por resueltos):
+
+- **Estilos scoped de Astro + elementos creados por JS**: las tapas se
+  crean con `document.createElement('img')` en el script, no existen en el
+  markup server-rendered del componente — el hash de scoping que Astro le
+  agrega a los selectores de un `<style>` normal nunca llega a esos
+  elementos, así que una regla `.preloader-cover { ... }` sin más los
+  ignora silenciosamente (salían gigantes, sin posición). Hace falta
+  `:global(.preloader-cover) { ... }`.
+- **Reveal disparaba a mitad de la última tapa**: `stackDone` se ponía en
+  `true` en el mismo tick en que se agregaba la última tapa al DOM, antes
+  de que termine su propia animación de entrada — la pila nunca se
+  alcanzaba a ver completa. Se agregó un `HOLD` (600ms) después de que la
+  última tapa termina su propio `transitionend`.
+- **El logo tenía dos reducciones apiladas**: el contenedor ya tenía un
+  ancho igual a la mitad del tamaño real del hero, y ADEMÁS
+  `transform: scale(0.5)` encima — al "crecer" a `scale(1)` solo llegaba a
+  la mitad del tamaño real. El contenedor tiene que medir el 100% real; el
+  `scale()` es la única reducción.
+- **Stagger de tiempo fijo vs. secuencial de verdad**: con
+  `setTimeout(i * STAGGER)`, si `STAGGER` quedaba más corto que la
+  duración de la transición, las tapas se superponían apareciendo. Se
+  cambió a una función recursiva `addCover(i)` que solo agrega la
+  siguiente tapa desde el `transitionend` (`{ once: true }`) de la
+  anterior — no puede superponerse pase lo que pase con la duración.
+- **Un solo `requestAnimationFrame` no alcanza para forzar la transición**:
+  crear el elemento, ponerle el estado inicial, y cambiar al estado final
+  en el siguiente rAF funcionaba para la 1ª tapa (su decode de imagen es
+  lo bastante lento como para dejar un frame de por medio) pero no para la
+  2ª-10ª (con la imagen ya cacheada, el navegador podía coalescer ambos
+  estilos en un solo paint, sin transición visible). Fix: forzar un reflow
+  síncrono leyendo `void el.offsetWidth` entre poner el estado inicial y
+  el final — sin eso, ningún rAF por sí solo garantiza que el "antes" se
+  llegó a pintar.
+- **Tapas recortadas → centrado roto al sacar el crop**: primero se cambió
+  el `<img>` de una caja fija con `object-fit:cover` (recortaba tapas con
+  otra proporción) a `max-width/max-height` + `width/height:auto` — pero
+  eso hizo que el tamaño real de la caja dependiera de cuándo termina de
+  cargar la imagen (asíncrono), y el `transform: translate(-50%, -50%)`
+  usado para centrar cada tapa se calcula contra el tamaño de LA CAJA en
+  ese momento — con la imagen todavía sin cargar, esa caja podía medir
+  0×0, y el `-50%` efectivo terminaba siendo 0, corriendo la tapa lejos
+  del centro. Fix definitivo: separar un wrapper de tamaño FIJO (200×280,
+  conocido de forma síncrona, es el que lleva el `transform` de centrado)
+  del `<img>` de adentro (que sí usa `max-width/height` + auto para no
+  recortarse, pero nunca participa del cálculo de centrado).
+- **Logo del preloader vs. logo real del hero, dos fórmulas de tamaño
+  distintas**: en algún momento el hero real pasó a usar
+  `w-full h-full object-contain` dentro de una sección `h-screen` sin
+  padding (para tocar el borde del alto en landscape o del ancho en
+  portrait, sin nunca distorsionarse), pero el logo del preloader seguía
+  con su propia fórmula vieja (`min(90vw,1074px)` de ancho, sin límite de
+  alto) — en cualquier viewport donde el alto termina siendo la
+  restricción real, el preloader crecía más grande que el tamaño final de
+  verdad y se veía un salto/snap al desaparecer. Las dos fórmulas tienen
+  que ser **exactamente** iguales (`width:100vw; height:100vh;
+  object-fit:contain;` en ambos), no solo "parecidas" — se verificó
+  comparando el `getComputedStyle().width/height` de los dos elementos en
+  varios tamaños de viewport hasta que coincidieron exacto.
+- **`prefers-reduced-motion` con `transition:none`**: el branch de
+  reduced-motion no puede esperar un `transitionend` para remover el
+  overlay — la regla CSS que le pone `transition: none` en ese caso hace
+  que ese evento nunca dispare. Llama `root.remove()` directo en cambio.
+
+Mismo patrón de guarda que el punto 10 (`data-astro-rerun` +
+`window.__yauguruPreloaderShown`): Layout renderiza el preloader en
+**cada** página sin condición, así que una navegación soft (abrir/cerrar
+un libro) trae uno nuevo en el HTML recién fetcheado — la guarda hace que
+ese nuevo se borre al instante (`root.remove()`) en vez de repetir la
+secuencia completa. Confirmado con Playwright que no hay ni un frame
+visible de más al navegar.
+
+### 12. Scroll lock sin salto ni línea blanca
+
+`body:has(#book-modal), body:has(#preloader) { overflow: hidden; padding-right: var(--scrollbar-width) }`
+en `global.css` — bloquea el scroll real (no solo visualmente) mientras el
+modal de detalle o el preloader están activos, vía la propagación especial
+de `overflow` de `body` al viewport (spec de CSS: si `html` tiene overflow
+`visible` y `body` no, el UA usa el de `body` para el viewport).
+
+`overflow:hidden` hace que el navegador saque la scrollbar real, lo que
+angosta/ensancha la página según el ancho que esa scrollbar ocupaba —
+visible como un salto lateral leve justo al bloquear/desbloquear. Dos
+intentos antes de llegar a la solución actual:
+
+1. `scrollbar-gutter: stable` en `html` — soluciona el salto reservando el
+   gutter siempre, pero como se reserva **todo el tiempo** (no solo
+   mientras está bloqueado), donde el sitio no llena 100% el ancho
+   (páginas cortas, o el propio momento sin scroll) queda una franja
+   blanca fija del lado derecho, encima de secciones con color de fondo —
+   peor que el problema original.
+2. **Solución final**: `padding-right: var(--scrollbar-width)` junto con
+   el `overflow:hidden`, aplicado solo mientras está bloqueado — sin
+   gutter permanente. `--scrollbar-width` se mide una sola vez por sesión
+   real con un elemento sonda (`overflow:scroll` en un div de prueba,
+   `offsetWidth - clientWidth`) en `Layout.astro`, cacheada en
+   `window.__scrollbarWidth`, y reaplicada en cada navegación soft con el
+   mismo patrón `data-astro-rerun` + `window.__algo` de los puntos 10/11
+   (el `<html>` pierde estilos puestos en runtime en cada swap de
+   transición).
+
+Ojo si se prueba esto en un navegador headless/automatizado: tanto
+Chromium (el bundleado de Playwright) como el Chrome real del sistema
+miden `--scrollbar-width` como `0px` en modo headless — no hay forma de
+verificar el valor real medido sin una ventana visible de verdad. Se
+verificó igual que el *mecanismo* (padding compensa exactamente lo que
+mide la variable) funciona forzando un valor de prueba de 15px a mano.
+
+### 13. Cursor "Entrar" en el hero + flash de color al cargar
+
+Dos agregados chicos sobre el sistema de cursor-dot existente (ver
+`#cursor-dot` en `BookCatalog.astro`/`global.css`) y sobre el preloader:
+
+- **Modo nuevo del cursor**: al pasar el mouse por `#hero-section`
+  (agregado ese id específicamente para esto), el punto crece a un
+  círculo fijo de 90px (no una píldora — se probó una píldora
+  `width:auto` primero, pero se pidió circular) mostrando "Entrar", con
+  la misma prioridad/estructura que los modos `close`/`plus`/`pencil` ya
+  existentes (`isOverHero`, más abajo en la cadena de prioridad que los
+  otros tres, ninguno se solapa con `hero` en la práctica). Un click ahí
+  hace `document.getElementById('about-section').scrollIntoView({behavior:'smooth'})`.
+  Como el preloader tapa el hero con sus propios `pointer-events` mientras
+  está activo, este modo no puede dispararse antes de que la página
+  termine de cargar — no hizo falta lógica extra para eso.
+- **Flash de color al terminar el preloader**: `Preloader.astro` le agrega
+  la clase `hero-flash` a `#hero-section` en el mismo momento en que el
+  overlay empieza a desvanecerse (justo después de que el logo termina de
+  crecer) — el fondo del hero transiciona de `--color-primario` plano a
+  `--color-primario-hover` (el mismo tono oscuro de los tiles/detalle) y
+  **se queda ahí** (no es un flash que vuelve atrás, a pesar del nombre de
+  la clase — se probó que volviera y se pidió que quedara fijo, para que
+  el punto del cursor, que sigue siendo el primario plano, se distinga
+  más contra el fondo).
+
 ## Cómo agregar tapas nuevas
 
 El editor va subiendo tapas escaneadas a `materiales/<algo con el año>/` (no
@@ -264,18 +426,20 @@ usó es:
 
 Trabajo hecho hasta ahora: grilla/lista unificadas con toggle, rediseño del
 modal de detalle (dos paneles full-bleed), punto rojo que sigue al mouse (con
-modos hover/cerrar/lápiz), zona de dibujo en la sección "about", footer fijo
-que aparece cuando la barra de filtros queda sticky, tapas reales para
-~130 libros + 3 libros nuevos (**562 libros** en total, ver "Cómo agregar
-tapas nuevas" arriba), y un editor web (Sveltia CMS) para que el editor de
-Yaugurú cargue/edite contenido sin tocar markdown — ver sección propia
-abajo.
+modos hover/cerrar/lápiz/hero-"Entrar", ver puntos 9 y 13), zona de dibujo en
+la sección "about", footer fijo que aparece cuando la barra de filtros queda
+sticky, tapas reales para ~561 libros (ver "Cómo agregar tapas nuevas"
+abajo), un editor web (Sveltia CMS, ver sección propia) con colecciones
+`about` y `genres` editables además de `books`/`editorial-collections`,
+`--color-primario` random por sesión (punto 10), branding propio en vez del
+default de Astro (favicon/logo del CMS), y un preloader de entrada con logo
++ pila de tapas (punto 11) — ver los puntos 10-13 de "Decisiones no obvias"
+para el detalle de estos últimos, son los más recientes y los más propensos
+a bugs sutiles si se los toca sin leer el porqué primero.
 
 **`main` está pusheado y sincronizado con `origin/main`** (confirmado con
-`git rev-list --count origin/main..HEAD` / `HEAD..origin/main`, ambos en 0).
-El rediseño del cursor-lápiz (la sección "about", `#cursor-dot`/
-`.cursor-pencil-icon` en `BookCatalog.astro` y `global.css`) que había
-quedado sin commitear varias sesiones ya se commiteó y pusheó.
+`git rev-list --count origin/main..HEAD` / `HEAD..origin/main`, ambos en 0)
+al momento de escribir esto.
 
 Libros nuevos agregados con metadata inferida por patrón del lote (colección/
 serie/año no confirmados en la tapa misma — sí el título/autor) que conviene

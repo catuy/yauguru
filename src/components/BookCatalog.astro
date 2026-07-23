@@ -37,9 +37,9 @@ const infoRows = activeBook
 ---
 
 <div id="page-bg" class:list={['w-full', { 'blur-sm': activeBook }]} inert={activeBook ? true : undefined}>
-	<section class="flex h-screen w-full items-center bg-primario">
-		<div class="mx-auto flex w-full max-w-[1280px] justify-center px-6 sm:px-16 lg:px-[103px]">
-			<img src="/logo-yauguru.png" alt="Yaugurú" class="w-full max-w-[1074px]" />
+	<section id="hero-section" class="flex h-screen w-full cursor-pointer items-center bg-primario">
+		<div class="flex h-full w-full items-center justify-center">
+			<img src="/logo-yauguru.png" alt="Yaugurú" class="h-full w-full object-contain" />
 		</div>
 	</section>
 
@@ -191,7 +191,7 @@ const infoRows = activeBook
 	<div id="book-modal" class="fixed inset-0 z-50">
 		<a href="/" aria-label="Cerrar" class="absolute inset-0"></a>
 		<div id="book-modal-content" class="relative flex h-full w-full flex-col overflow-y-auto bg-white sm:flex-row sm:overflow-visible">
-			<div class="m-6 flex h-[45vh] w-full shrink-0 items-center justify-center bg-[#F9F9F9] sm:h-auto sm:flex-1 sm:self-stretch">
+			<div class="mr-6 flex h-[45vh] w-full shrink-0 items-center justify-center bg-[var(--color-primario-hover)] sm:h-auto sm:flex-1 sm:self-stretch">
 				<div
 					class="relative flex h-[300px] w-[220px] items-center justify-center sm:h-[520px] sm:w-[380px]"
 					style="view-transition-name: book-cover"
@@ -626,6 +626,7 @@ const infoRows = activeBook
 			let isHoveringBook = false;
 			let isOverAbout = false;
 			let isOverAboutLink = false;
+			let isOverHero = false;
 
 			document.addEventListener('mousemove', (e) => {
 				mouseX = e.clientX;
@@ -634,6 +635,26 @@ const infoRows = activeBook
 
 			document.addEventListener('mouseover', (e) => {
 				if (e.target instanceof Element && e.target.closest('.book-cover-link')) isHoveringBook = true;
+			});
+
+			// Hero section doubles as a "keep scrolling" affordance: the dot
+			// swaps its "+" for "Entrar" while over it, and a click there jumps
+			// straight to the about section right below — the preloader (while
+			// it's up) sits on top and blocks pointer events, so this can never
+			// fire before the site has actually finished loading.
+			const heroSection = document.getElementById('hero-section');
+			document.addEventListener('mouseover', (e) => {
+				if (e.target instanceof Element && e.target.closest('#hero-section')) isOverHero = true;
+			});
+			document.addEventListener('mouseout', (e) => {
+				const isLeavingToAnotherHeroEl =
+					e.relatedTarget instanceof Element && e.relatedTarget.closest('#hero-section');
+				if (!isLeavingToAnotherHeroEl && e.target instanceof Element && e.target.closest('#hero-section')) {
+					isOverHero = false;
+				}
+			});
+			heroSection?.addEventListener('click', () => {
+				document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
 			});
 			document.addEventListener('mouseout', (e) => {
 				const isLeavingToAnotherBookEl =
@@ -723,19 +744,21 @@ const infoRows = activeBook
 				});
 			}
 
-			// Three mutually-exclusive looks for the dot, checked in priority
-			// order: the detail modal's close affordance wins over the about
-			// section's pencil (can't overlap in practice — #page-bg goes
-			// inert while a book is open, so about-section hover can't fire —
-			// but the priority keeps this correct even if that ever changes),
-			// which wins over a plain book hover, which wins over idle.
-			// wasMode guards every DOM write below so they only happen on an
-			// actual state change rather than every frame — textContent in
-			// particular replaces its text node on every assignment (unlike
-			// classList.toggle, which no-ops when the class is already in
-			// that state), so writing it 60x/sec regardless of whether it
-			// changed was churning the DOM forever in the background and
-			// showed up as janky cadence later on.
+			// Mutually-exclusive looks for the dot, checked in priority order:
+			// the detail modal's close affordance wins over the about section's
+			// pencil (can't overlap in practice — #page-bg goes inert while a
+			// book is open, so about-section hover can't fire — but the
+			// priority keeps this correct even if that ever changes), which
+			// wins over a plain book hover, which wins over the hero's "Entrar"
+			// (also can't overlap with the others in practice — different
+			// sections of the same page — same defensive reasoning), which
+			// wins over idle. wasMode guards every DOM write below so they only
+			// happen on an actual state change rather than every frame —
+			// textContent in particular replaces its text node on every
+			// assignment (unlike classList.toggle, which no-ops when the class
+			// is already in that state), so writing it 60x/sec regardless of
+			// whether it changed was churning the DOM forever in the
+			// background and showed up as janky cadence later on.
 			let wasMode = '';
 			(function tick() {
 				dotX += (mouseX - dotX) * 0.1;
@@ -749,11 +772,14 @@ const infoRows = activeBook
 						? 'plus'
 						: isOverAbout && !isOverAboutLink
 							? 'pencil'
-							: 'idle';
+							: isOverHero
+								? 'hero'
+								: 'idle';
 				if (mode !== wasMode) {
 					cursorDot.classList.toggle('cursor-dot--active', mode === 'close' || mode === 'plus');
 					cursorDot.classList.toggle('cursor-dot--pencil', mode === 'pencil');
-					if (glyph) glyph.textContent = mode === 'close' ? '×' : '+';
+					cursorDot.classList.toggle('cursor-dot--hero', mode === 'hero');
+					if (glyph) glyph.textContent = mode === 'close' ? '×' : mode === 'hero' ? 'Entrar' : '+';
 					wasMode = mode;
 				}
 

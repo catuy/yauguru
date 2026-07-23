@@ -1,0 +1,286 @@
+---
+// Entrance flourish shown on real page loads only (guarded in the script
+// below), never on soft/view-transition navigations. Needs no props: it
+// reads covers straight from #app-data, the same embedded JSON
+// BookCatalog.astro already renders on every page — no new data-fetching
+// added here.
+---
+
+<div id="preloader" aria-hidden="true">
+	<div class="preloader-covers"></div>
+	<img class="preloader-logo" src="/logo-yauguru.png" alt="" />
+</div>
+
+<style>
+	#preloader {
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--color-primario);
+		transition: opacity 400ms ease-in-out;
+	}
+
+	#preloader.preloader--done {
+		opacity: 0;
+	}
+
+	.preloader-logo {
+		/* Matches the real hero logo's own sizing (BookCatalog.astro:
+		   h-full w-full object-contain inside an unpadded, full h-screen
+		   section) — this is the "100%" size; scale(0.4) below is the only
+		   thing making it start small, so growing to scale(1) lands exactly
+		   on the real hero's size instead of some other, slightly-off "full"
+		   size. 100vw/100vh + object-contain here is what makes it (like the
+		   real hero) touch the screen edge on whichever axis is the binding
+		   one — full-bleed height on a landscape viewport, full-bleed width
+		   on a portrait one — rather than capping at some fixed max-width/
+		   fixed vh fraction: a mismatch there (this used a 1074px/90vh cap
+		   before, while the real hero didn't) would grow past the real hero's
+		   actual final size and visibly snap back down once the preloader
+		   clears, so this has to stay in sync with the real hero's formula
+		   exactly, not just look similar.
+
+		   No `transition` here on purpose — it lives only on the --grown
+		   rule below. Putting it on the resting state too caused a tiny
+		   unwanted animation right on load (any style recalculation right
+		   after paint could pick it up and visibly animate into scale(0.4)
+		   instead of just starting there already-small). A transition
+		   declared on the class that CHANGES the transform still animates
+		   correctly from whatever the previous value was, so the grow step
+		   is unaffected. */
+		width: 100vw;
+		height: 100vh;
+		object-fit: contain;
+		transform: scale(0.5);
+	}
+
+	.preloader-logo.preloader-logo--grown {
+		transform: scale(1);
+		transition: transform 600ms cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+	.preloader-covers {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+	}
+
+	/* :global() here on purpose: these covers are created with
+	   document.createElement in the script below, not present in this
+	   component's server-rendered markup — Astro's scoped-style hash only
+	   ever gets attached to elements that exist in the original template, so
+	   a plain (scoped) .preloader-cover rule would silently never match them. */
+	/* .preloader-cover is now a fixed-size (200×280) WRAPPER, not the <img>
+	   itself — the -50%/-50% centering transform (set inline, see the script
+	   below) needs a synchronously-known box size to translate against.
+	   Sizing the <img> itself with width:auto (to avoid cropping, below)
+	   made that box depend on the image's own intrinsic size, which isn't
+	   resolved until it's actually finished loading/decoding — asynchronous,
+	   relative to when the transform gets set — and produced exactly the
+	   "some land off in a corner" bug this replaced: percentage translate
+	   values are supposed to react live as their reference box resizes, but
+	   that isn't reliable across engines for a box whose size is still
+	   driven by an in-flight image load. A wrapper with a fixed size up
+	   front removes the race entirely. */
+	:global(.preloader-cover) {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 200px;
+		height: 280px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition:
+			opacity 150ms cubic-bezier(0.2, 0, 0, 1),
+			transform 150ms cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	/* max-width/height + auto, not object-fit:cover on a full-bleed image —
+	   a real book cover has all kinds of proportions (see BookCatalog.astro's
+	   own card()/detail view for the same object-contain-not-cover
+	   reasoning), and cover would crop anything that isn't exactly 200:280.
+	   This scales each one down to fit inside the wrapper while keeping its
+	   own real aspect ratio, so nothing gets cut off — box-shadow lives here
+	   too, so it hugs the image's actual rendered rectangle instead of the
+	   wrapper's full (possibly larger, letterboxed) box. */
+	:global(.preloader-cover img) {
+		display: block;
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+	}
+
+	:global(.preloader-cover.preloader-cover--in) {
+		opacity: 1;
+	}
+
+	:global(.preloader-cover.preloader-cover--out) {
+		opacity: 0;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#preloader,
+		.preloader-logo,
+		:global(.preloader-cover) {
+			transition: none;
+		}
+	}
+</style>
+
+<script is:inline data-astro-rerun>
+	(function () {
+		const root = document.getElementById('preloader');
+		if (!root) return;
+
+		// Real page loads only: soft navigations (opening/closing a book) also
+		// render a fresh #preloader (Layout renders it unconditionally on every
+		// page), but window survives those, so this guard removes the rerun's
+		// copy immediately instead of replaying the whole sequence.
+		if (window.__yauguruPreloaderShown) {
+			root.remove();
+			return;
+		}
+		window.__yauguruPreloaderShown = true;
+
+		const logoEl = root.querySelector('.preloader-logo');
+		const coversEl = root.querySelector('.preloader-covers');
+
+		// Right as the overlay starts fading (the hero underneath is actually
+		// becoming visible), transitions the hero's background from the flat
+		// --color-primario to the same darker --color-primario-hover used on
+		// the book tiles/detail panel — stays that shade from then on, so the
+		// (plain-primario-colored) cursor dot reads more distinctly against it.
+		function flashHero() {
+			document.getElementById('hero-section')?.classList.add('hero-flash');
+		}
+
+		function reveal() {
+			coversEl?.querySelectorAll('.preloader-cover').forEach((el) => {
+				el.classList.remove('preloader-cover--in');
+				el.classList.add('preloader-cover--out');
+			});
+			// The logo has to actually finish growing before the overlay starts
+			// fading — otherwise root's own (faster) opacity fade finishes and
+			// removes it while the logo is still mid-scale, popping straight to
+			// the real hero's already-full-size logo instead of growing into it.
+			if (logoEl) {
+				logoEl.addEventListener(
+					'transitionend',
+					() => {
+						root.classList.add('preloader--done');
+						flashHero();
+						root.addEventListener('transitionend', () => root.remove(), { once: true });
+					},
+					{ once: true }
+				);
+				logoEl.classList.add('preloader-logo--grown');
+			} else {
+				root.classList.add('preloader--done');
+				flashHero();
+				root.addEventListener('transitionend', () => root.remove(), { once: true });
+			}
+		}
+
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			// No transitionend to wait for — the CSS above sets transition:none
+			// under reduced motion, so a listener-based removal would never fire.
+			root.remove();
+			return;
+		}
+
+		let covers = [];
+		try {
+			const data = JSON.parse(document.getElementById('app-data')?.textContent ?? '{}');
+			const books = Array.isArray(data.books) ? data.books : [];
+			covers = books.map((b) => b.coverImage).filter(Boolean);
+		} catch (e) {
+			// No data — the pile just stays empty, logo still shows/grows fine.
+		}
+
+		// Fresh shuffle every load, so the pile's covers/order differ each time
+		// even though the underlying list (baked into #app-data at build time)
+		// doesn't.
+		for (let i = covers.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[covers[i], covers[j]] = [covers[j], covers[i]];
+		}
+
+		const STACK_SIZE = 10;
+		const HOLD = 600;
+		const picked = covers.slice(0, STACK_SIZE);
+
+		let stackDone = false;
+		let pageLoaded = false;
+		function maybeReveal() {
+			if (stackDone && pageLoaded) reveal();
+		}
+
+		if (document.readyState === 'complete') {
+			pageLoaded = true;
+		} else {
+			window.addEventListener('load', () => {
+				pageLoaded = true;
+				maybeReveal();
+			});
+		}
+
+		if (!picked.length) {
+			stackDone = true;
+			maybeReveal();
+			return;
+		}
+
+		// Sequential, not staggered-by-timer: each cover only starts appearing
+		// once the previous one's own entrance transition has actually
+		// finished (chained off transitionend), so they never overlap
+		// regardless of how the transition duration above gets tuned.
+		function addCover(i) {
+			if (i >= picked.length) {
+				// Hold on the full pile for a beat once the last one's entrance
+				// finishes, rather than revealing immediately mid-fade-in.
+				setTimeout(() => {
+					stackDone = true;
+					maybeReveal();
+				}, HOLD);
+				return;
+			}
+
+			// A fixed-size wrapper (see the CSS comment on .preloader-cover)
+			// carries the centering transform; the <img> inside just fills it
+			// without cropping (object-contain-equivalent via max-width/height).
+			const wrapper = document.createElement('div');
+			wrapper.className = 'preloader-cover';
+			const img = document.createElement('img');
+			img.src = picked[i];
+			img.alt = '';
+			wrapper.appendChild(img);
+			// Small hand-fanned scatter: a few px of jitter, a modest rotation,
+			// each card nudged from dead-center so the pile doesn't look like a
+			// single flat stack.
+			const rotate = (Math.random() * 24 - 12).toFixed(1);
+			const dx = Math.round(Math.random() * 40 - 20);
+			const dy = Math.round(Math.random() * 40 - 20);
+			wrapper.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) rotate(${rotate}deg) scale(0.6)`;
+			coversEl?.appendChild(wrapper);
+			// Force a synchronous layout flush so the browser actually commits
+			// this starting state before the next lines change it — a single
+			// requestAnimationFrame() isn't a reliable enough gap for that on
+			// its own (this bit the 2nd-6th covers specifically: cached/fast-
+			// decoding images could have their "before" and "after" styles
+			// coalesce into one paint with no transition, while the 1st cover's
+			// slower initial decode happened to leave enough of a gap to work).
+			void wrapper.offsetWidth;
+			wrapper.classList.add('preloader-cover--in');
+			wrapper.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) rotate(${rotate}deg) scale(1)`;
+			wrapper.addEventListener('transitionend', () => addCover(i + 1), { once: true });
+		}
+		addCover(0);
+	})();
+</script>
