@@ -367,6 +367,40 @@ Dos agregados chicos sobre el sistema de cursor-dot existente (ver
   el punto del cursor, que sigue siendo el primario plano, se distinga
   más contra el fondo).
 
+### 14. Logo rotado 90° en mobile portrait (hero + preloader)
+
+En `#hero-section` (`BookCatalog.astro`) y `.preloader-logo` (`Preloader.astro`),
+un `@media (max-width: 639px) and (orientation: portrait)` swapea el ancho/alto
+del logo (`width:100vh; height:100vw`) y lo rota con `transform: rotate(90deg)`
+(sumado a `scale()` en el preloader) — el wordmark es apaisado, así que sin esto
+`object-contain` lo encoge a lo ancho de la pantalla y queda chico con mucho
+espacio muerto arriba/abajo. Swapear el box antes de rotar hace que
+`object-contain` calcule el tamaño contra una caja ya pensada para portrait, y
+la rotación lo deja ocupando el 100vw×100vh real, solo que de costado.
+
+Dos interacciones invisibles con Tailwind que rompían el swap en silencio
+(ambas confirmadas con Playwright inspeccionando `getComputedStyle`, no a
+simple vista — los números resultantes son creíbles a primera vista, no un
+error obvio):
+
+- **Preflight pone `max-width: 100%` en todo `<img>`** (`@layer base`). Sin
+  `max-width: none` en la regla del media query, el `width: 100vh` (más grande
+  que el ancho real del viewport en portrait) queda clampeado de vuelta a
+  `100%` del contenedor — el swap nunca se ve, sin ningún error ni warning.
+- **El contenedor es `display:flex`** (fila, `items-center justify-center`).
+  Sin `flex-shrink: 0`, el algoritmo de flexbox intenta achicar el logo para
+  que entre en el espacio disponible (mucho menor a `100vh` en portrait) — y
+  como la altura ya es definida (`100vw`) y la imagen tiene aspect ratio
+  intrínseco conocido, el **automatic minimum width** de flexbox (spec: para
+  un ítem reemplazado con cross-size definido, es `cross-size × aspect-ratio`)
+  termina ganándole al `width` especificado, dando un tercer número que no es
+  ni el viejo ni el nuevo valor esperado (en un momento se vio `503.48px` —
+  ni `100%` del contenedor ni `100vh` real, sino `390px × (2959/2292)`).
+
+Las dos reglas (`.hero-logo` en `BookCatalog.astro` y `.preloader-logo` en
+`Preloader.astro`) tienen que mantenerse en sync exacto, mismo motivo que el
+punto 11 (evitar un salto visible en el hand-off preloader → hero real).
+
 ## Cómo agregar tapas nuevas
 
 El editor va subiendo tapas escaneadas a `materiales/<algo con el año>/` (no

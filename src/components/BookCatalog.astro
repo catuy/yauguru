@@ -37,9 +37,9 @@ const infoRows = activeBook
 ---
 
 <div id="page-bg" class:list={['w-full', { 'blur-sm': activeBook }]} inert={activeBook ? true : undefined}>
-	<section id="hero-section" class="flex h-screen w-full cursor-pointer items-center bg-primario">
+	<section id="hero-section" class="flex h-screen w-full cursor-pointer items-center overflow-hidden bg-primario">
 		<div class="flex h-full w-full items-center justify-center">
-			<img src="/logo-yauguru.png" alt="Yaugurú" class="h-full w-full object-contain" />
+			<img src="/logo-yauguru.png" alt="Yaugurú" class="hero-logo h-full w-full object-contain" />
 		</div>
 	</section>
 
@@ -293,6 +293,45 @@ const infoRows = activeBook
 	</div>
 </div>
 
+<style>
+	/* Mobile portrait only (matches the sm: 640px breakpoint used everywhere
+	   else in this file): the wordmark is landscape-shaped, so at rest
+	   object-contain fits it to the viewport's width and leaves it tiny,
+	   letterboxed top/bottom. Swapping width/height (100vh × 100vw, the
+	   inverse of the normal 100vw × 100vh box) before rotating means
+	   object-contain sizes the logo against a box shaped for portrait, and
+	   the 90deg rotation lands it back to occupying the real 100vw × 100vh
+	   viewport, just sideways. Must stay pixel-for-pixel identical to the
+	   preloader's own copy of this rule (Preloader.astro) — see PROJECT.md
+	   point 11 on why the two logo formulas have to match exactly, not just
+	   look similar, to avoid a visible snap when the preloader hands off to
+	   the real hero.
+	   overflow-hidden on #hero-section (see class list above) clips the
+	   pre-rotation box, which is wider than the viewport in portrait. */
+	@media (max-width: 639px) and (orientation: portrait) {
+		.hero-logo {
+			/* Tailwind's Preflight base layer sets `img { max-width: 100% }`
+			   (clamped against the flex item's un-rotated containing-block
+			   width, i.e. the viewport's *width*, not its height) — without
+			   this override it silently clamps the swapped 100vh box back
+			   down to 100vw, which was invisible before this rule existed
+			   because the old width (100%) never exceeded that constraint. */
+			max-width: none;
+			/* The parent is a flex container (row axis), and this box's
+			   100vh width is always bigger than the available 100vw main
+			   size in portrait — without flex-shrink:0 the flex algorithm
+			   shrinks it, and since height is definite (100vw) with a known
+			   intrinsic ratio, the automatic min-width (aspect-ratio ×
+			   height) wins over our specified width instead of the actual
+			   100vh value. */
+			flex-shrink: 0;
+			width: 100vh;
+			height: 100vw;
+			transform: rotate(90deg);
+		}
+	}
+</style>
+
 <script type="application/json" id="app-data" set:html={appData} />
 
 <script is:inline data-astro-rerun>
@@ -373,13 +412,13 @@ const infoRows = activeBook
 		const rotation = rotations[i % rotations.length];
 		const cover = b.coverImage
 			? `<img src="${escapeHtml(b.coverImage)}" alt="${escapeHtml(b.title)}" loading="lazy" decoding="async" class="book-shadow max-h-full max-w-full h-auto w-auto">`
-			: `<div class="book-shadow flex h-[260px] w-[190px] flex-col justify-between bg-[#faf7f2] p-3 text-primario">
-			<p class="line-clamp-4 text-sm font-semibold leading-tight">${escapeHtml(b.title)}</p>
-			<p class="line-clamp-1 text-xs uppercase tracking-wide opacity-70">${escapeHtml(b.authors[0] ?? b.collectionNames[0] ?? '')}</p>
+			: `<div class="book-shadow flex h-[140px] w-[102px] flex-col justify-between bg-[#faf7f2] p-3 text-primario sm:h-[260px] sm:w-[190px]">
+			<p class="line-clamp-4 text-[11px] font-semibold leading-tight sm:text-sm">${escapeHtml(b.title)}</p>
+			<p class="line-clamp-1 text-[9px] uppercase tracking-wide opacity-70 sm:text-xs">${escapeHtml(b.authors[0] ?? b.collectionNames[0] ?? '')}</p>
 		</div>`;
 		return `
-		<a href="/libro/${encodeURIComponent(b.slug)}" class="book-cell book-cover-link relative flex h-[450px] w-full items-center justify-center overflow-hidden bg-[#F9F9F9]" aria-label="Ver ${escapeHtml(b.title)}">
-			<div class="book-cover-box relative flex h-[260px] w-[190px] items-center justify-center" style="--rotate: ${rotation}deg">${cover}</div>
+		<a href="/libro/${encodeURIComponent(b.slug)}" class="book-cell book-cover-link relative flex h-[210px] w-full items-center justify-center overflow-hidden bg-[#F9F9F9] sm:h-[450px]" aria-label="Ver ${escapeHtml(b.title)}">
+			<div class="book-cover-box relative flex h-[140px] w-[102px] items-center justify-center sm:h-[260px] sm:w-[190px]" style="--rotate: ${rotation}deg">${cover}</div>
 		</a>`;
 	}
 
