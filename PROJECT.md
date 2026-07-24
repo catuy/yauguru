@@ -529,7 +529,21 @@ Detalles de la config:
   ningún worker/proxy** — se evaluó y se descartó Pages CMS explícitamente
   por esto (su modo self-hosted pedía crear una GitHub App con private
   key/webhook secret, y el modo hosteado dependía de un tercero — ninguno
-  de los dos hacía falta).
+  de los dos hacía falta). El botón "Sign In with GitHub" (OAuth) que
+  Sveltia muestra por defecto se sacó con `backend.auth_methods: [token]`
+  en `config.yml` — sin esto tira "Not Found" al clickearlo, porque
+  necesitaría ese mismo GitHub OAuth App + proxy que se descartó arriba.
+  Confirmado contra el JSON schema real de Sveltia
+  (`https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json`) que
+  `auth_methods` es un campo válido de `GitHubBackend`, no una opción
+  inventada. Cada colaborador nuevo necesita su propio PAT generado desde
+  su propia cuenta de GitHub (agregada como collaborator del repo) — un
+  token compartido no permite revocar acceso individual ni distingue quién
+  hizo qué commit.
+  El texto "Sveltia CMS" del login se cambió por "Yaugurú" con `app_title`
+  (top-level en `config.yml`) — Sveltia igual deja un "Powered by Sveltia
+  CMS" chico en el pie de página, no es una solución white-label completa
+  (documentado así en su propia doc de customization).
 - El content type de nivel superior para colecciones editoriales se llama
   `editorial-collections` en `config.yml`, **no** `collections` — si se
   renombra de vuelta a `collections` se reintroduce una colisión de

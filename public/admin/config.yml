@@ -2,6 +2,13 @@ backend:
   name: github
   repo: catuy/yauguru
   branch: main
+  # Solo token de acceso personal — el botón OAuth "Sign In with GitHub"
+  # necesitaría una GitHub OAuth App + un proxy propio (Worker/función)
+  # para intercambiar el código por un token, algo que se evaluó y se
+  # descartó a propósito (ver PROJECT.md, sección "Editor de catálogo").
+  auth_methods: [token]
+
+app_title: Yaugurú
 
 logo:
   src: /logo-yauguru.png
