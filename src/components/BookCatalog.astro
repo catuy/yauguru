@@ -831,25 +831,48 @@ const infoRows = activeBook
 		// while still scrolling through the hero/about). position: sticky
 		// alone doesn't expose a "currently stuck" state, so a sentinel placed
 		// right before the sticky filter bar stands in for it — the sentinel
-		// reliably scrolls out of view at exactly the moment its sticky
+		// scrolls above the viewport top at exactly the moment its sticky
 		// sibling starts pinning. Not gated behind pointer:fine (unlike the
 		// cursor dot above) since back-to-top/footer visibility are just as
 		// relevant on touch devices.
+		//
+		// This used to be an IntersectionObserver, which is the "textbook"
+		// way to do this — but it silently missed every case that actually
+		// matters here: a hard refresh landing already scrolled into the
+		// catalog (native scroll restoration), and returning from a book
+		// detail page with scroll restored via our own scrollTo() below
+		// (point 6 of PROJECT.md). Both land on the page already scrolled
+		// past the sentinel in one jump, with no further scrolling — and
+		// confirmed with Playwright, a single instant scrollTo() to a
+		// far-down position never triggered a second IntersectionObserver
+		// callback in this engine, leaving the footer stuck on its stale
+		// first ("not stuck yet") reading. A plain `scroll` listener doesn't
+		// have that gap: a scroll event reliably fires for an instant
+		// scrollTo() jump (confirmed the same way), so recomputing directly
+		// off getBoundingClientRect() on every scroll self-corrects
+		// regardless of what caused the jump.
 		const filterBarSentinel = document.getElementById('filter-bar-sentinel');
 		const siteFooter = document.getElementById('site-footer');
 		if (filterBarSentinel && siteFooter) {
-			new IntersectionObserver(([entry]) => {
-				// isIntersecting alone is ambiguous: it's equally false before
-				// the sentinel has scrolled into view (below the viewport,
-				// filter bar not stuck yet) and after it's scrolled past
-				// (above the viewport, filter bar now stuck) — only the sign
-				// of its position tells those two apart.
-				const stuck = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+			let ticking = false;
+			const updateFooterStuck = () => {
+				ticking = false;
+				const stuck = filterBarSentinel.getBoundingClientRect().top < 0;
 				siteFooter.classList.toggle('opacity-0', !stuck);
 				siteFooter.classList.toggle('opacity-100', stuck);
 				siteFooter.classList.toggle('pointer-events-none', !stuck);
 				siteFooter.classList.toggle('pointer-events-auto', stuck);
-			}).observe(filterBarSentinel);
+			};
+			window.addEventListener(
+				'scroll',
+				() => {
+					if (ticking) return;
+					ticking = true;
+					requestAnimationFrame(updateFooterStuck);
+				},
+				{ passive: true }
+			);
+			updateFooterStuck();
 		}
 
 		const backToTopBtn = document.getElementById('btn-back-to-top');
@@ -914,6 +937,16 @@ const infoRows = activeBook
 		});
 		document.addEventListener('astro:page-load', () => {
 			const saved = sessionStorage.getItem(SCROLL_KEY);
+			// astro:page-load fires on EVERY page load, including a plain
+			// hard refresh — not just the soft navigations that pair with
+			// astro:before-preparation above. Without clearing it here, a
+			// saved position from an earlier book-detail round trip would
+			// still be sitting in sessionStorage and get wrongly re-applied
+			// on a later, unrelated refresh (e.g. scroll to the grid, open a
+			// book, close it — restoring correctly — then scroll back up to
+			// the hero and hit refresh: without this line, that refresh
+			// found the stale saved value and jumped back down to the grid).
+			sessionStorage.removeItem(SCROLL_KEY);
 			// The browser's own view-transition machinery (scrolling the
 			// outgoing named element into view to snapshot it) can still
 			// adjust scroll for a frame or two after astro:page-load fires,
