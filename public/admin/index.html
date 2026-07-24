@@ -4,8 +4,49 @@
     <meta charset="utf-8" />
     <meta name="robots" content="noindex" />
     <title>Yaugurú — Editor de catálogo</title>
+    <style>
+      /* Sveltia has no config option to remove the app_title heading
+         entirely (only to change its text — see config.yml's app_title,
+         which still needs to stay set since it also drives the browser
+         tab title). This only exists on the login screen: the h1 right
+         after the logo image, never seen again once logged in, so scoping
+         to that exact adjacency is safe without an app-wide h1 rule. */
+      img.logo + h1 {
+        display: none;
+      }
+    </style>
   </head>
   <body>
+    <script>
+      // Sveltia has no config.yml option for a default theme — it decides
+      // light vs dark by calling matchMedia('(prefers-color-scheme: dark)')
+      // once at startup (confirmed by reading its bundle; there's no
+      // documented key for this). Faking that one query to always report
+      // "light" makes it default there regardless of the editor's OS
+      // setting, without touching anything else matchMedia is used for.
+      // Has to run before the Sveltia script tag below, since it reads this
+      // synchronously at init.
+      (function () {
+        var originalMatchMedia = window.matchMedia.bind(window);
+        window.matchMedia = function (query) {
+          if (typeof query === 'string' && query.replace(/\s+/g, '') === '(prefers-color-scheme:dark)') {
+            return {
+              matches: false,
+              media: query,
+              onchange: null,
+              addListener: function () {},
+              removeListener: function () {},
+              addEventListener: function () {},
+              removeEventListener: function () {},
+              dispatchEvent: function () {
+                return false;
+              },
+            };
+          }
+          return originalMatchMedia(query);
+        };
+      })();
+    </script>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   </body>
 </html>

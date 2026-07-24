@@ -543,7 +543,23 @@ Detalles de la config:
   El texto "Sveltia CMS" del login se cambió por "Yaugurú" con `app_title`
   (top-level en `config.yml`) — Sveltia igual deja un "Powered by Sveltia
   CMS" chico en el pie de página, no es una solución white-label completa
-  (documentado así en su propia doc de customization).
+  (documentado así en su propia doc de customization). Después se pidió
+  sacar ese texto del todo (solo el logo) — no hay config para eso (solo
+  para cambiar el texto, no para ocultarlo), así que se ocultó con CSS en
+  `public/admin/index.html` apuntando a `img.logo + h1` — esa adyacencia
+  específica solo existe en la pantalla de login, nunca de vuelta una vez
+  logueado, así que no hace falta un selector más frágil ni arriesga
+  esconder un `<h1>` legítimo del editor real.
+- **Tema claro por defecto**: tampoco hay opción de config para esto —
+  Sveltia decide auto light/dark llamando
+  `matchMedia('(prefers-color-scheme: dark)')` una sola vez al arrancar (se
+  confirmó leyendo el bundle minificado de `sveltia-cms.js`, no está
+  documentado). `public/admin/index.html` pisa `window.matchMedia` *antes*
+  del `<script>` de Sveltia para que esa consulta puntual devuelva siempre
+  `matches: false`, sin tocar ningún otro uso de `matchMedia` en la página.
+  Verificado con Playwright emulando `colorScheme: 'dark'` en el navegador
+  — sin el override, el tema quedaba en dark; con el override,
+  `document.documentElement.dataset.theme` da `"light"` incluso así.
 - El content type de nivel superior para colecciones editoriales se llama
   `editorial-collections` en `config.yml`, **no** `collections` — si se
   renombra de vuelta a `collections` se reintroduce una colisión de
